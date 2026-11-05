@@ -48,6 +48,15 @@ class Tests(unittest.TestCase):
   bot.handle({'message':msg}); self.assertIn(42,bot.reports)
   bot.handle({'callback_query':{'id':'q','from':{'id':42},'message':msg,'data':'json'}}); self.assertEqual(len(api.docs),1)
   bot.handle({'callback_query':{'id':'q','from':{'id':42},'message':msg,'data':'delete'}}); self.assertFalse(bot.reports)
+ def test_public_access(self):
+  class API:
+   def __init__(self): self.messages=[]
+   def message(self,*a): self.messages.append(a)
+  api=API(); bot=Bot(api,None)
+  for user in (42,43): bot.handle({'message':{'from':{'id':user},'chat':{'id':user,'type':'private'}}})
+  self.assertEqual(len(api.messages),2)
+  bot.handle({'message':{'from':{'id':44},'chat':{'id':-1,'type':'group'}}})
+  self.assertEqual(len(api.messages),2)
  def test_unauthorized(self):
   class API:
    def message(self,*a): raise AssertionError('unauthorized')

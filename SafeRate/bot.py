@@ -43,10 +43,12 @@ class Bot:
   now=time.monotonic()
   for key,(stamp,_) in list(self.reports.items()):
    if now-stamp>900: del self.reports[key]
+  for key,stamp in list(self.last.items()):
+   if now-stamp>60: del self.last[key]
   cb=update.get('callback_query'); msg=(cb or {}).get('message') if cb else update.get('message')
   if not msg: return
   user=(cb or msg).get('from',{}).get('id'); chat=msg['chat']['id']
-  if msg['chat'].get('type')!='private' or user not in self.users:
+  if msg['chat'].get('type')!='private' or (self.users is not None and user not in self.users):
    if cb: self.api.call('answerCallbackQuery',{'callback_query_id':cb['id'],'text':'Доступ закрыт.'})
    return
   if cb:
@@ -79,10 +81,12 @@ class Bot:
 
 def main():
  token=os.environ.get('TELEGRAM_BOT_TOKEN',''); allowed=os.environ.get('ALLOWED_USER_IDS','')
- if not token or not allowed: raise SystemExit('Задайте TELEGRAM_BOT_TOKEN и ALLOWED_USER_IDS. Значения не выводятся.')
+ if not token: raise SystemExit('Задайте TELEGRAM_BOT_TOKEN. Значение не выводится.')
+ public=os.environ.get('PUBLIC_BOT','0')=='1'
  try: users={int(x.strip()) for x in allowed.split(',') if x.strip()}
  except ValueError: raise SystemExit('ALLOWED_USER_IDS: нужны числовые ID через запятую.')
- if not users: raise SystemExit('Список пользователей пуст.')
+ if public: users=None
+ elif not users: raise SystemExit('Укажите PUBLIC_BOT=1 для публичного доступа или ALLOWED_USER_IDS для закрытого режима.')
  api=Telegram(token); bot=Bot(api,users); offset=0
  api.call('getMe')
  api.call('setMyName', {'name':'SafeRate'})
