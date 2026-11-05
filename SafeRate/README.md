@@ -4,10 +4,10 @@ Telegram-бот для эвристической проверки исходн�
 
 ## Самый простой запуск через .env
 
-Скопируйте .env.example в .env рядом с bot.py. В обычном терминале Windows:
+Скопируйте config.example.txt (или .env.example) в .env рядом с bot.py. В обычном терминале Windows:
 
 ```bat
-copy .env.example .env
+copy config.example.txt .env
 notepad .env
 ```
 
@@ -18,7 +18,7 @@ TELEGRAM_BOT_TOKEN=ваш_настоящий_токен_от_BotFather
 PUBLIC_BOT=1
 ```
 
-Затем выполните `python bot.py` (на Linux/macOS: `python3 bot.py`). Для копирования на Linux/macOS используйте `cp .env.example .env`. PUBLIC_BOT=1 открывает доступ всем в личных сообщениях. Не публикуйте .env и не отправляйте его другим: он содержит токен. В .gitignore он исключён; ZIP проекта его также исключает. Это простой формат KEY=VALUE, без подстановки переменных и выполнения команд.
+Затем выполните `python bot.py` (на Linux/macOS: `python3 bot.py`). Для копирования на Linux/macOS используйте `cp config.example.txt .env`. PUBLIC_BOT=1 открывает доступ всем в личных сообщениях. Не публикуйте .env и не отправляйте его другим: он содержит токен. В .gitignore он исключён; ZIP проекта его также исключает. Это простой формат KEY=VALUE, без подстановки переменных и выполнения команд.
 
 ## Запуск
 
