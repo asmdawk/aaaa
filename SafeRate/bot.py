@@ -1,4 +1,4 @@
-"""Minimal private Telegram bot using the standard library, with bounded I/O."""
+"""SafeRate Telegram bot using the standard library, with bounded I/O."""
 import io
 import json
 import logging
@@ -9,11 +9,28 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections import OrderedDict
+from pathlib import Path
 from scanner import MAX_UPLOAD, ScanError, scan, report_text
 
 log=logging.getLogger('saferate')
 MENU={'inline_keyboard':[[{'text':'Проверить код','callback_data':'upload'}],[{'text':'Возможности и ограничения','callback_data':'help'}],[{'text':'Удалить мой отчёт','callback_data':'delete'}]]}
 HELP='Отправьте исходник UTF-8 или ZIP до 15 МиБ. До 300 записей, 30 МиБ после распаковки, 2 МиБ на файл. Проверки: команды, загрузка и выполнение, секреты, автозапуск, обфускация, TLS, десериализация, HTML-вставки и Python AST.\n\nЭто эвристический анализ: возможны пропуски и ложные срабатывания. Нет антивирусных движков, анализа бинарников, аудита зависимостей и запуска кода. Файлы передаются через Telegram. Не отправляйте действующие секреты и чужой конфиденциальный код. Отчёт хранится в памяти 15 минут; Telegram сохраняет отправленные сообщения согласно своим правилам.'
+
+def load_config(path=None):
+ """Read literal KEY=VALUE settings; never execute or interpolate values."""
+ path=Path(path) if path is not None else Path(__file__).resolve().with_name('.env')
+ if not path.exists(): return
+ allowed={'TELEGRAM_BOT_TOKEN','PUBLIC_BOT','ALLOWED_USER_IDS'}
+ for number,line in enumerate(path.read_text(encoding='utf-8-sig').splitlines(),1):
+  line=line.strip()
+  if not line or line.startswith('#'): continue
+  key,sep,value=line.partition('='); key=key.strip(); value=value.strip()
+  if not sep or key not in allowed:
+   raise SystemExit(f'Ошибка .env в строке {number}: допустимы TELEGRAM_BOT_TOKEN, PUBLIC_BOT, ALLOWED_USER_IDS.')
+  if value.startswith(('"', "'")):
+   if len(value)<2 or value[-1]!=value[0]: raise SystemExit(f'Незакрытая кавычка в .env, строка {number}.')
+   value=value[1:-1]
+  os.environ.setdefault(key,value)
 
 class Telegram:
  def __init__(self,token): self.base='https://api.telegram.org/bot'+token+'/'; self.token=token
@@ -80,6 +97,7 @@ class Bot:
   self.api.message(chat,summary,buttons)
 
 def main():
+ load_config()
  token=os.environ.get('TELEGRAM_BOT_TOKEN',''); allowed=os.environ.get('ALLOWED_USER_IDS','')
  if not token: raise SystemExit('Задайте TELEGRAM_BOT_TOKEN. Значение не выводится.')
  public=os.environ.get('PUBLIC_BOT','0')=='1'

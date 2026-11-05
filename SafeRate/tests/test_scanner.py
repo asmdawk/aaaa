@@ -2,7 +2,11 @@ import io
 import unittest
 import zipfile
 from scanner import scan, ScanError
-from bot import Bot
+from bot import Bot, load_config
+import os
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
 
 def archive(items):
  b=io.BytesIO()
@@ -57,6 +61,19 @@ class Tests(unittest.TestCase):
   self.assertEqual(len(api.messages),2)
   bot.handle({'message':{'from':{'id':44},'chat':{'id':-1,'type':'group'}}})
   self.assertEqual(len(api.messages),2)
+ def test_env_file(self):
+  with tempfile.TemporaryDirectory() as d:
+   p=Path(d)/'.env'
+   p.write_text('# comment\nTELEGRAM_BOT_TOKEN="example:token"\nPUBLIC_BOT=1\n')
+   with patch.dict(os.environ,{},clear=True):
+    load_config(p)
+    self.assertEqual(os.environ['TELEGRAM_BOT_TOKEN'],'example:token')
+    self.assertEqual(os.environ['PUBLIC_BOT'],'1')
+   with patch.dict(os.environ,{'PUBLIC_BOT':'0'},clear=True):
+    load_config(p)
+    self.assertEqual(os.environ['PUBLIC_BOT'],'0')
+   p.write_text('INVALID=hidden')
+   with self.assertRaises(SystemExit): load_config(p)
  def test_unauthorized(self):
   class API:
    def message(self,*a): raise AssertionError('unauthorized')
