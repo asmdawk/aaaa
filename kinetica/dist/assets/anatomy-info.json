@@ -1,0 +1,82 @@
+{
+  "version": "BodyParts3D 4.0",
+  "parts": 2234,
+  "chunkFiles": [
+    "anatomy-0.bin",
+    "anatomy-1.bin",
+    "anatomy-2.bin",
+    "anatomy-3.bin"
+  ],
+  "chunkSizes": [
+    18824204,
+    18858348,
+    18865300,
+    2998892
+  ],
+  "systems": {
+    "arterial": {
+      "nameRu": "Артерии",
+      "count": 639
+    },
+    "venous": {
+      "nameRu": "Вены",
+      "count": 404
+    },
+    "muscular": {
+      "nameRu": "Мышцы",
+      "count": 402
+    },
+    "skeletal": {
+      "nameRu": "Скелет",
+      "count": 296
+    },
+    "nervous": {
+      "nameRu": "Нервная система",
+      "count": 139
+    },
+    "respiratory": {
+      "nameRu": "Дыхательная система",
+      "count": 119
+    },
+    "digestive": {
+      "nameRu": "Пищеварительная система",
+      "count": 97
+    },
+    "sensory": {
+      "nameRu": "Органы чувств",
+      "count": 45
+    },
+    "connective": {
+      "nameRu": "Соединительные ткани",
+      "count": 40
+    },
+    "cardiac": {
+      "nameRu": "Сердце",
+      "count": 23
+    },
+    "reproductive": {
+      "nameRu": "Репродуктивная система",
+      "count": 12
+    },
+    "urinary": {
+      "nameRu": "Мочевыделительная система",
+      "count": 6
+    },
+    "integumentary": {
+      "nameRu": "Кожа и волосы",
+      "count": 5
+    },
+    "endocrine": {
+      "nameRu": "Эндокринная система",
+      "count": 4
+    },
+    "lymphatic": {
+      "nameRu": "Лимфатическая система",
+      "count": 3
+    }
+  },
+  "source": "https://github.com/ashemag/human-atlas",
+  "license": "CC BY 4.0",
+  "copyright": "BodyParts3D © The Database Center for Life Science",
+  "adaptation": "All 2234 optimized structures retained without coordinate or topology edits. Binary arrays re-packed into aligned chunks; some Russian group labels added. Original English names and FMA concept IDs retained."
+}
