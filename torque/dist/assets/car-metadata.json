@@ -1,0 +1,252 @@
+{
+  "model": "McLaren P1",
+  "author": "DAVID.3D.ART",
+  "authorUrl": "https://sketchfab.com/david3dart",
+  "license": "CC BY-NC 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "sourceUrl": "https://sketchfab.com/3d-models/ac-mclaren-p1-free-747cedadc302451db61deafc85941395",
+  "downloadMirror": "https://github.com/pantchayan/threejs-car-configurator/blob/main/static/models/Car/mcLaren-car-model.glb",
+  "axes": "Y up, forward -Z, driver left -X",
+  "length": 4.58,
+  "widthWithMirrors": 2.14,
+  "height": 1.186,
+  "wheelbase": 2.664,
+  "triangles": 203306,
+  "materials": 35,
+  "embeddedTextures": 27,
+  "meshNodes": 202,
+  "driverEye": [
+    -0.32,
+    1.04,
+    0.14
+  ],
+  "driverTarget": [
+    -0.32,
+    0.97,
+    -2.5
+  ],
+  "steeringCenter": [
+    -0.3174,
+    0.6965,
+    -0.4002
+  ],
+  "steeringRadius": 0.17,
+  "wheelRadiusFront": 0.324,
+  "wheelRadiusRear": 0.347,
+  "parts": [
+    {
+      "id": "body",
+      "node": "body",
+      "nameRu": "Кузов и стёкла",
+      "category": "Кузов",
+      "meshCount": 17
+    },
+    {
+      "id": "door_left",
+      "node": "door_left",
+      "nameRu": "Левая дверь",
+      "category": "Кузов",
+      "hinge": [
+        -0.75,
+        0.71,
+        -1.0
+      ],
+      "openRotation": [
+        -1.0,
+        -0.35,
+        -0.1
+      ],
+      "meshCount": 22
+    },
+    {
+      "id": "door_right",
+      "node": "door_right",
+      "nameRu": "Правая дверь",
+      "category": "Кузов",
+      "hinge": [
+        0.75,
+        0.71,
+        -1.0
+      ],
+      "openRotation": [
+        -1.0,
+        0.35,
+        0.1
+      ],
+      "meshCount": 21
+    },
+    {
+      "id": "hood",
+      "node": "hood",
+      "nameRu": "Передний капот",
+      "category": "Кузов",
+      "hinge": [
+        0,
+        0.764,
+        -1.048
+      ],
+      "openRotation": [
+        1.0,
+        0,
+        0
+      ],
+      "meshCount": 3
+    },
+    {
+      "id": "engine_cover",
+      "node": "engine_cover",
+      "nameRu": "Крышка моторного отсека",
+      "category": "Двигатель",
+      "hinge": [
+        0,
+        1.074,
+        0.624
+      ],
+      "openRotation": [
+        -1.05,
+        0,
+        0
+      ],
+      "meshCount": 2
+    },
+    {
+      "id": "seat_left",
+      "node": "seat_left",
+      "nameRu": "Кресло водителя",
+      "category": "Салон",
+      "meshCount": 7
+    },
+    {
+      "id": "seat_right",
+      "node": "seat_right",
+      "nameRu": "Кресло пассажира",
+      "category": "Салон",
+      "meshCount": 7
+    },
+    {
+      "id": "wheel_fl",
+      "node": "wheel_fl",
+      "nameRu": "Левое переднее колесо",
+      "category": "Ходовая",
+      "meshCount": 3
+    },
+    {
+      "id": "wheel_fr",
+      "node": "wheel_fr",
+      "nameRu": "Правое переднее колесо",
+      "category": "Ходовая",
+      "meshCount": 3
+    },
+    {
+      "id": "wheel_rl",
+      "node": "wheel_rl",
+      "nameRu": "Левое заднее колесо",
+      "category": "Ходовая",
+      "meshCount": 3
+    },
+    {
+      "id": "wheel_rr",
+      "node": "wheel_rr",
+      "nameRu": "Правое заднее колесо",
+      "category": "Ходовая",
+      "meshCount": 3
+    },
+    {
+      "id": "steering",
+      "node": "steering",
+      "nameRu": "Рулевое колесо",
+      "category": "Салон",
+      "pivot": [
+        -0.3174,
+        0.6965,
+        -0.4002
+      ],
+      "rotationAxis": [
+        0,
+        -0.2153,
+        -0.9765
+      ],
+      "meshCount": 13
+    },
+    {
+      "id": "front_bumper",
+      "node": "front_bumper",
+      "nameRu": "Передний бампер",
+      "category": "Кузов",
+      "meshCount": 2
+    },
+    {
+      "id": "rear_bumper",
+      "node": "rear_bumper",
+      "nameRu": "Задний бампер",
+      "category": "Кузов",
+      "meshCount": 1
+    },
+    {
+      "id": "rear_wing",
+      "node": "rear_wing",
+      "nameRu": "Активное антикрыло",
+      "category": "Кузов",
+      "hinge": [
+        0,
+        0.89,
+        1.9
+      ],
+      "openRotation": [
+        -0.55,
+        0,
+        0
+      ],
+      "meshCount": 9
+    },
+    {
+      "id": "headlights",
+      "node": "headlights",
+      "nameRu": "Передние фары",
+      "category": "Свет",
+      "meshCount": 2
+    },
+    {
+      "id": "taillights",
+      "node": "taillights",
+      "nameRu": "Задние фонари",
+      "category": "Свет",
+      "meshCount": 5
+    },
+    {
+      "id": "cockpit",
+      "node": "cockpit",
+      "nameRu": "Панель и интерьер",
+      "category": "Салон",
+      "meshCount": 44
+    },
+    {
+      "id": "seatbelts",
+      "node": "seatbelts",
+      "nameRu": "Ремни безопасности",
+      "category": "Салон",
+      "meshCount": 6
+    },
+    {
+      "id": "front_fender",
+      "node": "front_fender",
+      "nameRu": "Передние крылья",
+      "category": "Кузов",
+      "meshCount": 1
+    },
+    {
+      "id": "wipers",
+      "node": "wipers",
+      "nameRu": "Стеклоочистители",
+      "category": "Кузов",
+      "meshCount": 4
+    },
+    {
+      "id": "suspension",
+      "node": "suspension",
+      "nameRu": "Подвеска и тормоза",
+      "category": "Ходовая",
+      "meshCount": 24
+    }
+  ]
+}
