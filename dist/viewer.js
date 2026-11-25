@@ -163,7 +163,7 @@ export class AnatomyViewer {
 
     const canvas = renderer.domElement;
     canvas.className = 'anatomy-canvas';
-    canvas.setAttribute('aria-label', 'Интерактивная трёхмерная модель человека');
+    canvas.setAttribute('aria-label', 'Interaktywny model 3D ciała człowieka');
     Object.assign(canvas.style, {
       display: 'block', width: '100%', height: '100%', outline: 'none', cursor: 'grab',
     });
@@ -210,7 +210,7 @@ export class AnatomyViewer {
     }, { passive: true, signal });
     canvas.addEventListener('webglcontextlost', (event) => {
       event.preventDefault();
-      this.callbacks.onError?.(new Error('Графический контекст браузера был потерян.'));
+      this.callbacks.onError?.(new Error('Przeglądarka utraciła kontekst graficzny WebGL.'));
     }, { signal });
 
     this.observer = new ResizeObserver(() => this.resize());
@@ -222,7 +222,7 @@ export class AnatomyViewer {
 
   async load() {
     const response = await fetch(new URL('manifest.json', ASSET_ROOT));
-    if (!response.ok) throw new Error('Файл анатомической модели недоступен.');
+    if (!response.ok) throw new Error('Plik modelu anatomicznego jest niedostępny.');
     const manifest = await response.json();
     this.manifest = manifest;
     if (manifest.bounds) {

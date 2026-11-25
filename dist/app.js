@@ -46,27 +46,27 @@ function placeIcons(parent = document) {
 }
 
 const layers = [
-  { id: 'muscles', name: 'Мышцы', color: '#ee8b7e', icon: 'muscle' },
-  { id: 'bones', name: 'Кости', color: '#e7cfa8', icon: 'bone' },
-  { id: 'organs', name: 'Органы', color: '#d292ac', icon: 'organ' },
-  { id: 'vessels', name: 'Сосуды', color: '#e18f92', icon: 'vessel' },
-  { id: 'nerves', name: 'Нервы', color: '#e2bd73', icon: 'nerve' },
-  { id: 'skin', name: 'Кожа', color: '#d8a48b', icon: 'skin' },
+  { id: 'muscles', name: 'Mięśnie', color: '#ee8b7e', icon: 'muscle' },
+  { id: 'bones', name: 'Kości', color: '#e7cfa8', icon: 'bone' },
+  { id: 'organs', name: 'Narządy', color: '#d292ac', icon: 'organ' },
+  { id: 'vessels', name: 'Naczynia', color: '#e18f92', icon: 'vessel' },
+  { id: 'nerves', name: 'Nerwy', color: '#e2bd73', icon: 'nerve' },
+  { id: 'skin', name: 'Skóra', color: '#d8a48b', icon: 'skin' },
 ];
 
 const joints = {
-  shoulder: { min: -35, max: 150, motion: 'Сгибание' },
-  elbow: { min: 0, max: 145, motion: 'Сгибание' },
-  wrist: { min: -70, max: 75, motion: 'Сгибание' },
-  hip: { min: -25, max: 120, motion: 'Сгибание' },
-  knee: { min: 0, max: 140, motion: 'Сгибание' },
-  ankle: { min: -35, max: 45, motion: 'Сгибание стопы' },
-  neck: { min: -35, max: 45, motion: 'Наклон' },
+  shoulder: { min: -35, max: 150, motion: 'Zgięcie' },
+  elbow: { min: 0, max: 145, motion: 'Zgięcie' },
+  wrist: { min: -70, max: 75, motion: 'Zgięcie' },
+  hip: { min: -25, max: 120, motion: 'Zgięcie' },
+  knee: { min: 0, max: 140, motion: 'Zgięcie' },
+  ankle: { min: -35, max: 45, motion: 'Zgięcie stopy' },
+  neck: { min: -35, max: 45, motion: 'Pochylenie' },
 };
 
 const viewNames = {
-  front: 'ВИД СПЕРЕДИ', back: 'ВИД СЗАДИ', right: 'ВИД СБОКУ',
-  left: 'ВИД СБОКУ', 'three-quarter': 'ВИД В ¾',
+  front: 'WIDOK Z PRZODU', back: 'WIDOK Z TYŁU', right: 'WIDOK Z BOKU',
+  left: 'WIDOK Z BOKU', 'three-quarter': 'WIDOK ¾',
 };
 const layerById = Object.fromEntries(layers.map((layer) => [layer.id, layer]));
 const visible = new Set(['muscles']);
@@ -101,7 +101,7 @@ function renderLayers() {
     row.classList.toggle('is-active', activeLayer === layer.id);
     main.setAttribute('aria-pressed', String(activeLayer === layer.id));
     eye.setAttribute('aria-pressed', String(show));
-    eye.title = (show ? 'Скрыть слой «' : 'Показать слой «') + layer.name + '»';
+    eye.title = (show ? 'Ukryj warstwę „' : 'Pokaż warstwę „') + layer.name + '”';
     eye.setAttribute('aria-label', eye.title);
     const icon = eye.firstElementChild;
     const eyeIcon = show ? 'eye' : 'eyeOff';
@@ -172,24 +172,24 @@ function renderStructure() {
   panel.replaceChildren();
   if (!selection) {
     panel.style.removeProperty('--selection-color');
-    addStructureText(panel, 'div', 'ПРОСМОТР СТРУКТУР', 'structure-meta');
-    addStructureText(panel, 'h3', 'Выберите структуру');
-    addStructureText(panel, 'p', 'Нажмите на любую видимую часть тела, чтобы узнать её название и функцию.');
+    addStructureText(panel, 'div', 'STRUKTURY ANATOMICZNE', 'structure-meta');
+    addStructureText(panel, 'h3', 'Wybierz strukturę');
+    addStructureText(panel, 'p', 'Kliknij widoczną część ciała, aby poznać jej nazwę i funkcję.');
     return;
   }
 
   const info = describeStructure(selection);
   panel.style.setProperty('--selection-color', layerById[selection.layer]?.color ?? '#f4867c');
-  addStructureText(panel, 'div', [info.group, info.sideLabel].filter(Boolean).join(' · ').toUpperCase(), 'structure-meta');
+  addStructureText(panel, 'div', [info.group, info.sideLabel].filter(Boolean).join(' · ').toLocaleUpperCase('pl-PL'), 'structure-meta');
   addStructureText(panel, 'h3', info.title);
   addStructureText(panel, 'div', info.latin, 'latin');
   addStructureText(panel, 'p', info.description);
 
   const actions = document.createElement('div');
   actions.className = 'structure-actions';
-  actions.innerHTML = '<button class="subtle-button" type="button" data-action="focus"><span data-icon="target"></span> Приблизить</button>' +
+  actions.innerHTML = '<button class="subtle-button" type="button" data-action="focus"><span data-icon="target"></span> Przybliż</button>' +
     '<button class="subtle-button" type="button" data-action="isolate" aria-pressed="' + isolated + '"><span data-icon="isolate"></span> ' +
-    (isolated ? 'Вернуть слои' : 'Изолировать') + '</button>';
+    (isolated ? 'Przywróć warstwy' : 'Izoluj') + '</button>';
   actions.querySelector('[data-action="focus"]').onclick = () => viewer?.focusSelection();
   actions.querySelector('[data-action="isolate"]').onclick = () => {
     isolated = !isolated;
@@ -251,14 +251,14 @@ function setMode(nextMode) {
     button.setAttribute('aria-pressed', String(active));
   }
   $('#stage-hint span:last-child').textContent = mode === 'pose'
-    ? 'Потяните метку сустава, чтобы изменить угол.'
-    : 'Тяните для вращения · колесо для масштаба · клик по структуре';
+    ? 'Przeciągnij znacznik stawu, aby zmienić kąt.'
+    : 'Przeciągnij, by obrócić · przewiń, by przybliżyć · kliknij strukturę';
 }
 
 const play = $('#play');
 function renderPlay() {
   play.firstElementChild.innerHTML = svg(animation ? 'stop' : 'play');
-  play.lastElementChild.textContent = animation ? 'Остановить' : 'Показать движение';
+  play.lastElementChild.textContent = animation ? 'Zatrzymaj' : 'Pokaż ruch';
   play.setAttribute('aria-pressed', String(Boolean(animation)));
 }
 
@@ -300,15 +300,15 @@ function showToast(message) {
 }
 
 const dialogs = {
-  help: ['Как пользоваться', `<ul>
-    <li>Потяните модель, чтобы повернуть её. Прокрутите колесо или сведите пальцы, чтобы изменить масштаб.</li>
-    <li>Нажмите на название слоя, чтобы показать его отдельно. Кнопки с глазом позволяют совместить несколько слоёв.</li>
-    <li>Нажмите на структуру, чтобы прочитать описание. В инспекторе её можно приблизить или изолировать.</li>
-    <li>Выберите сустав и сторону, затем измените угол. Инструмент с ладонью добавляет на модель метки, которые можно перетаскивать.</li>
+  help: ['Jak korzystać', `<ul>
+    <li>Przeciągnij model, aby go obrócić. Użyj kółka myszy lub gestu dwoma palcami, aby zmienić powiększenie.</li>
+    <li>Kliknij nazwę warstwy, aby wyświetlić ją osobno. Przyciski z ikoną oka pozwalają oglądać kilka warstw naraz.</li>
+    <li>Kliknij strukturę, aby przeczytać jej opis. W panelu szczegółów możesz ją przybliżyć lub wyświetlić osobno.</li>
+    <li>Wybierz staw i stronę ciała, a następnie zmień kąt. Narzędzie z ikoną dłoni pokazuje znaczniki stawów, które można przeciągać.</li>
   </ul>`],
-  sources: ['О модели', `<p>Интерактивный атлас содержит 250 структур на основе Z-Anatomy и BodyParts3D. Геометрию для браузера подготовил проект Astronaut Health Intelligence Platform. В Anatomical добавлены русские подписи, материалы и анимация суставов.</p>
-    <p>Суставы вращаются вокруг центров, рассчитанных по костям. Мягкие ткани деформируются приближённо, чтобы показать движение в учебных целях.</p>
-    <p><a href="./assets/anatomy/LICENSE.md" target="_blank" rel="noopener">Авторы и лицензии модели</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ru" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>`],
+  sources: ['O modelu', `<p>Atlas zawiera 250 struktur opartych na Z-Anatomy i BodyParts3D. Geometrię do wyświetlania w przeglądarce przygotował zespół Astronaut Health Intelligence Platform. Anatomical dodaje polskie opisy, materiały i animacje stawów.</p>
+    <p>Osie ruchu stawów wyznaczono na podstawie geometrii kości. Odkształcenia tkanek miękkich są przybliżone i służą do nauki anatomii.</p>
+    <p><a href="./assets/anatomy/LICENSE.md" target="_blank" rel="noopener">Autorzy i licencje modelu</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>`],
 };
 
 const dialog = $('#dialog');
@@ -324,7 +324,7 @@ $('#sources').addEventListener('click', () => openDialog('sources'));
 $('#close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
 $('#download').addEventListener('click', () => {
-  window.location.href = 'https://raw.githubusercontent.com/asmdawk/aaaa/anatomical-download/Anatomical.zip';
+  window.location.href = 'https://raw.githubusercontent.com/asmdawk/aaaa/anatomical-download/Anatomical.zip?v=pl';
 });
 $('#reset-layers').addEventListener('click', () => {
   visible.clear();
@@ -374,9 +374,9 @@ $('#fullscreen').addEventListener('click', async () => {
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
     else if ($('#stage').requestFullscreen) await $('#stage').requestFullscreen();
-    else showToast('Полноэкранный режим недоступен в этом браузере');
+    else showToast('Tryb pełnoekranowy jest niedostępny w tej przeglądarce');
   } catch {
-    showToast('Полноэкранный режим недоступен в этом браузере');
+    showToast('Tryb pełnoekranowy jest niedostępny w tej przeglądarce');
   }
 });
 $('#capture').addEventListener('click', () => {
@@ -388,9 +388,9 @@ $('#capture').addEventListener('click', () => {
     link.href = url;
     link.download = 'Anatomical.png';
     link.click();
-    showToast('Снимок модели сохранён');
+    showToast('Zapisano obraz modelu');
   } catch {
-    showToast('Браузеру не удалось сохранить снимок');
+    showToast('Nie udało się zapisać obrazu');
   }
 });
 
@@ -405,15 +405,15 @@ function showError(error) {
   ready = false;
   status.hidden = false;
   status.classList.add('is-error');
-  status.querySelector('strong').textContent = '3D-модель не открылась';
-  $('#progress-label').textContent = 'Обновите страницу в браузере с поддержкой WebGL 2.';
+  status.querySelector('strong').textContent = 'Nie udało się wczytać modelu 3D';
+  $('#progress-label').textContent = 'Odśwież stronę w przeglądarce obsługującej WebGL 2.';
 }
 
 try {
   const { AnatomyViewer } = await import('./viewer.js');
   viewer = new AnatomyViewer($('#viewer'), {
     onProgress: (fraction) => {
-      $('#progress-label').textContent = 'Подготовка анатомических слоёв · ' + Math.round(fraction * 100) + '%';
+      $('#progress-label').textContent = 'Przygotowywanie warstw anatomicznych · ' + Math.round(fraction * 100) + '%';
     },
     onReady: () => {
       ready = true;
