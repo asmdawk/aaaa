@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#131015">
+  <meta name="description" content="Интерактивный 3D-атлас анатомии человека с анатомическими слоями и подвижными суставами.">
+  <title>Anatomical — 3D-атлас тела человека</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Anatomical — главная">
+      <span class="brand-mark" data-icon="brand"></span><span>Anatomical<span class="brand-dot">.</span></span>
+    </a>
+    <div class="header-edition">ИНТЕРАКТИВНЫЙ АТЛАС</div>
+    <div class="header-actions">
+      <button class="header-button" id="help" type="button" aria-label="Как пользоваться"><span data-icon="help"></span><span>Как пользоваться</span></button>
+      <button class="header-button header-download" id="download" type="button"><span data-icon="download"></span><span>Скачать ZIP</span></button>
+    </div>
+  </header>
+  <main class="page">
+    <div class="page-intro">
+      <div>
+        <div class="eyebrow"><span></span> АНАТОМИЯ ЧЕЛОВЕКА</div>
+        <h1>Атлас тела</h1>
+        <p>Изучайте анатомию по слоям и наблюдайте, как тело движется.</p>
+      </div>
+      <div class="edition-tag"><span data-icon="cube"></span> 3D-МОДЕЛЬ</div>
+    </div>
+    <div class="workspace">
+      <aside class="panel layers-panel" aria-labelledby="layers-title">
+        <div class="panel-head">
+          <span class="panel-icon" data-icon="layers"></span>
+          <h2 id="layers-title">Слои тела</h2>
+        </div>
+        <div class="layers-list" id="layers"></div>
+        <div class="layer-opacity">
+          <label for="opacity">Прозрачность <output id="opacity-value">100%</output></label>
+          <input type="range" id="opacity" min="10" max="100" value="100">
+          <div id="opacity-layer" class="opacity-layer">Мышцы</div>
+        </div>
+        <div class="layers-bottom">
+          <button class="subtle-button" id="reset-layers" type="button"><span data-icon="reset"></span> Сбросить слои</button>
+          <button class="subtle-button" id="sources" type="button"><span data-icon="info"></span> О модели</button>
+        </div>
+      </aside>
+
+      <section class="stage" id="stage" aria-label="Интерактивная анатомическая модель">
+        <div class="stage-backdrop"></div>
+        <div class="stage-floor"></div>
+        <div id="viewer" role="group" aria-label="Область просмотра 3D-модели"></div>
+        <div class="stage-top">
+          <div class="live-label"><span></span><span id="view-label">ВИД СПЕРЕДИ</span></div>
+          <button class="glass icon-button fullscreen-button" id="fullscreen" aria-label="Развернуть на весь экран" title="Развернуть на весь экран" type="button"><span data-icon="expand"></span></button>
+        </div>
+        <div class="stage-ruler" aria-hidden="true"><span>100%</span><i></i><span>0%</span></div>
+        <div class="toolbox glass" role="group" aria-label="Инструменты просмотра">
+          <button class="icon-button mode-button active" id="orbit-mode" type="button" aria-label="Вращать модель" aria-pressed="true" title="Вращать модель"><span data-icon="orbit"></span></button>
+          <button class="icon-button mode-button" id="pose-mode" type="button" aria-label="Двигать сустав" aria-pressed="false" title="Двигать сустав"><span data-icon="hand"></span></button>
+          <span class="toolbox-rule"></span>
+          <button class="icon-button" id="zoom-in" type="button" aria-label="Приблизить" title="Приблизить"><span data-icon="plus"></span></button>
+          <button class="icon-button" id="zoom-out" type="button" aria-label="Отдалить" title="Отдалить"><span data-icon="minus"></span></button>
+          <button class="icon-button" id="center" type="button" aria-label="Сбросить камеру" title="Сбросить камеру"><span data-icon="target"></span></button>
+        </div>
+        <div class="stage-axis" aria-hidden="true"><span class="axis-y">Y</span><span class="axis-x">X</span><span class="axis-z">Z</span><i></i><b></b><em></em></div>
+        <div class="stage-bottom">
+          <div class="view-picker glass" role="group" aria-label="Ракурс модели">
+            <button type="button" aria-pressed="true" data-view="front">Спереди</button>
+            <button type="button" aria-pressed="false" data-view="back">Сзади</button>
+            <button type="button" aria-pressed="false" data-view="right">Сбоку</button>
+          </div>
+        </div>
+        <div class="viewer-status" id="viewer-status" role="status">
+          <span class="loading-ring"></span>
+          <strong>Загружаем 3D-модель</strong>
+          <span id="progress-label">Подготовка анатомических слоёв</span>
+        </div>
+      </section>
+
+      <aside class="panel details-panel" aria-labelledby="details-title">
+        <div class="panel-head">
+          <span class="panel-icon" data-icon="focus"></span>
+          <h2 id="details-title">Инспектор</h2>
+        </div>
+        <div class="structure" id="structure" aria-live="polite"></div>
+        <div class="movement">
+          <div class="movement-label"><span data-icon="motion"></span><h3>Движение суставов</h3></div>
+          <label class="sr-only" for="joint">Сустав</label>
+          <div class="select-wrap"><select id="joint">
+            <option value="shoulder">Плечо</option><option selected value="elbow">Локоть</option><option value="wrist">Запястье</option><option value="hip">Тазобедренный сустав</option><option value="knee">Колено</option><option value="ankle">Голеностоп</option><option value="neck">Шея</option>
+          </select><span data-icon="chevron"></span></div>
+          <div class="side-toggle" id="side-toggle" role="group" aria-label="Сторона тела">
+            <button type="button" aria-pressed="true" data-side="right">Правая</button>
+            <button type="button" aria-pressed="false" data-side="left">Левая</button>
+          </div>
+          <div class="angle-control">
+            <label for="angle" id="angle-label">Сгибание <output id="angle-value">0°</output></label>
+            <input type="range" id="angle" min="0" max="145" value="0" step="1">
+            <div class="range-ends"><span id="angle-min">0°</span><span id="angle-max">145°</span></div>
+          </div>
+          <div class="motion-actions">
+            <button type="button" class="play-button" id="play"><span data-icon="play"></span><span>Показать движение</span></button>
+            <button class="icon-button reset-pose" type="button" id="reset-pose" aria-label="Сбросить позу" title="Сбросить позу"><span data-icon="reset"></span></button>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <footer class="statusbar">
+      <div id="stage-hint"><span data-icon="mouse"></span><span>Тяните для вращения · колесо для масштаба · клик по структуре</span></div>
+      <button class="subtle-button" id="capture" type="button"><span data-icon="camera"></span> Снимок модели</button>
+    </footer>
+  </main>
+  <dialog id="dialog">
+    <div class="dialog-header"><h2 id="dialog-title"></h2><button id="close-dialog" type="button" class="icon-button" aria-label="Закрыть"><span data-icon="close"></span></button></div>
+    <div id="dialog-content"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8849 @@
+{
+ "version": 1,
+ "generatedAt": "2026-11-14T21:05:36.829Z",
+ "bounds": {
+  "min": [
+   -0.33997,
+   0,
+   -0.14697
+  ],
+  "max": [
+   0.33997,
+   1.70953,
+   0.14697
+  ]
+ },
+ "source": {
+  "name": "Z-Anatomy (Human male model), based on BodyParts3D",
+  "url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+  "license": "CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)",
+  "sha256": "e029688545627bd0214b269e1063143abb580aad72b2c2445d6d8a9a0d9da736",
+  "retrievedAt": "2026-11-14",
+  "attribution": [
+   "Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0 (https://www.z-anatomy.com/)",
+   "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan",
+   "Authors: Kousaku Okubo (BodyParts3D), Gauthier Kervyn (design, 3D, anatomy), Marcin Zielinski (Blender add-on), Lluis Vinent (Unity development)",
+   "Adapted by the AHI project: structures grouped, decimated, re-oriented and compressed for real time rendering. The derived files are distributed under CC BY-SA 4.0."
+  ],
+  "excluded": [
+   "Ear structures (internal ear, auditory ossicles, tympanic membrane, auditory tube, cochlear and vestibular nerves): the upstream model \"Anatomy of the Inner Ear\" by University of Dundee School of Medicine is CC BY-NC-SA 4.0 (non commercial). Objects: Auditory tube.l, Auditory tube.r, Cochlea.l, Cochlea.r, Cochlear nerve, Cochlear nerve.l, Incus.l, Incus.r, Malleus.l, Malleus.r, Stapes.l, Stapes.r, Tympanic membrane.l, Tympanic membrane.r, Vestibular nerve.l, Vestibular nerve.r, Vestibule.l, Vestibule.r",
+   "Kidney, renal pelvis and intrarenal vessel objects: the upstream model \"Kidney\" by Lissie Cowley is CC BY-NC 4.0 (non commercial). Replaced by AHI procedural kidneys (origin \"ahi-procedural\") fitted to the atlas bounding boxes. Objects: Intrarenal arteries of left kidney, Intrarenal arteries of right kidney, Intrarenal veins of left kidney, Intrarenal veins of right kidney, Kidney.l, Kidney.r, Renal pelvis.l, Renal pelvis.r",
+   "Reproductive structures: not related to any monitored metric; neutral reference body. The atlas stands for every crew member, so the internal and external genital organs, the vessels, nerves and ducts that only serve them and the urethra are not exported, and the external genital region of the body surface (Urogenital region.l, Urogenital region.r) is replaced by a smooth neutral surface inside the \"skin\" structure. Objects: Corpus cavernosum of penis, Corpus spongiosum of penis, Deep artery of penis.l, Deep artery of penis.r, Deep dorsal vein of penis, Deep external pudendal artery.l, Deep external pudendal artery.r, Dorsal artery of penis.l, Dorsal artery of penis.r, Ductus deferens.l, Ductus deferens.r, Ejaculatory duct.l, Ejaculatory duct.r, Epididymis.l, Epididymis.r, External pudendal veins.l, External pudendal veins.r, Genital branch of genitofemoral nerve.l, Genital branch of genitofemoral nerve.r, Glans penis, Left testicular artery, Left testicular vein, Prostate, Right testicular artery.r, Right testicular vein, Seminal gland.l, Seminal gland.r, Superficial dorsal veins of penis, Superficial external pudendal artery.l, Superficial external pudendal artery.r, Testis.l, Testis.r, Urethra",
+   "Not physical bodies: text labels, label leader lines (.j, .i), group titles (.g), muscle origin and insertion maps (.o*, .e*, collection \"2: Muscular insertions\"), reference lines and planes, cross section planes, objects that exist only in the \"Bonus collection\".",
+   "Left out for clarity and draw call budget: lymph nodes, tonsils, fasciae, bursae, tendon sheaths, ligaments, joint capsules and membranes, meninges, pleura, peritoneum and omenta, ventricles and other cavities, hair, liver segments, small brainstem nuclei, inner white matter surface of the cerebrum."
+  ]
+ },
+ "systems": [
+  {
+   "id": "integumentary",
+   "label": "Integumentary system (skin)",
+   "file": "integumentary.glb",
+   "bytes": 256684,
+   "triangles": 48503,
+   "structureCount": 1
+  },
+  {
+   "id": "skeletal",
+   "label": "Skeletal system",
+   "file": "skeletal.glb",
+   "bytes": 995640,
+   "triangles": 184971,
+   "structureCount": 41
+  },
+  {
+   "id": "muscular",
+   "label": "Muscular system",
+   "file": "muscular.glb",
+   "bytes": 1737700,
+   "triangles": 299818,
+   "structureCount": 133
+  },
+  {
+   "id": "cardiovascular",
+   "label": "Cardiovascular system",
+   "file": "cardiovascular.glb",
+   "bytes": 527100,
+   "triangles": 89893,
+   "structureCount": 29
+  },
+  {
+   "id": "respiratory",
+   "label": "Respiratory system",
+   "file": "respiratory.glb",
+   "bytes": 235056,
+   "triangles": 44991,
+   "structureCount": 6
+  },
+  {
+   "id": "nervous",
+   "label": "Nervous system",
+   "file": "nervous.glb",
+   "bytes": 694596,
+   "triangles": 133356,
+   "structureCount": 17
+  },
+  {
+   "id": "digestive",
+   "label": "Digestive system",
+   "file": "digestive.glb",
+   "bytes": 228016,
+   "triangles": 41990,
+   "structureCount": 10
+  },
+  {
+   "id": "urinary",
+   "label": "Urinary system",
+   "file": "urinary.glb",
+   "bytes": 57676,
+   "triangles": 10826,
+   "structureCount": 4
+  },
+  {
+   "id": "other",
+   "label": "Endocrine, lymphoid and sense organs",
+   "file": "other.glb",
+   "bytes": 135708,
+   "triangles": 26008,
+   "structureCount": 9
+  }
+ ],
+ "structures": [
+  {
+   "id": "skin",
+   "name": "Skin (body surface)",
+   "system": "integumentary",
+   "tissue": "skin",
+   "side": null,
+   "center": [
+    0,
+    0.85477,
+    0
+   ],
+   "min": [
+    -0.33997,
+    0,
+    -0.14697
+   ],
+   "max": [
+    0.33997,
+    1.70953,
+    0.14697
+   ],
+   "triangles": 48503,
+   "sourceObjects": [
+    "Anal region.l",
+    "Anal region.r",
+    "Angle of mouth.l",
+    "Angle of mouth.r",
+    "Anterior notch of auricle.l",
+    "Anterior notch of auricle.r",
+    "Anterior region of ankle.l",
+    "Anterior region of ankle.r",
+    "Anterior region of arm.l",
+    "Anterior region of arm.r",
+    "Anterior region of elbow.l",
+    "Anterior region of elbow.r",
+    "Anterior region of forearm.l",
+    "Anterior region of forearm.r",
+    "Anterior region of knee.l",
+    "Anterior region of knee.r",
+    "Anterior region of leg.l",
+    "Anterior region of leg.r",
+    "Anterior region of thigh.l",
+    "Anterior region of thigh.r",
+    "Anterior region of wrist.l",
+    "Anterior region of wrist.r",
+    "Antihelix.l",
+    "Antihelix.r",
+    "Antitragus.l",
+    "Antitragus.r",
+    "Apex of auricle.l",
+    "Apex of auricle.r",
+    "Auricular region.l",
+    "Auricular region.r",
+    "Auricular tubercle.l",
+    "Auricular tubercle.r",
+    "Buccal region.l",
+    "Buccal region.r",
+    "Carotid triangle.l",
+    "Carotid triangle.r",
+    "Cavity of concha.l",
+    "Cavity of concha.r",
+    "Concha of auricle.l",
+    "Concha of auricle.r",
+    "Crura of antihelix.l",
+    "Crura of antihelix.r",
+    "Cubital fossa.l",
+    "Cubital fossa.r",
+    "Cymba conchae.l",
+    "Cymba conchae.r",
+    "Deltoid region.l",
+    "Deltoid region.r",
+    "Deltopectoral triangle.l",
+    "Deltopectoral triangle.r",
+    "Distal transverse arch of foot.l",
+    "Distal transverse arch of foot.r",
+    "Dorsal surfaces of digits of foot.l",
+    "Dorsal surfaces of digits of foot.r",
+    "Dorsal surfaces of digits of hand.l",
+    "Dorsal surfaces of digits of hand.r",
+    "Dorsum of foot.l",
+    "Dorsum of foot.r",
+    "Dorsum of hand.l",
+    "Dorsum of hand.r",
+    "Eminentia conchae.l",
+    "Eminentia conchae.r",
+    "Eminentia fossae triangularis.l",
+    "Eminentia fossae triangularis.r",
+    "Eminentia scaphae.l",
+    "Eminentia scaphae.r",
+    "Epigastric region.l",
+    "Epigastric region.r",
+    "Eyebrow.l",
+    "Eyebrow.r",
+    "Femoral triangle.l",
+    "Femoral triangle.r",
+    "Fossa antihelica.l",
+    "Fossa antihelica.r",
+    "Frontal region.l",
+    "Frontal region.r",
+    "Gluteal fold.l",
+    "Gluteal fold.r",
+    "Gluteal region.l",
+    "Gluteal region.r",
+    "Greater supraclavicular fossa.l",
+    "Greater supraclavicular fossa.r",
+    "Hallucial eminence.l",
+    "Hallucial eminence.r",
+    "Heel region.l",
+    "Heel region.r",
+    "Helix.l",
+    "Helix.r",
+    "Hip region.l",
+    "Hip region.r",
+    "Hypochondriac region.l",
+    "Hypochondriac region.r",
+    "Hypogastric region.l",
+    "Hypogastric region.r",
+    "Infra-orbital region.l",
+    "Infra-orbital region.r",
+    "Infraclavicular fossa.l",
+    "Infraclavicular fossa.r",
+    "Inframammary region.l",
+    "Inframammary region.r",
+    "Infrascapular region.l",
+    "Infrascapular region.r",
+    "Inguinal region.l",
+    "Inguinal region.r",
+    "Interscapular region.l",
+    "Interscapular region.r",
+    "Intertragic incisure.l",
+    "Intertragic incisure.r",
+    "Labial commissure.l",
+    "Labial commissure.r",
+    "Lateral bicipital groove.l",
+    "Lateral bicipital groove.r",
+    "Lateral border of foot.l",
+    "Lateral border of foot.r",
+    "Lateral border of forearm.l",
+    "Lateral border of forearm.r",
+    "Lateral malleolus.l",
+    "Lateral malleolus.r",
+    "Lateral part of longitudinal arch of foot.l",
+    "Lateral part of longitudinal arch of foot.r",
+    "Lateral region of abdomen.l",
+    "Lateral region of abdomen.r",
+    "Lateral region of neck.l",
+    "Lateral region of neck.r",
+    "Lateral region of thorax.l",
+    "Lateral region of thorax.r",
+    "Lateral retromalleolar region.l",
+    "Lateral retromalleolar region.r",
+    "Lesser supraclavicular fossa.l",
+    "Lesser supraclavicular fossa.r",
+    "Lobule of auricle.l",
+    "Lobule of auricle.r",
+    "Lumbar region.l",
+    "Lumbar region.r",
+    "Mammary region.l",
+    "Mammary region.r",
+    "Mastoid region.l",
+    "Mastoid region.r",
+    "Medial bicipital groove.l",
+    "Medial bicipital groove.r",
+    "Medial border of foot.l",
+    "Medial border of foot.r",
+    "Medial border of forearm.l",
+    "Medial border of forearm.r",
+    "Medial malleolus.l",
+    "Medial malleolus.r",
+    "Medial part of longitudinal arch of foot.l",
+    "Medial part of longitudinal arch of foot.r",
+    "Medial retromalleolar region.l",
+    "Medial retromalleolar region.r",
+    "Mental region.l",
+    "Mental region.r",
+    "Mentolabial sulcus.l",
+    "Mentolabial sulcus.r",
+    "Metatarsal region.l",
+    "Metatarsal region.r",
+    "Muscular triangle.l",
+    "Muscular triangle.r",
+    "Nail plate (foot).l",
+    "Nail plate (foot).r",
+    "Nail plate.l",
+    "Nail plate.r",
+    "Nasal region.l",
+    "Nasal region.r",
+    "Nasolabial sulcus.l",
+    "Nasolabial sulcus.r",
+    "Occipital region.l",
+    "Occipital region.r",
+    "Oral region.l",
+    "Oral region.r",
+    "Orbital region.l",
+    "Orbital region.r",
+    "Palm.l",
+    "Palm.r",
+    "Palmar surfaces of digits of hand.l",
+    "Palmar surfaces of digits of hand.r",
+    "Parietal region.l",
+    "Parietal region.r",
+    "Parotideomasseteric region.l",
+    "Parotideomasseteric region.r",
+    "Pectoral region.l",
+    "Pectoral region.r",
+    "Perionyx (foot).l",
+    "Perionyx (foot).r",
+    "Perionyx.l",
+    "Perionyx.r",
+    "Philtrum.l",
+    "Philtrum.r",
+    "Plantar surfaces of digits of foot.l",
+    "Plantar surfaces of digits of foot.r",
+    "Popliteal fossa.l",
+    "Popliteal fossa.r",
+    "Posterior auricular groove.l",
+    "Posterior auricular groove.r",
+    "Posterior region of arm.l",
+    "Posterior region of arm.r",
+    "Posterior region of elbow.l",
+    "Posterior region of elbow.r",
+    "Posterior region of forearm.l",
+    "Posterior region of forearm.r",
+    "Posterior region of knee.l",
+    "Posterior region of knee.r",
+    "Posterior region of leg.l",
+    "Posterior region of leg.r",
+    "Posterior region of neck.l",
+    "Posterior region of neck.r",
+    "Posterior region of thigh.l",
+    "Posterior region of thigh.r",
+    "Posterior region of wrist.l",
+    "Posterior region of wrist.r",
+    "Presternal region.l",
+    "Presternal region.r",
+    "Proximal transverse arch of foot.l",
+    "Proximal transverse arch of foot.r",
+    "Radial foveola.l",
+    "Radial foveola.r",
+    "Sacral region.l",
+    "Sacral region.r",
+    "Scapha.l",
+    "Scapha.r",
+    "Scapular region.l",
+    "Scapular region.r",
+    "Sole.l",
+    "Sole.r",
+    "Sternocleidomastoid region.l",
+    "Sternocleidomastoid region.r",
+    "Submandibular triangle.l",
+    "Submandibular triangle.r",
+    "Submental triangle.l",
+    "Submental triangle.r",
+    "Temporal region.l",
+    "Temporal region.r",
+    "Tragus.l",
+    "Tragus.r",
+    "Triangle of auscultation.l",
+    "Triangle of auscultation.r",
+    "Triangular fossa.l",
+    "Triangular fossa.r",
+    "Tubercle of upper lip.l",
+    "Tubercle of upper lip.r",
+    "Umbilical region.l",
+    "Umbilical region.r",
+    "Umbilicus.l",
+    "Umbilicus.r",
+    "Urogenital region.l",
+    "Urogenital region.r",
+    "Vertebral region.l",
+    "Vertebral region.r",
+    "Zygomatic region.l",
+    "Zygomatic region.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "bones-of-left-foot",
+   "name": "Bones of left foot",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.09952,
+    0.04761,
+    0.02417
+   ],
+   "min": [
+    0.05273,
+    0.00952,
+    -0.09009
+   ],
+   "max": [
+    0.1463,
+    0.08569,
+    0.13843
+   ],
+   "triangles": 5070,
+   "sourceObjects": [
+    "Calcaneus.l",
+    "Cuboid bone.l",
+    "Distal phalanx of fifth finger of foot.l",
+    "Distal phalanx of first finger of foot.l",
+    "Distal phalanx of fourth finger of foot.l",
+    "Distal phalanx of second finger of foot.l",
+    "Distal phalanx of third finger of foot.l",
+    "Fifth metatarsal bone.l",
+    "First metatarsal bone.l",
+    "Fourth metatarsal bone.l",
+    "Intermediate cuneiform bone.l",
+    "Lateral cuneiform bone.l",
+    "Medial cuneiform bone.l",
+    "Middle phalanx of fifth finger of foot.l",
+    "Middle phalanx of fourth finger of foot.l",
+    "Middle phalanx of second finger of foot.l",
+    "Middle phalanx of third finger of foot.l",
+    "Navicular bone.l",
+    "Proximal phalanx of fifth finger of foot.l",
+    "Proximal phalanx of first finger of foot.l",
+    "Proximal phalanx of fourth finger of foot.l",
+    "Proximal phalanx of second finger of foot.l",
+    "Proximal phalanx of third finger of foot.l",
+    "Second metatarsal bone.l",
+    "Sesamoid bones of foot.l",
+    "Talus.l",
+    "Third metatarsal bone.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "bones-of-left-hand",
+   "name": "Bones of left hand",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.2804,
+    0.78101,
+    0.05438
+   ],
+   "min": [
+    0.22607,
+    0.69897,
+    0.01038
+   ],
+   "max": [
+    0.33472,
+    0.86304,
+    0.09839
+   ],
+   "triangles": 5288,
+   "sourceObjects": [
+    "Capitate bone.l",
+    "Distal phalanx of fifth finger of hand.l",
+    "Distal phalanx of first finger of hand.l",
+    "Distal phalanx of fourth finger of hand.l",
+    "Distal phalanx of second finger of hand.l",
+    "Distal phalanx of third finger of hand.l",
+    "Fifth metacarpal bone.l",
+    "First metacarpal bone.l",
+    "Fourth metacarpal bone.l",
+    "Hamate bone.l",
+    "Lunate bone.l",
+    "Middle phalanx of fifth finger of hand.l",
+    "Middle phalanx of fourth finger of hand.l",
+    "Middle phalanx of second finger of hand.l",
+    "Middle phalanx of third finger of hand.l",
+    "Pisiform bone.l",
+    "Proximal phalanx of fifth finger of hand.l",
+    "Proximal phalanx of first finger of hand.l",
+    "Proximal phalanx of fourth finger of hand.l",
+    "Proximal phalanx of second finger of hand.l",
+    "Proximal phalanx of third finger of hand.l",
+    "Scaphoid bone.l",
+    "Second metacarpal bone.l",
+    "Third metacarpal bone.l",
+    "Trapezium bone.l",
+    "Trapezoid bone.l",
+    "Triquetrum bone.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "bones-of-right-foot",
+   "name": "Bones of right foot",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.09952,
+    0.04761,
+    0.02417
+   ],
+   "min": [
+    -0.1463,
+    0.00952,
+    -0.09009
+   ],
+   "max": [
+    -0.05273,
+    0.08569,
+    0.13843
+   ],
+   "triangles": 5070,
+   "sourceObjects": [
+    "Calcaneus.r",
+    "Cuboid bone.r",
+    "Distal phalanx of fifth finger of foot.r",
+    "Distal phalanx of first finger of foot.r",
+    "Distal phalanx of fourth finger of foot.r",
+    "Distal phalanx of second finger of foot.r",
+    "Distal phalanx of third finger of foot.r",
+    "Fifth metatarsal bone.r",
+    "First metatarsal bone.r",
+    "Fourth metatarsal bone.r",
+    "Intermediate cuneiform bone.r",
+    "Lateral cuneiform bone.r",
+    "Medial cuneiform bone.r",
+    "Middle phalanx of fifth finger of foot.r",
+    "Middle phalanx of fourth finger of foot.r",
+    "Middle phalanx of second finger of foot.r",
+    "Middle phalanx of third finger of foot.r",
+    "Navicular bone.r",
+    "Proximal phalanx of fifth finger of foot.r",
+    "Proximal phalanx of first finger of foot.r",
+    "Proximal phalanx of fourth finger of foot.r",
+    "Proximal phalanx of second finger of foot.r",
+    "Proximal phalanx of third finger of foot.r",
+    "Second metatarsal bone.r",
+    "Sesamoid bones of foot.r",
+    "Talus.r",
+    "Third metatarsal bone.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "bones-of-right-hand",
+   "name": "Bones of right hand",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.2804,
+    0.78101,
+    0.05438
+   ],
+   "min": [
+    -0.33472,
+    0.69897,
+    0.01038
+   ],
+   "max": [
+    -0.22607,
+    0.86304,
+    0.09839
+   ],
+   "triangles": 5288,
+   "sourceObjects": [
+    "Capitate bone.r",
+    "Distal phalanx of fifth finger of hand.r",
+    "Distal phalanx of first finger of hand.r",
+    "Distal phalanx of fourth finger of hand.r",
+    "Distal phalanx of second finger of hand.r",
+    "Distal phalanx of third finger of hand.r",
+    "Fifth metacarpal bone.r",
+    "First metacarpal bone.r",
+    "Fourth metacarpal bone.r",
+    "Hamate bone.r",
+    "Lunate bone.r",
+    "Middle phalanx of fifth finger of hand.r",
+    "Middle phalanx of fourth finger of hand.r",
+    "Middle phalanx of second finger of hand.r",
+    "Middle phalanx of third finger of hand.r",
+    "Pisiform bone.r",
+    "Proximal phalanx of fifth finger of hand.r",
+    "Proximal phalanx of first finger of hand.r",
+    "Proximal phalanx of fourth finger of hand.r",
+    "Proximal phalanx of second finger of hand.r",
+    "Proximal phalanx of third finger of hand.r",
+    "Scaphoid bone.r",
+    "Second metacarpal bone.r",
+    "Third metacarpal bone.r",
+    "Trapezium bone.r",
+    "Trapezoid bone.r",
+    "Triquetrum bone.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "cervical-vertebrae",
+   "name": "Cervical vertebrae (C1 to C7)",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    0,
+    1.496,
+    -0.03571
+   ],
+   "min": [
+    -0.04309,
+    1.43878,
+    -0.07587
+   ],
+   "max": [
+    0.04309,
+    1.55322,
+    0.00446
+   ],
+   "triangles": 4908,
+   "sourceObjects": [
+    "Atlas (C1)",
+    "Axis (C2)",
+    "Vertebra C3",
+    "Vertebra C4",
+    "Vertebra C5",
+    "Vertebra C6",
+    "Vertebra C7"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "clavicle-left",
+   "name": "Left clavicle",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.08279,
+    1.40753,
+    0.00049
+   ],
+   "min": [
+    0.01123,
+    1.38947,
+    -0.0509
+   ],
+   "max": [
+    0.15436,
+    1.4256,
+    0.05188
+   ],
+   "triangles": 1550,
+   "sourceObjects": [
+    "Clavicle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "clavicle-right",
+   "name": "Right clavicle",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.08279,
+    1.40753,
+    0.00049
+   ],
+   "min": [
+    -0.15436,
+    1.38947,
+    -0.0509
+   ],
+   "max": [
+    -0.01123,
+    1.4256,
+    0.05188
+   ],
+   "triangles": 1550,
+   "sourceObjects": [
+    "Clavicle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "coccyx",
+   "name": "Coccyx",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    0.00003,
+    0.8461,
+    -0.07516
+   ],
+   "min": [
+    -0.01672,
+    0.83069,
+    -0.08502
+   ],
+   "max": [
+    0.01678,
+    0.86151,
+    -0.06531
+   ],
+   "triangles": 792,
+   "sourceObjects": [
+    "Coccyx"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "costal-cartilages-left",
+   "name": "Left costal cartilages",
+   "system": "skeletal",
+   "tissue": "cartilage",
+   "side": "L",
+   "center": [
+    0.06696,
+    1.23065,
+    0.06583
+   ],
+   "min": [
+    0.00629,
+    1.06335,
+    0.01752
+   ],
+   "max": [
+    0.12762,
+    1.39795,
+    0.11414
+   ],
+   "triangles": 7445,
+   "sourceObjects": [
+    "Costal cartilage of eighth rib.l",
+    "Costal cartilage of fifth rib.l",
+    "Costal cartilage of first rib.l",
+    "Costal cartilage of fourth rib.l",
+    "Costal cartilage of ninth rib.l",
+    "Costal cartilage of second rib.l",
+    "Costal cartilage of seventh rib.l",
+    "Costal cartilage of sixth rib.l",
+    "Costal cartilage of tenth rib.l",
+    "Costal cartilage of third rib.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "costal-cartilages-right",
+   "name": "Right costal cartilages",
+   "system": "skeletal",
+   "tissue": "cartilage",
+   "side": "R",
+   "center": [
+    -0.06696,
+    1.23065,
+    0.06583
+   ],
+   "min": [
+    -0.12762,
+    1.06335,
+    0.01752
+   ],
+   "max": [
+    -0.00629,
+    1.39795,
+    0.11414
+   ],
+   "triangles": 7445,
+   "sourceObjects": [
+    "Costal cartilage of eighth rib.r",
+    "Costal cartilage of fifth rib.r",
+    "Costal cartilage of first rib.r",
+    "Costal cartilage of fourth rib.r",
+    "Costal cartilage of ninth rib.r",
+    "Costal cartilage of second rib.r",
+    "Costal cartilage of seventh rib.r",
+    "Costal cartilage of sixth rib.r",
+    "Costal cartilage of tenth rib.r",
+    "Costal cartilage of third rib.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "femur-left",
+   "name": "Left femur",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.09024,
+    0.65747,
+    -0.01895
+   ],
+   "min": [
+    0.03192,
+    0.43024,
+    -0.05798
+   ],
+   "max": [
+    0.14856,
+    0.8847,
+    0.02008
+   ],
+   "triangles": 3794,
+   "sourceObjects": [
+    "Femur.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "femur-right",
+   "name": "Right femur",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.09024,
+    0.65747,
+    -0.01895
+   ],
+   "min": [
+    -0.14856,
+    0.43024,
+    -0.05798
+   ],
+   "max": [
+    -0.03192,
+    0.8847,
+    0.02008
+   ],
+   "triangles": 3794,
+   "sourceObjects": [
+    "Femur.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "fibula-left",
+   "name": "Left fibula",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.10672,
+    0.23685,
+    -0.04187
+   ],
+   "min": [
+    0.08862,
+    0.0556,
+    -0.05835
+   ],
+   "max": [
+    0.12482,
+    0.41809,
+    -0.02539
+   ],
+   "triangles": 1264,
+   "sourceObjects": [
+    "Fibula.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "fibula-right",
+   "name": "Right fibula",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.10672,
+    0.23685,
+    -0.04187
+   ],
+   "min": [
+    -0.12482,
+    0.0556,
+    -0.05835
+   ],
+   "max": [
+    -0.08862,
+    0.41809,
+    -0.02539
+   ],
+   "triangles": 1264,
+   "sourceObjects": [
+    "Fibula.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "hip-bone-left",
+   "name": "Left hip bone",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.06891,
+    0.90503,
+    -0.01401
+   ],
+   "min": [
+    0.00293,
+    0.79773,
+    -0.08545
+   ],
+   "max": [
+    0.13489,
+    1.01233,
+    0.05743
+   ],
+   "triangles": 3788,
+   "sourceObjects": [
+    "Hip bone.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "hip-bone-right",
+   "name": "Right hip bone",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.06891,
+    0.90503,
+    -0.01401
+   ],
+   "min": [
+    -0.13489,
+    0.79773,
+    -0.08545
+   ],
+   "max": [
+    -0.00293,
+    1.01233,
+    0.05743
+   ],
+   "triangles": 3788,
+   "sourceObjects": [
+    "Hip bone.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "humerus-left",
+   "name": "Left humerus",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.19672,
+    1.24619,
+    -0.02612
+   ],
+   "min": [
+    0.14459,
+    1.0874,
+    -0.05231
+   ],
+   "max": [
+    0.24884,
+    1.40497,
+    0.00006
+   ],
+   "triangles": 4278,
+   "sourceObjects": [
+    "Humerus.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "humerus-right",
+   "name": "Right humerus",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.19672,
+    1.24619,
+    -0.02612
+   ],
+   "min": [
+    -0.24884,
+    1.0874,
+    -0.05231
+   ],
+   "max": [
+    -0.14459,
+    1.40497,
+    0.00006
+   ],
+   "triangles": 4278,
+   "sourceObjects": [
+    "Humerus.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "hyoid-bone",
+   "name": "Hyoid bone",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    0,
+    1.50165,
+    0.02237
+   ],
+   "min": [
+    -0.02277,
+    1.49188,
+    0.00439
+   ],
+   "max": [
+    0.02277,
+    1.51141,
+    0.04034
+   ],
+   "triangles": 854,
+   "sourceObjects": [
+    "Hyoid bone"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "intervertebral-discs",
+   "name": "Intervertebral discs",
+   "system": "skeletal",
+   "tissue": "cartilage",
+   "side": null,
+   "center": [
+    0,
+    1.23514,
+    -0.02356
+   ],
+   "min": [
+    -0.02527,
+    0.94751,
+    -0.06708
+   ],
+   "max": [
+    0.02527,
+    1.52277,
+    0.01996
+   ],
+   "triangles": 4423,
+   "sourceObjects": [
+    "Intervertebral disc C2-C3",
+    "Intervertebral disc C3-C4",
+    "Intervertebral disc C4-C5",
+    "Intervertebral disc C5-C6",
+    "Intervertebral disc C6-C7",
+    "Intervertebral disc C7-T1",
+    "Intervertebral disc L1-L2",
+    "Intervertebral disc L2-L3",
+    "Intervertebral disc L3-L4",
+    "Intervertebral disc L4-L5",
+    "Intervertebral disc L5-S1",
+    "Intervertebral disc T1-T2",
+    "Intervertebral disc T10-T11",
+    "Intervertebral disc T11-T12",
+    "Intervertebral disc T12-L1",
+    "Intervertebral disc T2-T3",
+    "Intervertebral disc T3-T4",
+    "Intervertebral disc T4-T5",
+    "Intervertebral disc T5-T6",
+    "Intervertebral disc T6-T7",
+    "Intervertebral disc T7-T8",
+    "Intervertebral disc T8-T9",
+    "Intervertebral disc T9-T10"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "lower-teeth",
+   "name": "Lower teeth",
+   "system": "skeletal",
+   "tissue": "tooth",
+   "side": null,
+   "center": [
+    0,
+    1.51962,
+    0.06439
+   ],
+   "min": [
+    -0.03223,
+    1.50201,
+    0.03894
+   ],
+   "max": [
+    0.03223,
+    1.53723,
+    0.08984
+   ],
+   "triangles": 3870,
+   "sourceObjects": [
+    "Lower canine.l",
+    "Lower canine.r",
+    "Lower first molar tooth.l",
+    "Lower first molar tooth.r",
+    "Lower first premolar.l",
+    "Lower first premolar.r",
+    "Lower lateral incisor.l",
+    "Lower lateral incisor.r",
+    "Lower medial incisor.l",
+    "Lower medial incisor.r",
+    "Lower second molar tooth.l",
+    "Lower second molar tooth.r",
+    "Lower second premolar.l",
+    "Lower second premolar.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "lumbar-vertebrae",
+   "name": "Lumbar vertebrae (L1 to L5)",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    0,
+    1.04593,
+    -0.02435
+   ],
+   "min": [
+    -0.05292,
+    0.95789,
+    -0.0694
+   ],
+   "max": [
+    0.05292,
+    1.13397,
+    0.02069
+   ],
+   "triangles": 5118,
+   "sourceObjects": [
+    "Vertebra L1",
+    "Vertebra L2",
+    "Vertebra L3",
+    "Vertebra L4",
+    "Vertebra L5"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "mandible",
+   "name": "Mandible",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    0,
+    1.53787,
+    0.04413
+   ],
+   "min": [
+    -0.05164,
+    1.4967,
+    0.00317
+   ],
+   "max": [
+    0.05164,
+    1.57904,
+    0.08508
+   ],
+   "triangles": 5462,
+   "sourceObjects": [
+    "Mandible"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "nasal-cartilages",
+   "name": "Nasal cartilages",
+   "system": "skeletal",
+   "tissue": "cartilage",
+   "side": null,
+   "center": [
+    0,
+    1.56778,
+    0.09598
+   ],
+   "min": [
+    -0.01483,
+    1.54846,
+    0.07483
+   ],
+   "max": [
+    0.01483,
+    1.5871,
+    0.11713
+   ],
+   "triangles": 1008,
+   "sourceObjects": [
+    "Lateral process of nasal septal cartilage.l",
+    "Lateral process of nasal septal cartilage.r",
+    "Major alar cartilage.l",
+    "Major alar cartilage.r",
+    "Nasal septal cartilage"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "patella-left",
+   "name": "Left patella",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.08444,
+    0.44464,
+    0.00864
+   ],
+   "min": [
+    0.06287,
+    0.42419,
+    -0.00275
+   ],
+   "max": [
+    0.10602,
+    0.46509,
+    0.02002
+   ],
+   "triangles": 276,
+   "sourceObjects": [
+    "Patella.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "patella-right",
+   "name": "Right patella",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.08444,
+    0.44464,
+    0.00864
+   ],
+   "min": [
+    -0.10602,
+    0.42419,
+    -0.00275
+   ],
+   "max": [
+    -0.06287,
+    0.46509,
+    0.02002
+   ],
+   "triangles": 276,
+   "sourceObjects": [
+    "Patella.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "radius-left",
+   "name": "Left radius",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.25778,
+    0.97519,
+    -0.00626
+   ],
+   "min": [
+    0.22687,
+    0.85669,
+    -0.04059
+   ],
+   "max": [
+    0.2887,
+    1.09369,
+    0.02808
+   ],
+   "triangles": 784,
+   "sourceObjects": [
+    "Radius.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "radius-right",
+   "name": "Right radius",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.25778,
+    0.97519,
+    -0.00626
+   ],
+   "min": [
+    -0.2887,
+    0.85669,
+    -0.04059
+   ],
+   "max": [
+    -0.22687,
+    1.09369,
+    0.02808
+   ],
+   "triangles": 784,
+   "sourceObjects": [
+    "Radius.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "ribs-left",
+   "name": "Left ribs",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.07855,
+    1.25192,
+    0.00372
+   ],
+   "min": [
+    0.01544,
+    1.05688,
+    -0.09601
+   ],
+   "max": [
+    0.14166,
+    1.44696,
+    0.10345
+   ],
+   "triangles": 8294,
+   "sourceObjects": [
+    "Eighth rib.l",
+    "Eleventh rib.l",
+    "Fifth rib.l",
+    "First rib.l",
+    "Fourth rib.l",
+    "Ninth rib.l",
+    "Second rib.l",
+    "Seventh rib.l",
+    "Sixth rib.l",
+    "Tenth rib.l",
+    "Third rib.l",
+    "Twelfth rib.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "ribs-right",
+   "name": "Right ribs",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.07855,
+    1.25192,
+    0.00372
+   ],
+   "min": [
+    -0.14166,
+    1.05688,
+    -0.09601
+   ],
+   "max": [
+    -0.01544,
+    1.44696,
+    0.10345
+   ],
+   "triangles": 8294,
+   "sourceObjects": [
+    "Eighth rib.r",
+    "Eleventh rib.r",
+    "Fifth rib.r",
+    "First rib.r",
+    "Fourth rib.r",
+    "Ninth rib.r",
+    "Second rib.r",
+    "Seventh rib.r",
+    "Sixth rib.r",
+    "Tenth rib.r",
+    "Third rib.r",
+    "Twelfth rib.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sacrum",
+   "name": "Sacrum",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    -0.00003,
+    0.92371,
+    -0.04791
+   ],
+   "min": [
+    -0.06158,
+    0.86615,
+    -0.09357
+   ],
+   "max": [
+    0.06152,
+    0.98126,
+    -0.00226
+   ],
+   "triangles": 3159,
+   "sourceObjects": [
+    "Sacrum"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "scapula-left",
+   "name": "Left scapula",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.1171,
+    1.33643,
+    -0.05441
+   ],
+   "min": [
+    0.06061,
+    1.25464,
+    -0.11145
+   ],
+   "max": [
+    0.17358,
+    1.41821,
+    0.00262
+   ],
+   "triangles": 15074,
+   "sourceObjects": [
+    "Scapula.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "scapula-right",
+   "name": "Right scapula",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.1171,
+    1.33643,
+    -0.05441
+   ],
+   "min": [
+    -0.17358,
+    1.25464,
+    -0.11145
+   ],
+   "max": [
+    -0.06061,
+    1.41821,
+    0.00262
+   ],
+   "triangles": 15074,
+   "sourceObjects": [
+    "Scapula.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "skull",
+   "name": "Skull",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    -0.00006,
+    1.6218,
+    -0.00021
+   ],
+   "min": [
+    -0.0744,
+    1.53778,
+    -0.10217
+   ],
+   "max": [
+    0.07428,
+    1.70581,
+    0.10175
+   ],
+   "triangles": 23233,
+   "sourceObjects": [
+    "Ethmoid bone",
+    "Frontal bone",
+    "Inferior nasal concha bone.l",
+    "Inferior nasal concha bone.r",
+    "Lacrimal bone.l",
+    "Lacrimal bone.r",
+    "Maxilla.l",
+    "Maxilla.r",
+    "Nasal bone.l",
+    "Nasal bone.r",
+    "Occipital bone",
+    "Palatine bone.l",
+    "Palatine bone.r",
+    "Parietal bone.l",
+    "Parietal bone.r",
+    "Sphenoid bone",
+    "Temporal bone.l",
+    "Temporal bone.r",
+    "Vomer",
+    "Zygomatic bone.l",
+    "Zygomatic bone.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sternum",
+   "name": "Sternum",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    -0.00018,
+    1.31284,
+    0.07315
+   ],
+   "min": [
+    -0.02863,
+    1.22131,
+    0.0329
+   ],
+   "max": [
+    0.02826,
+    1.40436,
+    0.1134
+   ],
+   "triangles": 2524,
+   "sourceObjects": [
+    "Body of sternum",
+    "Manubrium of sternum",
+    "Xiphoid process"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "thoracic-vertebrae",
+   "name": "Thoracic vertebrae (T1 to T12)",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": null,
+   "center": [
+    0,
+    1.28293,
+    -0.0473
+   ],
+   "min": [
+    -0.03882,
+    1.11255,
+    -0.09961
+   ],
+   "max": [
+    0.03882,
+    1.45331,
+    0.005
+   ],
+   "triangles": 6858,
+   "sourceObjects": [
+    "Vertebra T1",
+    "Vertebra T10",
+    "Vertebra T11",
+    "Vertebra T12",
+    "Vertebra T2",
+    "Vertebra T3",
+    "Vertebra T4",
+    "Vertebra T5",
+    "Vertebra T6",
+    "Vertebra T7",
+    "Vertebra T8",
+    "Vertebra T9"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "tibia-left",
+   "name": "Left tibia",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.07657,
+    0.25461,
+    -0.02759
+   ],
+   "min": [
+    0.03735,
+    0.07562,
+    -0.06158
+   ],
+   "max": [
+    0.11578,
+    0.43359,
+    0.00641
+   ],
+   "triangles": 1670,
+   "sourceObjects": [
+    "Tibia.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "tibia-right",
+   "name": "Right tibia",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.07657,
+    0.25461,
+    -0.02759
+   ],
+   "min": [
+    -0.11578,
+    0.07562,
+    -0.06158
+   ],
+   "max": [
+    -0.03735,
+    0.43359,
+    0.00641
+   ],
+   "triangles": 1670,
+   "sourceObjects": [
+    "Tibia.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "ulna-left",
+   "name": "Left ulna",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "L",
+   "center": [
+    0.22943,
+    0.98367,
+    -0.01743
+   ],
+   "min": [
+    0.20325,
+    0.85596,
+    -0.05902
+   ],
+   "max": [
+    0.25562,
+    1.11139,
+    0.02417
+   ],
+   "triangles": 904,
+   "sourceObjects": [
+    "Ulna.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "ulna-right",
+   "name": "Right ulna",
+   "system": "skeletal",
+   "tissue": "bone",
+   "side": "R",
+   "center": [
+    -0.22943,
+    0.98367,
+    -0.01743
+   ],
+   "min": [
+    -0.25562,
+    0.85596,
+    -0.05902
+   ],
+   "max": [
+    -0.20325,
+    1.11139,
+    0.02417
+   ],
+   "triangles": 904,
+   "sourceObjects": [
+    "Ulna.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "upper-teeth",
+   "name": "Upper teeth",
+   "system": "skeletal",
+   "tissue": "tooth",
+   "side": null,
+   "center": [
+    0,
+    1.54205,
+    0.07086
+   ],
+   "min": [
+    -0.02985,
+    1.526,
+    0.04718
+   ],
+   "max": [
+    0.02985,
+    1.55811,
+    0.09454
+   ],
+   "triangles": 3804,
+   "sourceObjects": [
+    "Upper canine.l",
+    "Upper canine.r",
+    "Upper first molar tooth.l",
+    "Upper first molar tooth.r",
+    "Upper first premolar.l",
+    "Upper first premolar.r",
+    "Upper lateral incisor.l",
+    "Upper lateral incisor.r",
+    "Upper medial incisor.l",
+    "Upper medial incisor.r",
+    "Upper second molar tooth.l",
+    "Upper second molar tooth.r",
+    "Upper second premolar.l",
+    "Upper second premolar.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "adductor-muscles-of-left-thigh",
+   "name": "Adductor muscles of left thigh",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.06094,
+    0.66452,
+    0.01163
+   ],
+   "min": [
+    0.01166,
+    0.46399,
+    -0.034
+   ],
+   "max": [
+    0.11023,
+    0.86505,
+    0.05725
+   ],
+   "triangles": 2750,
+   "sourceObjects": [
+    "(Adductor minimus).l",
+    "Adductor brevis.l",
+    "Adductor longus.l",
+    "Adductor magnus.l",
+    "Pectineus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "adductor-muscles-of-right-thigh",
+   "name": "Adductor muscles of right thigh",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.06094,
+    0.66452,
+    0.01163
+   ],
+   "min": [
+    -0.11023,
+    0.46399,
+    -0.034
+   ],
+   "max": [
+    -0.01166,
+    0.86505,
+    0.05725
+   ],
+   "triangles": 2750,
+   "sourceObjects": [
+    "(Adductor minimus).r",
+    "Adductor brevis.r",
+    "Adductor longus.r",
+    "Adductor magnus.r",
+    "Pectineus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "biceps-brachii-left",
+   "name": "Left biceps brachii",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.18781,
+    1.22986,
+    -0.01456
+   ],
+   "min": [
+    0.13824,
+    1.05151,
+    -0.03894
+   ],
+   "max": [
+    0.23737,
+    1.4082,
+    0.00983
+   ],
+   "triangles": 1900,
+   "sourceObjects": [
+    "Long head of biceps brachii.l",
+    "Short head of biceps brachii.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "biceps-brachii-right",
+   "name": "Right biceps brachii",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.18781,
+    1.22986,
+    -0.01456
+   ],
+   "min": [
+    -0.23737,
+    1.05151,
+    -0.03894
+   ],
+   "max": [
+    -0.13824,
+    1.4082,
+    0.00983
+   ],
+   "triangles": 1900,
+   "sourceObjects": [
+    "Long head of biceps brachii.r",
+    "Short head of biceps brachii.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "biceps-femoris-left",
+   "name": "Left biceps femoris",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.08923,
+    0.60767,
+    -0.04419
+   ],
+   "min": [
+    0.05011,
+    0.39502,
+    -0.07513
+   ],
+   "max": [
+    0.12836,
+    0.82031,
+    -0.01324
+   ],
+   "triangles": 2366,
+   "sourceObjects": [
+    "Long head of biceps femoris.l",
+    "Short head of biceps femoris.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "biceps-femoris-right",
+   "name": "Right biceps femoris",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.08923,
+    0.60767,
+    -0.04419
+   ],
+   "min": [
+    -0.12836,
+    0.39502,
+    -0.07513
+   ],
+   "max": [
+    -0.05011,
+    0.82031,
+    -0.01324
+   ],
+   "triangles": 2366,
+   "sourceObjects": [
+    "Long head of biceps femoris.r",
+    "Short head of biceps femoris.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "brachialis-left",
+   "name": "Left brachialis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.21243,
+    1.16846,
+    -0.02728
+   ],
+   "min": [
+    0.18195,
+    1.05219,
+    -0.04083
+   ],
+   "max": [
+    0.24292,
+    1.28473,
+    -0.01373
+   ],
+   "triangles": 1062,
+   "sourceObjects": [
+    "Brachialis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "brachialis-right",
+   "name": "Right brachialis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.21243,
+    1.16846,
+    -0.02728
+   ],
+   "min": [
+    -0.24292,
+    1.05219,
+    -0.04083
+   ],
+   "max": [
+    -0.18195,
+    1.28473,
+    -0.01373
+   ],
+   "triangles": 1062,
+   "sourceObjects": [
+    "Brachialis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "brachioradialis-left",
+   "name": "Left brachioradialis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.25253,
+    1.03528,
+    -0.01129
+   ],
+   "min": [
+    0.21533,
+    0.86102,
+    -0.04596
+   ],
+   "max": [
+    0.28973,
+    1.20953,
+    0.02338
+   ],
+   "triangles": 1660,
+   "sourceObjects": [
+    "Brachioradialis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "brachioradialis-right",
+   "name": "Right brachioradialis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.25253,
+    1.03528,
+    -0.01129
+   ],
+   "min": [
+    -0.28973,
+    0.86102,
+    -0.04596
+   ],
+   "max": [
+    -0.21533,
+    1.20953,
+    0.02338
+   ],
+   "triangles": 1660,
+   "sourceObjects": [
+    "Brachioradialis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "calcaneal-tendon-left",
+   "name": "Left calcaneal (Achilles) tendon",
+   "system": "muscular",
+   "tissue": "tendon",
+   "side": "L",
+   "center": [
+    0.08386,
+    0.13574,
+    -0.07718
+   ],
+   "min": [
+    0.05231,
+    0.02563,
+    -0.09045
+   ],
+   "max": [
+    0.11542,
+    0.24585,
+    -0.0639
+   ],
+   "triangles": 1220,
+   "sourceObjects": [
+    "Calcaneal tendon.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "calcaneal-tendon-right",
+   "name": "Right calcaneal (Achilles) tendon",
+   "system": "muscular",
+   "tissue": "tendon",
+   "side": "R",
+   "center": [
+    -0.08386,
+    0.13574,
+    -0.07718
+   ],
+   "min": [
+    -0.11542,
+    0.02563,
+    -0.09045
+   ],
+   "max": [
+    -0.05231,
+    0.24585,
+    -0.0639
+   ],
+   "triangles": 1220,
+   "sourceObjects": [
+    "Calcaneal tendon.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "coracobrachialis-left",
+   "name": "Left coracobrachialis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.16522,
+    1.31253,
+    -0.01697
+   ],
+   "min": [
+    0.13483,
+    1.23334,
+    -0.03448
+   ],
+   "max": [
+    0.19562,
+    1.39172,
+    0.00055
+   ],
+   "triangles": 550,
+   "sourceObjects": [
+    "Coracobrachialis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "coracobrachialis-right",
+   "name": "Right coracobrachialis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.16522,
+    1.31253,
+    -0.01697
+   ],
+   "min": [
+    -0.19562,
+    1.23334,
+    -0.03448
+   ],
+   "max": [
+    -0.13483,
+    1.39172,
+    0.00055
+   ],
+   "triangles": 550,
+   "sourceObjects": [
+    "Coracobrachialis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deep-back-muscles-left",
+   "name": "Left deep back muscles (transversospinal group)",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.02377,
+    1.21198,
+    -0.05664
+   ],
+   "min": [
+    -0.00122,
+    0.88556,
+    -0.09766
+   ],
+   "max": [
+    0.04877,
+    1.53839,
+    -0.01562
+   ],
+   "triangles": 3481,
+   "sourceObjects": [
+    "Dorsal parts of lateral intertransversarii lumborum muscles.l",
+    "Interspinales colli muscles.l",
+    "Interspinales lumborum muscles.l",
+    "Interspinales thoracis muscles.l",
+    "Multifidus colli muscle.l",
+    "Multifidus lumborum muscle.l",
+    "Multifidus thoracis muscle.l",
+    "Rotatores.l",
+    "Semispinalis colli muscle.l",
+    "Semispinalis thoracis muscle.l",
+    "Ventral parts of lateral intertransversarii lumborum muscles.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deep-back-muscles-right",
+   "name": "Right deep back muscles (transversospinal group)",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.02377,
+    1.21198,
+    -0.05664
+   ],
+   "min": [
+    -0.04877,
+    0.88556,
+    -0.09766
+   ],
+   "max": [
+    0.00122,
+    1.53839,
+    -0.01562
+   ],
+   "triangles": 3481,
+   "sourceObjects": [
+    "Dorsal parts of lateral intertransversarii lumborum muscles.r",
+    "Interspinales colli muscles.r",
+    "Interspinales lumborum muscles.r",
+    "Interspinales thoracis muscles.r",
+    "Multifidus colli muscle.r",
+    "Multifidus lumborum muscle.r",
+    "Multifidus thoracis muscle.r",
+    "Rotatores.r",
+    "Semispinalis colli muscle.r",
+    "Semispinalis thoracis muscle.r",
+    "Ventral parts of lateral intertransversarii lumborum muscles.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deep-posterior-muscles-of-left-leg",
+   "name": "Deep posterior muscles of left leg",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.09583,
+    0.25961,
+    0.02289
+   ],
+   "min": [
+    0.04901,
+    0.00848,
+    -0.08405
+   ],
+   "max": [
+    0.14264,
+    0.51074,
+    0.12982
+   ],
+   "triangles": 3394,
+   "sourceObjects": [
+    "Flexor digitorum longus.l",
+    "Flexor hallucis longus.l",
+    "Plantaris muscle.l",
+    "Popliteus muscle.l",
+    "Tibialis posterior muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deep-posterior-muscles-of-right-leg",
+   "name": "Deep posterior muscles of right leg",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.09583,
+    0.25961,
+    0.02289
+   ],
+   "min": [
+    -0.14264,
+    0.00848,
+    -0.08405
+   ],
+   "max": [
+    -0.04901,
+    0.51074,
+    0.12982
+   ],
+   "triangles": 3394,
+   "sourceObjects": [
+    "Flexor digitorum longus.r",
+    "Flexor hallucis longus.r",
+    "Plantaris muscle.r",
+    "Popliteus muscle.r",
+    "Tibialis posterior muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deep-rotators-of-left-hip",
+   "name": "Deep rotator muscles of left hip",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.07742,
+    0.85635,
+    -0.02237
+   ],
+   "min": [
+    0.02112,
+    0.7934,
+    -0.07263
+   ],
+   "max": [
+    0.13373,
+    0.91931,
+    0.02789
+   ],
+   "triangles": 1934,
+   "sourceObjects": [
+    "Inferior gemellus muscle.l",
+    "Obturator externus.l",
+    "Obturator internus.l",
+    "Piriformis muscle.l",
+    "Quadratus femoris muscle.l",
+    "Superior gemellus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deep-rotators-of-right-hip",
+   "name": "Deep rotator muscles of right hip",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.07742,
+    0.85635,
+    -0.02237
+   ],
+   "min": [
+    -0.13373,
+    0.7934,
+    -0.07263
+   ],
+   "max": [
+    -0.02112,
+    0.91931,
+    0.02789
+   ],
+   "triangles": 1934,
+   "sourceObjects": [
+    "Inferior gemellus muscle.r",
+    "Obturator externus.r",
+    "Obturator internus.r",
+    "Piriformis muscle.r",
+    "Quadratus femoris muscle.r",
+    "Superior gemellus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deltoid-left",
+   "name": "Left deltoid",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.15961,
+    1.3374,
+    -0.03998
+   ],
+   "min": [
+    0.08429,
+    1.25104,
+    -0.10168
+   ],
+   "max": [
+    0.23492,
+    1.42377,
+    0.02173
+   ],
+   "triangles": 2644,
+   "sourceObjects": [
+    "Acromial part of deltoid muscle.l",
+    "Clavicular part of deltoid muscle.l",
+    "Scapular spinal part of deltoid muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "deltoid-right",
+   "name": "Right deltoid",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.15961,
+    1.3374,
+    -0.03998
+   ],
+   "min": [
+    -0.23492,
+    1.25104,
+    -0.10168
+   ],
+   "max": [
+    -0.08429,
+    1.42377,
+    0.02173
+   ],
+   "triangles": 2644,
+   "sourceObjects": [
+    "Acromial part of deltoid muscle.r",
+    "Clavicular part of deltoid muscle.r",
+    "Scapular spinal part of deltoid muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "erector-spinae-left",
+   "name": "Left erector spinae",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.0513,
+    1.22852,
+    -0.0553
+   ],
+   "min": [
+    -0.00146,
+    0.88385,
+    -0.10162
+   ],
+   "max": [
+    0.10406,
+    1.57318,
+    -0.00897
+   ],
+   "triangles": 5491,
+   "sourceObjects": [
+    "Iliocostalis colli muscle",
+    "Iliocostalis lumborum muscle.l",
+    "Iliocostalis thoracis muscle.l",
+    "Longissimus capitis muscle.l",
+    "Longissimus colli muscle.l",
+    "Longissimus thoracis muscle.l",
+    "Spinalis capitis muscle.l",
+    "Spinalis colli muscle.l",
+    "Spinalis thoracis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "erector-spinae-right",
+   "name": "Right erector spinae",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.0513,
+    1.22852,
+    -0.0553
+   ],
+   "min": [
+    -0.10406,
+    0.88385,
+    -0.10162
+   ],
+   "max": [
+    0.00146,
+    1.57318,
+    -0.00897
+   ],
+   "triangles": 5491,
+   "sourceObjects": [
+    "Iliocostalis colli muscle.r",
+    "Iliocostalis lumborum muscle.r",
+    "Iliocostalis thoracis muscle.r",
+    "Longissimus capitis muscle.r",
+    "Longissimus colli muscle.r",
+    "Longissimus thoracis muscle.r",
+    "Spinalis capitis muscle.r",
+    "Spinalis colli muscle.r",
+    "Spinalis thoracis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "extensor-muscles-of-left-forearm",
+   "name": "Extensor muscles of left forearm",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.27142,
+    0.93915,
+    0.00726
+   ],
+   "min": [
+    0.21295,
+    0.71582,
+    -0.06036
+   ],
+   "max": [
+    0.3299,
+    1.16248,
+    0.07489
+   ],
+   "triangles": 4403,
+   "sourceObjects": [
+    "Abductor pollicis longus.l",
+    "Anconeus muscle.l",
+    "Extensor carpi radialis brevis.l",
+    "Extensor carpi radialis longus.l",
+    "Extensor digiti minimi.l",
+    "Extensor digitorum.l",
+    "Extensor indicis.l",
+    "Extensor pollicis brevis.l",
+    "Extensor pollicis longus.l",
+    "Humeral head of extensor carpi ulnaris.l",
+    "Supinator.l",
+    "Ulnar head of extensor carpi ulnaris.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "extensor-muscles-of-left-leg",
+   "name": "Extensor muscles of left leg",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.10654,
+    0.21594,
+    0.04184
+   ],
+   "min": [
+    0.06891,
+    0.01312,
+    -0.04395
+   ],
+   "max": [
+    0.14417,
+    0.41876,
+    0.12762
+   ],
+   "triangles": 2157,
+   "sourceObjects": [
+    "Extensor digitorum longus.l",
+    "Extensor hallucis longus.l",
+    "Fibularis tertius muscle.l",
+    "Tendon of extensor digitorum longus.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "extensor-muscles-of-right-forearm",
+   "name": "Extensor muscles of right forearm",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.27142,
+    0.93915,
+    0.00726
+   ],
+   "min": [
+    -0.3299,
+    0.71582,
+    -0.06036
+   ],
+   "max": [
+    -0.21295,
+    1.16248,
+    0.07489
+   ],
+   "triangles": 4403,
+   "sourceObjects": [
+    "Abductor pollicis longus.r",
+    "Anconeus muscle.r",
+    "Extensor carpi radialis brevis.r",
+    "Extensor carpi radialis longus.r",
+    "Extensor digiti minimi.r",
+    "Extensor digitorum.r",
+    "Extensor indicis.r",
+    "Extensor pollicis brevis.r",
+    "Extensor pollicis longus.r",
+    "Humeral head of extensor carpi ulnaris.r",
+    "Supinator.r",
+    "Ulnar head of extensor carpi ulnaris.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "extensor-muscles-of-right-leg",
+   "name": "Extensor muscles of right leg",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.10654,
+    0.21594,
+    0.04184
+   ],
+   "min": [
+    -0.14417,
+    0.01312,
+    -0.04395
+   ],
+   "max": [
+    -0.06891,
+    0.41876,
+    0.12762
+   ],
+   "triangles": 2157,
+   "sourceObjects": [
+    "Extensor digitorum longus.r",
+    "Extensor hallucis longus.r",
+    "Fibularis tertius muscle.r",
+    "Tendon of extensor digitorum longus.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "external-oblique-left",
+   "name": "Left external abdominal oblique",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.07288,
+    1.06012,
+    0.03653
+   ],
+   "min": [
+    0.00488,
+    0.84015,
+    -0.05371
+   ],
+   "max": [
+    0.14087,
+    1.28009,
+    0.12677
+   ],
+   "triangles": 3928,
+   "sourceObjects": [
+    "External abdominal oblique muscle.l",
+    "Inguinal ligament.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "external-oblique-right",
+   "name": "Right external abdominal oblique",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.07288,
+    1.06012,
+    0.03653
+   ],
+   "min": [
+    -0.14087,
+    0.84015,
+    -0.05371
+   ],
+   "max": [
+    -0.00488,
+    1.28009,
+    0.12677
+   ],
+   "triangles": 3928,
+   "sourceObjects": [
+    "External abdominal oblique muscle.r",
+    "Inguinal ligament.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "extraocular-muscles-left",
+   "name": "Left extraocular muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.02829,
+    1.59271,
+    0.05621
+   ],
+   "min": [
+    0.01245,
+    1.57587,
+    0.03235
+   ],
+   "max": [
+    0.04413,
+    1.60956,
+    0.08008
+   ],
+   "triangles": 1546,
+   "sourceObjects": [
+    "Common tendinous ring.l",
+    "Inferior oblique muscle.l",
+    "Inferior rectus muscle.l",
+    "Inferior tarsus.l",
+    "Lateral rectus muscle.l",
+    "Levator palpebrae superioris.l",
+    "Medial rectus muscle.l",
+    "Superior oblique muscle.l",
+    "Superior rectus muscle.l",
+    "Superior tarsus.l",
+    "Trochlea of superior oblique muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "extraocular-muscles-right",
+   "name": "Right extraocular muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.02829,
+    1.59271,
+    0.05621
+   ],
+   "min": [
+    -0.04413,
+    1.57587,
+    0.03235
+   ],
+   "max": [
+    -0.01245,
+    1.60956,
+    0.08008
+   ],
+   "triangles": 1546,
+   "sourceObjects": [
+    "Common tendinous ring.r",
+    "Inferior oblique muscle.r",
+    "Inferior rectus muscle.r",
+    "Inferior tarsus.r",
+    "Lateral rectus muscle.r",
+    "Levator palpebrae superioris.r",
+    "Medial rectus muscle.r",
+    "Superior oblique muscle.r",
+    "Superior rectus muscle.r",
+    "Superior tarsus.r",
+    "Trochlea of superior oblique muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "facial-muscles-left",
+   "name": "Left muscles of facial expression",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.04019,
+    1.60324,
+    -0.00131
+   ],
+   "min": [
+    0,
+    1.4986,
+    -0.10413
+   ],
+   "max": [
+    0.08038,
+    1.70789,
+    0.1015
+   ],
+   "triangles": 6528,
+   "sourceObjects": [
+    "Bucinator.l",
+    "Corrugator supercilii.l",
+    "Depressor anguli oris.l",
+    "Depressor labii inferioris.l",
+    "Depressor septi nasi.l",
+    "Epicranial aponeurosis.l",
+    "Frontalis muscle.l",
+    "Levator anguli oris.l",
+    "Levator labii superioris.l",
+    "Levator nasolabialis.l",
+    "Mentalis muscle.l",
+    "Nasalis muscle.l",
+    "Occipitalis muscle.l",
+    "Orbicularis oris muscle.l",
+    "Orbital part of orbicularis oculi.l",
+    "Palpebral part of orbicularis oculi.l",
+    "Procerus muscle.l",
+    "Risorius muscle.l",
+    "Temporoparietalis muscle.l",
+    "Zygomaticus major muscle.l",
+    "Zygomaticus minor muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "facial-muscles-right",
+   "name": "Right muscles of facial expression",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.04019,
+    1.60324,
+    -0.00131
+   ],
+   "min": [
+    -0.08038,
+    1.4986,
+    -0.10413
+   ],
+   "max": [
+    0,
+    1.70789,
+    0.1015
+   ],
+   "triangles": 6528,
+   "sourceObjects": [
+    "Bucinator.r",
+    "Corrugator supercilii.r",
+    "Depressor anguli oris.r",
+    "Depressor labii inferioris.r",
+    "Depressor septi nasi.r",
+    "Epicranial aponeurosis.r",
+    "Frontalis muscle.r",
+    "Levator anguli oris.r",
+    "Levator labii superioris.r",
+    "Levator nasolabialis.r",
+    "Mentalis muscle.r",
+    "Nasalis muscle.r",
+    "Occipitalis muscle.r",
+    "Orbicularis oris muscle.r",
+    "Orbital part of orbicularis oculi.r",
+    "Palpebral part of orbicularis oculi.r",
+    "Procerus muscle.r",
+    "Risorius muscle.r",
+    "Temporoparietalis muscle.r",
+    "Zygomaticus major muscle.r",
+    "Zygomaticus minor muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "fibularis-muscles-left",
+   "name": "Left fibularis (peroneal) muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.10562,
+    0.21722,
+    -0.01859
+   ],
+   "min": [
+    0.07623,
+    0.02649,
+    -0.06433
+   ],
+   "max": [
+    0.13501,
+    0.40796,
+    0.02716
+   ],
+   "triangles": 1877,
+   "sourceObjects": [
+    "Fibularis brevis muscle.l",
+    "Fibularis longus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "fibularis-muscles-right",
+   "name": "Right fibularis (peroneal) muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.10562,
+    0.21722,
+    -0.01859
+   ],
+   "min": [
+    -0.13501,
+    0.02649,
+    -0.06433
+   ],
+   "max": [
+    -0.07623,
+    0.40796,
+    0.02716
+   ],
+   "triangles": 1877,
+   "sourceObjects": [
+    "Fibularis brevis muscle.r",
+    "Fibularis longus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "flexor-muscles-of-left-forearm",
+   "name": "Flexor muscles of left forearm",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.254,
+    0.91858,
+    0.01736
+   ],
+   "min": [
+    0.18384,
+    0.71198,
+    -0.05463
+   ],
+   "max": [
+    0.32416,
+    1.12518,
+    0.08936
+   ],
+   "triangles": 5436,
+   "sourceObjects": [
+    "Deep head of pronator teres.l",
+    "Flexor carpi radialis.l",
+    "Flexor digitorum profundus.l",
+    "Flexor pollicis longus.l",
+    "Humeral head of flexor carpi ulnaris.l",
+    "Humero-ulnar head of flexor digitorum superficialis.l",
+    "Palmaris longus muscle.l",
+    "Pronator quadratus.l",
+    "Radial head of flexor digitorum superficialis.l",
+    "Superficial head of pronator teres.l",
+    "Ulnar head of flexor carpi ulnaris.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "flexor-muscles-of-right-forearm",
+   "name": "Flexor muscles of right forearm",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.254,
+    0.91858,
+    0.01736
+   ],
+   "min": [
+    -0.32416,
+    0.71198,
+    -0.05463
+   ],
+   "max": [
+    -0.18384,
+    1.12518,
+    0.08936
+   ],
+   "triangles": 5436,
+   "sourceObjects": [
+    "Deep head of pronator teres.r",
+    "Flexor carpi radialis.r",
+    "Flexor digitorum profundus.r",
+    "Flexor pollicis longus.r",
+    "Humeral head of flexor carpi ulnaris.r",
+    "Humero-ulnar head of flexor digitorum superficialis.r",
+    "Palmaris longus muscle.r",
+    "Pronator quadratus.r",
+    "Radial head of flexor digitorum superficialis.r",
+    "Superficial head of pronator teres.r",
+    "Ulnar head of flexor carpi ulnaris.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gastrocnemius-left",
+   "name": "Left gastrocnemius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.08478,
+    0.35663,
+    -0.06107
+   ],
+   "min": [
+    0.03485,
+    0.20673,
+    -0.10516
+   ],
+   "max": [
+    0.1347,
+    0.50653,
+    -0.01697
+   ],
+   "triangles": 2596,
+   "sourceObjects": [
+    "Lateral head of gastrocnemius.l",
+    "Medial head of gastrocnemius.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gastrocnemius-right",
+   "name": "Right gastrocnemius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.08478,
+    0.35663,
+    -0.06107
+   ],
+   "min": [
+    -0.1347,
+    0.20673,
+    -0.10516
+   ],
+   "max": [
+    -0.03485,
+    0.50653,
+    -0.01697
+   ],
+   "triangles": 2596,
+   "sourceObjects": [
+    "Lateral head of gastrocnemius.r",
+    "Medial head of gastrocnemius.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gluteus-maximus-left",
+   "name": "Left gluteus maximus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.07385,
+    0.84479,
+    -0.06207
+   ],
+   "min": [
+    0.0014,
+    0.71002,
+    -0.1106
+   ],
+   "max": [
+    0.1463,
+    0.97955,
+    -0.01355
+   ],
+   "triangles": 1346,
+   "sourceObjects": [
+    "Gluteus maximus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gluteus-maximus-right",
+   "name": "Right gluteus maximus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.07385,
+    0.84479,
+    -0.06207
+   ],
+   "min": [
+    -0.1463,
+    0.71002,
+    -0.1106
+   ],
+   "max": [
+    -0.0014,
+    0.97955,
+    -0.01355
+   ],
+   "triangles": 1346,
+   "sourceObjects": [
+    "Gluteus maximus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gluteus-medius-left",
+   "name": "Left gluteus medius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.10522,
+    0.9137,
+    -0.02271
+   ],
+   "min": [
+    0.06067,
+    0.83008,
+    -0.06854
+   ],
+   "max": [
+    0.14978,
+    0.99731,
+    0.02313
+   ],
+   "triangles": 1350,
+   "sourceObjects": [
+    "Gluteus medius muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gluteus-medius-right",
+   "name": "Right gluteus medius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.10522,
+    0.9137,
+    -0.02271
+   ],
+   "min": [
+    -0.14978,
+    0.83008,
+    -0.06854
+   ],
+   "max": [
+    -0.06067,
+    0.99731,
+    0.02313
+   ],
+   "triangles": 1350,
+   "sourceObjects": [
+    "Gluteus medius muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gluteus-minimus-left",
+   "name": "Left gluteus minimus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.10886,
+    0.90146,
+    -0.00787
+   ],
+   "min": [
+    0.06744,
+    0.83447,
+    -0.03833
+   ],
+   "max": [
+    0.15027,
+    0.96844,
+    0.02258
+   ],
+   "triangles": 1511,
+   "sourceObjects": [
+    "Gluteus minimus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gluteus-minimus-right",
+   "name": "Right gluteus minimus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.10886,
+    0.90146,
+    -0.00787
+   ],
+   "min": [
+    -0.15027,
+    0.83447,
+    -0.03833
+   ],
+   "max": [
+    -0.06744,
+    0.96844,
+    0.02258
+   ],
+   "triangles": 1511,
+   "sourceObjects": [
+    "Gluteus minimus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gracilis-left",
+   "name": "Left gracilis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.03604,
+    0.59131,
+    -0.0015
+   ],
+   "min": [
+    0.00977,
+    0.34515,
+    -0.04681
+   ],
+   "max": [
+    0.06232,
+    0.83746,
+    0.04382
+   ],
+   "triangles": 1292,
+   "sourceObjects": [
+    "Gracilis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gracilis-right",
+   "name": "Right gracilis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.03604,
+    0.59131,
+    -0.0015
+   ],
+   "min": [
+    -0.06232,
+    0.34515,
+    -0.04681
+   ],
+   "max": [
+    -0.00977,
+    0.83746,
+    0.04382
+   ],
+   "triangles": 1292,
+   "sourceObjects": [
+    "Gracilis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "iliopsoas-left",
+   "name": "Left iliopsoas",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.06308,
+    0.96466,
+    0.00516
+   ],
+   "min": [
+    0.00757,
+    0.77325,
+    -0.03949
+   ],
+   "max": [
+    0.11859,
+    1.15607,
+    0.0498
+   ],
+   "triangles": 1984,
+   "sourceObjects": [
+    "Iliacus muscle.l",
+    "Psoas major.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "iliopsoas-right",
+   "name": "Right iliopsoas",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.06308,
+    0.96466,
+    0.00516
+   ],
+   "min": [
+    -0.11859,
+    0.77325,
+    -0.03949
+   ],
+   "max": [
+    -0.00757,
+    1.15607,
+    0.0498
+   ],
+   "triangles": 1984,
+   "sourceObjects": [
+    "Iliacus muscle.r",
+    "Psoas major.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "infrahyoid-muscles-left",
+   "name": "Left infrahyoid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.05331,
+    1.44022,
+    -0.00955
+   ],
+   "min": [
+    0.0036,
+    1.38208,
+    -0.05859
+   ],
+   "max": [
+    0.10303,
+    1.49835,
+    0.03949
+   ],
+   "triangles": 1458,
+   "sourceObjects": [
+    "Omohyoid muscle.l",
+    "Sternohyoid muscle.l",
+    "Sternothyroid muscle.l",
+    "Thyrohyoid muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "infrahyoid-muscles-right",
+   "name": "Right infrahyoid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.05331,
+    1.44022,
+    -0.00955
+   ],
+   "min": [
+    -0.10303,
+    1.38208,
+    -0.05859
+   ],
+   "max": [
+    -0.0036,
+    1.49835,
+    0.03949
+   ],
+   "triangles": 1458,
+   "sourceObjects": [
+    "Omohyoid muscle.r",
+    "Sternohyoid muscle.r",
+    "Sternothyroid muscle.r",
+    "Thyrohyoid muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "infraspinatus-left",
+   "name": "Left infraspinatus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.12936,
+    1.34305,
+    -0.06992
+   ],
+   "min": [
+    0.06317,
+    1.28632,
+    -0.11578
+   ],
+   "max": [
+    0.19556,
+    1.39978,
+    -0.02405
+   ],
+   "triangles": 1004,
+   "sourceObjects": [
+    "Infraspinatus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "infraspinatus-right",
+   "name": "Right infraspinatus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.12936,
+    1.34305,
+    -0.06992
+   ],
+   "min": [
+    -0.19556,
+    1.28632,
+    -0.11578
+   ],
+   "max": [
+    -0.06317,
+    1.39978,
+    -0.02405
+   ],
+   "triangles": 1004,
+   "sourceObjects": [
+    "Infraspinatus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "intercostal-muscles-left",
+   "name": "Left intercostal muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.07211,
+    1.26224,
+    0.00854
+   ],
+   "min": [
+    0.00342,
+    1.07086,
+    -0.09656
+   ],
+   "max": [
+    0.14081,
+    1.45361,
+    0.11365
+   ],
+   "triangles": 6532,
+   "sourceObjects": [
+    "External intercostal muscles.l",
+    "Innermost intercostal muscles.l",
+    "Internal intercostal muscles.l",
+    "Levatores breves costarum.l",
+    "Levatores longi costarum.l",
+    "Transversus thoracis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "intercostal-muscles-right",
+   "name": "Right intercostal muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.07211,
+    1.26224,
+    0.00854
+   ],
+   "min": [
+    -0.14081,
+    1.07086,
+    -0.09656
+   ],
+   "max": [
+    -0.00342,
+    1.45361,
+    0.11365
+   ],
+   "triangles": 6532,
+   "sourceObjects": [
+    "External intercostal muscles.r",
+    "Innermost intercostal muscles.r",
+    "Internal intercostal muscles.r",
+    "Levatores breves costarum.r",
+    "Levatores longi costarum.r",
+    "Transversus thoracis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "internal-oblique-left",
+   "name": "Left internal abdominal oblique",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.06491,
+    1.04599,
+    0.03577
+   ],
+   "min": [
+    0.00293,
+    0.85034,
+    -0.05188
+   ],
+   "max": [
+    0.12689,
+    1.24164,
+    0.12341
+   ],
+   "triangles": 3786,
+   "sourceObjects": [
+    "Internal abdominal oblique muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "internal-oblique-right",
+   "name": "Right internal abdominal oblique",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.06491,
+    1.04599,
+    0.03577
+   ],
+   "min": [
+    -0.12689,
+    0.85034,
+    -0.05188
+   ],
+   "max": [
+    -0.00293,
+    1.24164,
+    0.12341
+   ],
+   "triangles": 3786,
+   "sourceObjects": [
+    "Internal abdominal oblique muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "latissimus-dorsi-left",
+   "name": "Left latissimus dorsi",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.09131,
+    1.13699,
+    -0.06781
+   ],
+   "min": [
+    -0.00214,
+    0.9317,
+    -0.11865
+   ],
+   "max": [
+    0.18475,
+    1.34229,
+    -0.01697
+   ],
+   "triangles": 3816,
+   "sourceObjects": [
+    "Latissimus dorsi muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "latissimus-dorsi-right",
+   "name": "Right latissimus dorsi",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.09131,
+    1.13699,
+    -0.06781
+   ],
+   "min": [
+    -0.18475,
+    0.9317,
+    -0.11865
+   ],
+   "max": [
+    0.00214,
+    1.34229,
+    -0.01697
+   ],
+   "triangles": 3816,
+   "sourceObjects": [
+    "Latissimus dorsi muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "levator-scapulae-left",
+   "name": "Left levator scapulae",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.05597,
+    1.46326,
+    -0.05106
+   ],
+   "min": [
+    0.02521,
+    1.3869,
+    -0.09406
+   ],
+   "max": [
+    0.08673,
+    1.53961,
+    -0.00806
+   ],
+   "triangles": 988,
+   "sourceObjects": [
+    "Levator scapulae.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "levator-scapulae-right",
+   "name": "Right levator scapulae",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.05597,
+    1.46326,
+    -0.05106
+   ],
+   "min": [
+    -0.08673,
+    1.3869,
+    -0.09406
+   ],
+   "max": [
+    -0.02521,
+    1.53961,
+    -0.00806
+   ],
+   "triangles": 988,
+   "sourceObjects": [
+    "Levator scapulae.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "masseter-left",
+   "name": "Left masseter",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.04877,
+    1.54596,
+    0.03421
+   ],
+   "min": [
+    0.03479,
+    1.5127,
+    0.0108
+   ],
+   "max": [
+    0.06274,
+    1.57922,
+    0.05762
+   ],
+   "triangles": 850,
+   "sourceObjects": [
+    "Deep part of masseter.l",
+    "Superficial part of masseter.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "masseter-right",
+   "name": "Right masseter",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.04877,
+    1.54596,
+    0.03421
+   ],
+   "min": [
+    -0.06274,
+    1.5127,
+    0.0108
+   ],
+   "max": [
+    -0.03479,
+    1.57922,
+    0.05762
+   ],
+   "triangles": 850,
+   "sourceObjects": [
+    "Deep part of masseter.r",
+    "Superficial part of masseter.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "muscles-of-larynx",
+   "name": "Muscles of larynx",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": null,
+   "center": [
+    0,
+    1.48218,
+    0.01273
+   ],
+   "min": [
+    -0.01367,
+    1.45923,
+    -0.00415
+   ],
+   "max": [
+    0.01367,
+    1.50513,
+    0.0296
+   ],
+   "triangles": 2224,
+   "sourceObjects": [
+    "Ary-epiglottic part of oblique arytenoid muscle.l",
+    "Ary-epiglottic part of oblique arytenoid muscle.r",
+    "External part of thyro-arytenoid muscle.l",
+    "External part of thyro-arytenoid muscle.r",
+    "Lateral crico-arytenoid muscle.l",
+    "Lateral crico-arytenoid muscle.r",
+    "Oblique part of cricothyroid muscle.l",
+    "Oblique part of cricothyroid muscle.r",
+    "Posterior crico-arytenoid muscle.l",
+    "Posterior crico-arytenoid muscle.r",
+    "Straight part of cricothyroid muscle.l",
+    "Straight part of cricothyroid muscle.r",
+    "Thyro-epiglottic part of thyro-arytenoid muscle.l",
+    "Thyro-epiglottic part of thyro-arytenoid muscle.r",
+    "Transverse arytenoid muscle"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "muscles-of-left-foot",
+   "name": "Muscles of left foot",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.0993,
+    0.04147,
+    0.02692
+   ],
+   "min": [
+    0.05499,
+    0.00751,
+    -0.06708
+   ],
+   "max": [
+    0.14362,
+    0.07544,
+    0.12091
+   ],
+   "triangles": 2919,
+   "sourceObjects": [
+    "(Opponens digiti minimi muscle of foot).l",
+    "Abductor digiti minimi of foot.l",
+    "Abductor hallucis.l",
+    "Dorsal interossei muscles of foot.l",
+    "Extensor digitorum brevis.l",
+    "Extensor hallucis brevis.l",
+    "Flexor digiti minimi of foot.l",
+    "Flexor digitorum brevis.l",
+    "Lateral head of flexor hallucis brevis.l",
+    "Lumbrical muscles of foot.l",
+    "Medial head of flexor hallucis brevis.l",
+    "Oblique head of adductor hallucis.l",
+    "Plantar interossei muscles.l",
+    "Quadratus plantae muscle.l",
+    "Transverse head of adductor hallucis.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "muscles-of-left-hand",
+   "name": "Muscles of left hand",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.27203,
+    0.79575,
+    0.03912
+   ],
+   "min": [
+    0.22803,
+    0.73218,
+    0.0191
+   ],
+   "max": [
+    0.31604,
+    0.85931,
+    0.05914
+   ],
+   "triangles": 1725,
+   "sourceObjects": [
+    "Abductor digiti minimi of hand.l",
+    "Abductor pollicis brevis.l",
+    "Deep head of flexor pollicis brevis.l",
+    "Dorsal interossei muscles of hand.l",
+    "Flexor digiti minimi of hand.l",
+    "Lumbrical muscles of hand.l",
+    "Oblique head of adductor pollicis.l",
+    "Opponens digiti minimi muscle of hand.l",
+    "Opponens pollicis muscle.l",
+    "Palmar interossei muscles.l",
+    "Superficial head of flexor pollicis brevis.l",
+    "Transverse head of adductor pollicis.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "muscles-of-pharynx",
+   "name": "Muscles of pharynx and soft palate",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": null,
+   "center": [
+    0,
+    1.5177,
+    0.01807
+   ],
+   "min": [
+    -0.04053,
+    1.46063,
+    -0.00372
+   ],
+   "max": [
+    0.04053,
+    1.57477,
+    0.03986
+   ],
+   "triangles": 3980,
+   "sourceObjects": [
+    "Inferior pharyngeal constrictor.l",
+    "Inferior pharyngeal constrictor.r",
+    "Middle pharyngeal constrictor.l",
+    "Middle pharyngeal constrictor.r",
+    "Palatopharyngeus muscle.l",
+    "Palatopharyngeus muscle.r",
+    "Stylopharyngeus muscle.l",
+    "Stylopharyngeus muscle.r",
+    "Superior pharyngeal constrictor.l",
+    "Superior pharyngeal constrictor.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "muscles-of-right-foot",
+   "name": "Muscles of right foot",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.0993,
+    0.04147,
+    0.02692
+   ],
+   "min": [
+    -0.14362,
+    0.00751,
+    -0.06708
+   ],
+   "max": [
+    -0.05499,
+    0.07544,
+    0.12091
+   ],
+   "triangles": 2919,
+   "sourceObjects": [
+    "(Opponens digiti minimi muscle of foot).r",
+    "Abductor digiti minimi of foot.r",
+    "Abductor hallucis.r",
+    "Dorsal interossei muscles of foot.r",
+    "Extensor digitorum brevis.r",
+    "Extensor hallucis brevis.r",
+    "Flexor digiti minimi of foot.r",
+    "Flexor digitorum brevis.r",
+    "Lateral head of flexor hallucis brevis.r",
+    "Lumbrical muscles of foot.r",
+    "Medial head of flexor hallucis brevis.r",
+    "Oblique head of adductor hallucis.r",
+    "Plantar interossei muscles.r",
+    "Quadratus plantae muscle.r",
+    "Transverse head of adductor hallucis.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "muscles-of-right-hand",
+   "name": "Muscles of right hand",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.27203,
+    0.79575,
+    0.03912
+   ],
+   "min": [
+    -0.31604,
+    0.73218,
+    0.0191
+   ],
+   "max": [
+    -0.22803,
+    0.85931,
+    0.05914
+   ],
+   "triangles": 1725,
+   "sourceObjects": [
+    "Abductor digiti minimi of hand.r",
+    "Abductor pollicis brevis.r",
+    "Deep head of flexor pollicis brevis.r",
+    "Dorsal interossei muscles of hand.r",
+    "Flexor digiti minimi of hand.r",
+    "Lumbrical muscles of hand.r",
+    "Oblique head of adductor pollicis.r",
+    "Opponens digiti minimi muscle of hand.r",
+    "Opponens pollicis muscle.r",
+    "Palmar interossei muscles.r",
+    "Superficial head of flexor pollicis brevis.r",
+    "Transverse head of adductor pollicis.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "muscles-of-tongue",
+   "name": "Extrinsic muscles of tongue",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": null,
+   "center": [
+    0,
+    1.51752,
+    0.05637
+   ],
+   "min": [
+    -0.013,
+    1.4989,
+    0.03253
+   ],
+   "max": [
+    0.013,
+    1.53613,
+    0.0802
+   ],
+   "triangles": 2044,
+   "sourceObjects": [
+    "Genioglossus muscle.l",
+    "Genioglossus muscle.r",
+    "Hyoglossus muscle.l",
+    "Hyoglossus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pectoralis-major-left",
+   "name": "Left pectoralis major",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.10147,
+    1.29114,
+    0.05606
+   ],
+   "min": [
+    0.00323,
+    1.17261,
+    -0.0155
+   ],
+   "max": [
+    0.19971,
+    1.40967,
+    0.12762
+   ],
+   "triangles": 1836,
+   "sourceObjects": [
+    "(Abdominal part of pectoralis major muscle).l",
+    "Clavicular head of pectoralis major muscle.l",
+    "Sternocostal head of pectoralis major muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pectoralis-major-right",
+   "name": "Right pectoralis major",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.10147,
+    1.29114,
+    0.05606
+   ],
+   "min": [
+    -0.19971,
+    1.17261,
+    -0.0155
+   ],
+   "max": [
+    -0.00323,
+    1.40967,
+    0.12762
+   ],
+   "triangles": 1836,
+   "sourceObjects": [
+    "(Abdominal part of pectoralis major muscle).r",
+    "Clavicular head of pectoralis major muscle.r",
+    "Sternocostal head of pectoralis major muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pectoralis-minor-left",
+   "name": "Left pectoralis minor",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.10602,
+    1.33145,
+    0.03012
+   ],
+   "min": [
+    0.07666,
+    1.26233,
+    -0.0174
+   ],
+   "max": [
+    0.13538,
+    1.40057,
+    0.07764
+   ],
+   "triangles": 1180,
+   "sourceObjects": [
+    "Pectoralis minor muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pectoralis-minor-right",
+   "name": "Right pectoralis minor",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.10602,
+    1.33145,
+    0.03012
+   ],
+   "min": [
+    -0.13538,
+    1.26233,
+    -0.0174
+   ],
+   "max": [
+    -0.07666,
+    1.40057,
+    0.07764
+   ],
+   "triangles": 1180,
+   "sourceObjects": [
+    "Pectoralis minor muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pelvic-floor-muscles",
+   "name": "Pelvic floor muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": null,
+   "center": [
+    0,
+    0.83917,
+    -0.02731
+   ],
+   "min": [
+    -0.04681,
+    0.80054,
+    -0.07599
+   ],
+   "max": [
+    0.04681,
+    0.87781,
+    0.02136
+   ],
+   "triangles": 2636,
+   "sourceObjects": [
+    "Coccygeus muscle.l",
+    "Coccygeus muscle.r",
+    "External anal sphincter.l",
+    "External anal sphincter.r",
+    "Iliococcygeus muscle.l",
+    "Iliococcygeus muscle.r",
+    "Pubo-analis muscle.l",
+    "Pubo-analis muscle.r",
+    "Pubococcygeus muscle.l",
+    "Pubococcygeus muscle.r",
+    "Tendinous arch of levator ani.l",
+    "Tendinous arch of levator ani.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "platysma-left",
+   "name": "Left platysma",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.06924,
+    1.4707,
+    0.0228
+   ],
+   "min": [
+    -0.00275,
+    1.3996,
+    -0.03943
+   ],
+   "max": [
+    0.14124,
+    1.54181,
+    0.08502
+   ],
+   "triangles": 1088,
+   "sourceObjects": [
+    "Platysma.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "platysma-right",
+   "name": "Right platysma",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.06924,
+    1.4707,
+    0.0228
+   ],
+   "min": [
+    -0.14124,
+    1.3996,
+    -0.03943
+   ],
+   "max": [
+    0.00275,
+    1.54181,
+    0.08502
+   ],
+   "triangles": 1088,
+   "sourceObjects": [
+    "Platysma.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "prevertebral-muscles-left",
+   "name": "Left prevertebral muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.02148,
+    1.47876,
+    -0.00998
+   ],
+   "min": [
+    0.00122,
+    1.38818,
+    -0.02789
+   ],
+   "max": [
+    0.04175,
+    1.56934,
+    0.00793
+   ],
+   "triangles": 1584,
+   "sourceObjects": [
+    "Longus capitis muscle.l",
+    "Longus colli muscle.l",
+    "Rectus anterior capitis muscle.l",
+    "Rectus lateralis capitis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "prevertebral-muscles-right",
+   "name": "Right prevertebral muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.02148,
+    1.47876,
+    -0.00998
+   ],
+   "min": [
+    -0.04175,
+    1.38818,
+    -0.02789
+   ],
+   "max": [
+    -0.00122,
+    1.56934,
+    0.00793
+   ],
+   "triangles": 1584,
+   "sourceObjects": [
+    "Longus capitis muscle.r",
+    "Longus colli muscle.r",
+    "Rectus anterior capitis muscle.r",
+    "Rectus lateralis capitis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pterygoid-muscles-left",
+   "name": "Left pterygoid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.02884,
+    1.55585,
+    0.02615
+   ],
+   "min": [
+    0.01453,
+    1.52722,
+    0.00909
+   ],
+   "max": [
+    0.04315,
+    1.58447,
+    0.04321
+   ],
+   "triangles": 516,
+   "sourceObjects": [
+    "Inferior head of lateral pterygoid muscle.l",
+    "Medial pterygoid muscle.l",
+    "Superior head of lateral pterygoid muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pterygoid-muscles-right",
+   "name": "Right pterygoid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.02884,
+    1.55585,
+    0.02615
+   ],
+   "min": [
+    -0.04315,
+    1.52722,
+    0.00909
+   ],
+   "max": [
+    -0.01453,
+    1.58447,
+    0.04321
+   ],
+   "triangles": 516,
+   "sourceObjects": [
+    "Inferior head of lateral pterygoid muscle.r",
+    "Medial pterygoid muscle.r",
+    "Superior head of lateral pterygoid muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "quadratus-lumborum-left",
+   "name": "Left quadratus lumborum",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.04327,
+    1.04395,
+    -0.04987
+   ],
+   "min": [
+    0.01752,
+    0.9408,
+    -0.07257
+   ],
+   "max": [
+    0.06903,
+    1.14709,
+    -0.02716
+   ],
+   "triangles": 938,
+   "sourceObjects": [
+    "Quadratus lumborum muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "quadratus-lumborum-right",
+   "name": "Right quadratus lumborum",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.04327,
+    1.04395,
+    -0.04987
+   ],
+   "min": [
+    -0.06903,
+    0.9408,
+    -0.07257
+   ],
+   "max": [
+    -0.01752,
+    1.14709,
+    -0.02716
+   ],
+   "triangles": 938,
+   "sourceObjects": [
+    "Quadratus lumborum muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "quadriceps-femoris-left",
+   "name": "Left quadriceps femoris",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.09531,
+    0.64362,
+    0.01212
+   ],
+   "min": [
+    0.03174,
+    0.37085,
+    -0.03729
+   ],
+   "max": [
+    0.15887,
+    0.91638,
+    0.06152
+   ],
+   "triangles": 5882,
+   "sourceObjects": [
+    "Lateral patellar retinaculum.l",
+    "Medial patellar retinaculum.l",
+    "Rectus femoris muscle.l",
+    "Vastus intermedius muscle.l",
+    "Vastus lateralis muscle.l",
+    "Vastus medialis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "quadriceps-femoris-right",
+   "name": "Right quadriceps femoris",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.09531,
+    0.64362,
+    0.01212
+   ],
+   "min": [
+    -0.15887,
+    0.37085,
+    -0.03729
+   ],
+   "max": [
+    -0.03174,
+    0.91638,
+    0.06152
+   ],
+   "triangles": 5882,
+   "sourceObjects": [
+    "Lateral patellar retinaculum.r",
+    "Medial patellar retinaculum.r",
+    "Rectus femoris muscle.r",
+    "Vastus intermedius muscle.r",
+    "Vastus lateralis muscle.r",
+    "Vastus medialis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "rectus-abdominis",
+   "name": "Rectus abdominis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": null,
+   "center": [
+    0,
+    1.05014,
+    0.08093
+   ],
+   "min": [
+    -0.08197,
+    0.84149,
+    0.04077
+   ],
+   "max": [
+    0.08197,
+    1.25879,
+    0.12109
+   ],
+   "triangles": 6806,
+   "sourceObjects": [
+    "Linea alba",
+    "Pyramidalis muscle.l",
+    "Pyramidalis muscle.r",
+    "Rectus abdominis muscle.l",
+    "Rectus abdominis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "rhomboid-muscles-left",
+   "name": "Left rhomboid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.04309,
+    1.36047,
+    -0.08923
+   ],
+   "min": [
+    -0.0011,
+    1.26001,
+    -0.112
+   ],
+   "max": [
+    0.08728,
+    1.46094,
+    -0.06647
+   ],
+   "triangles": 1518,
+   "sourceObjects": [
+    "Rhomboid major muscle.l",
+    "Rhomboid minor muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "rhomboid-muscles-right",
+   "name": "Right rhomboid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.04309,
+    1.36047,
+    -0.08923
+   ],
+   "min": [
+    -0.08728,
+    1.26001,
+    -0.112
+   ],
+   "max": [
+    0.0011,
+    1.46094,
+    -0.06647
+   ],
+   "triangles": 1518,
+   "sourceObjects": [
+    "Rhomboid major muscle.r",
+    "Rhomboid minor muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sartorius-left",
+   "name": "Left sartorius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.07278,
+    0.64896,
+    0.01385
+   ],
+   "min": [
+    0.02118,
+    0.34973,
+    -0.03119
+   ],
+   "max": [
+    0.12439,
+    0.94818,
+    0.0589
+   ],
+   "triangles": 1316,
+   "sourceObjects": [
+    "Sartorius muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sartorius-right",
+   "name": "Right sartorius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.07278,
+    0.64896,
+    0.01385
+   ],
+   "min": [
+    -0.12439,
+    0.34973,
+    -0.03119
+   ],
+   "max": [
+    -0.02118,
+    0.94818,
+    0.0589
+   ],
+   "triangles": 1316,
+   "sourceObjects": [
+    "Sartorius muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "scalene-muscles-left",
+   "name": "Left scalene muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.04517,
+    1.46478,
+    -0.01428
+   ],
+   "min": [
+    0.02063,
+    1.41107,
+    -0.03839
+   ],
+   "max": [
+    0.0697,
+    1.51849,
+    0.00983
+   ],
+   "triangles": 1289,
+   "sourceObjects": [
+    "Scalenus anterior muscle.l",
+    "Scalenus medius muscle.l",
+    "Scalenus posterior muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "scalene-muscles-right",
+   "name": "Right scalene muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.04517,
+    1.46478,
+    -0.01428
+   ],
+   "min": [
+    -0.0697,
+    1.41107,
+    -0.03839
+   ],
+   "max": [
+    -0.02063,
+    1.51849,
+    0.00983
+   ],
+   "triangles": 1289,
+   "sourceObjects": [
+    "Scalenus anterior muscle.r",
+    "Scalenus medius muscle.r",
+    "Scalenus posterior muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "semimembranosus-left",
+   "name": "Left semimembranosus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.04694,
+    0.59421,
+    -0.04016
+   ],
+   "min": [
+    0.01508,
+    0.38562,
+    -0.06781
+   ],
+   "max": [
+    0.0788,
+    0.8028,
+    -0.01251
+   ],
+   "triangles": 1677,
+   "sourceObjects": [
+    "Semimembranosus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "semimembranosus-right",
+   "name": "Right semimembranosus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.04694,
+    0.59421,
+    -0.04016
+   ],
+   "min": [
+    -0.0788,
+    0.38562,
+    -0.06781
+   ],
+   "max": [
+    -0.01508,
+    0.8028,
+    -0.01251
+   ],
+   "triangles": 1677,
+   "sourceObjects": [
+    "Semimembranosus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "semitendinosus-left",
+   "name": "Left semitendinosus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.05075,
+    0.58194,
+    -0.0452
+   ],
+   "min": [
+    0.03259,
+    0.35236,
+    -0.07428
+   ],
+   "max": [
+    0.06891,
+    0.81152,
+    -0.01611
+   ],
+   "triangles": 1210,
+   "sourceObjects": [
+    "Semitendinosus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "semitendinosus-right",
+   "name": "Right semitendinosus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.05075,
+    0.58194,
+    -0.0452
+   ],
+   "min": [
+    -0.06891,
+    0.35236,
+    -0.07428
+   ],
+   "max": [
+    -0.03259,
+    0.81152,
+    -0.01611
+   ],
+   "triangles": 1210,
+   "sourceObjects": [
+    "Semitendinosus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "serratus-anterior-left",
+   "name": "Left serratus anterior",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.10538,
+    1.28561,
+    -0.02298
+   ],
+   "min": [
+    0.06219,
+    1.14813,
+    -0.10889
+   ],
+   "max": [
+    0.14856,
+    1.4231,
+    0.06293
+   ],
+   "triangles": 3494,
+   "sourceObjects": [
+    "Serratus anterior muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "serratus-anterior-right",
+   "name": "Right serratus anterior",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.10538,
+    1.28561,
+    -0.02298
+   ],
+   "min": [
+    -0.14856,
+    1.14813,
+    -0.10889
+   ],
+   "max": [
+    -0.06219,
+    1.4231,
+    0.06293
+   ],
+   "triangles": 3494,
+   "sourceObjects": [
+    "Serratus anterior muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "serratus-posterior-muscles-left",
+   "name": "Left serratus posterior muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.05426,
+    1.24304,
+    -0.05972
+   ],
+   "min": [
+    -0.00256,
+    1.02179,
+    -0.09351
+   ],
+   "max": [
+    0.11108,
+    1.46429,
+    -0.02594
+   ],
+   "triangles": 2501,
+   "sourceObjects": [
+    "Serratus posterior inferior muscle.l",
+    "Serratus posterior superior muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "serratus-posterior-muscles-right",
+   "name": "Right serratus posterior muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.05426,
+    1.24304,
+    -0.05972
+   ],
+   "min": [
+    -0.11108,
+    1.02179,
+    -0.09351
+   ],
+   "max": [
+    0.00256,
+    1.46429,
+    -0.02594
+   ],
+   "triangles": 2501,
+   "sourceObjects": [
+    "Serratus posterior inferior muscle.r",
+    "Serratus posterior superior muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "soleus-left",
+   "name": "Left soleus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.08612,
+    0.27197,
+    -0.05011
+   ],
+   "min": [
+    0.04352,
+    0.13403,
+    -0.07758
+   ],
+   "max": [
+    0.12872,
+    0.40991,
+    -0.02264
+   ],
+   "triangles": 1586,
+   "sourceObjects": [
+    "Soleus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "soleus-right",
+   "name": "Right soleus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.08612,
+    0.27197,
+    -0.05011
+   ],
+   "min": [
+    -0.12872,
+    0.13403,
+    -0.07758
+   ],
+   "max": [
+    -0.04352,
+    0.40991,
+    -0.02264
+   ],
+   "triangles": 1586,
+   "sourceObjects": [
+    "Soleus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "splenius-muscles-left",
+   "name": "Left splenius muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.02975,
+    1.42966,
+    -0.05692
+   ],
+   "min": [
+    -0.00092,
+    1.28583,
+    -0.10297
+   ],
+   "max": [
+    0.06042,
+    1.57349,
+    -0.01086
+   ],
+   "triangles": 1952,
+   "sourceObjects": [
+    "Splenius capitis muscle.l",
+    "Splenius colli muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "splenius-muscles-right",
+   "name": "Right splenius muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.02975,
+    1.42966,
+    -0.05692
+   ],
+   "min": [
+    -0.06042,
+    1.28583,
+    -0.10297
+   ],
+   "max": [
+    0.00092,
+    1.57349,
+    -0.01086
+   ],
+   "triangles": 1952,
+   "sourceObjects": [
+    "Splenius capitis muscle.r",
+    "Splenius colli muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sternocleidomastoid-left",
+   "name": "Left sternocleidomastoid",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.03259,
+    1.4787,
+    0.00894
+   ],
+   "min": [
+    0.00391,
+    1.38202,
+    -0.04779
+   ],
+   "max": [
+    0.06128,
+    1.57538,
+    0.06567
+   ],
+   "triangles": 1314,
+   "sourceObjects": [
+    "Sternocleidomastoid muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sternocleidomastoid-right",
+   "name": "Right sternocleidomastoid",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.03259,
+    1.4787,
+    0.00894
+   ],
+   "min": [
+    -0.06128,
+    1.38202,
+    -0.04779
+   ],
+   "max": [
+    -0.00391,
+    1.57538,
+    0.06567
+   ],
+   "triangles": 1314,
+   "sourceObjects": [
+    "Sternocleidomastoid muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "subclavius-left",
+   "name": "Left subclavius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.06424,
+    1.39908,
+    0.01932
+   ],
+   "min": [
+    0.02698,
+    1.38531,
+    -0.01154
+   ],
+   "max": [
+    0.1015,
+    1.41284,
+    0.05017
+   ],
+   "triangles": 438,
+   "sourceObjects": [
+    "Subclavius muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "subclavius-right",
+   "name": "Right subclavius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.06424,
+    1.39908,
+    0.01932
+   ],
+   "min": [
+    -0.1015,
+    1.38531,
+    -0.01154
+   ],
+   "max": [
+    -0.02698,
+    1.41284,
+    0.05017
+   ],
+   "triangles": 438,
+   "sourceObjects": [
+    "Subclavius muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "suboccipital-muscles-left",
+   "name": "Left suboccipital muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.02136,
+    1.53775,
+    -0.03992
+   ],
+   "min": [
+    0.00006,
+    1.51068,
+    -0.06714
+   ],
+   "max": [
+    0.04266,
+    1.56482,
+    -0.0127
+   ],
+   "triangles": 853,
+   "sourceObjects": [
+    "Obliquus inferior capitis muscle.l",
+    "Obliquus superior capitis muscle.l",
+    "Rectus posterior major capitis muscle.l",
+    "Rectus posterior minor capitis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "suboccipital-muscles-right",
+   "name": "Right suboccipital muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.02136,
+    1.53775,
+    -0.03992
+   ],
+   "min": [
+    -0.04266,
+    1.51068,
+    -0.06714
+   ],
+   "max": [
+    -0.00006,
+    1.56482,
+    -0.0127
+   ],
+   "triangles": 853,
+   "sourceObjects": [
+    "Obliquus inferior capitis muscle.r",
+    "Obliquus superior capitis muscle.r",
+    "Rectus posterior major capitis muscle.r",
+    "Rectus posterior minor capitis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "subscapularis-left",
+   "name": "Left subscapularis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.11761,
+    1.33517,
+    -0.05249
+   ],
+   "min": [
+    0.06506,
+    1.27789,
+    -0.10486
+   ],
+   "max": [
+    0.17017,
+    1.39246,
+    -0.00012
+   ],
+   "triangles": 964,
+   "sourceObjects": [
+    "Subscapularis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "subscapularis-right",
+   "name": "Right subscapularis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.11761,
+    1.33517,
+    -0.05249
+   ],
+   "min": [
+    -0.17017,
+    1.27789,
+    -0.10486
+   ],
+   "max": [
+    -0.06506,
+    1.39246,
+    -0.00012
+   ],
+   "triangles": 964,
+   "sourceObjects": [
+    "Subscapularis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "suprahyoid-muscles-left",
+   "name": "Left suprahyoid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.02936,
+    1.53287,
+    0.02457
+   ],
+   "min": [
+    0,
+    1.4986,
+    -0.02454
+   ],
+   "max": [
+    0.05872,
+    1.56714,
+    0.07367
+   ],
+   "triangles": 1198,
+   "sourceObjects": [
+    "Anterior belly of digastric muscle.l",
+    "Geniohyoid muscle.l",
+    "Intermediate tendon of digastric muscle.l",
+    "Mylohyoid muscle.l",
+    "Posterior belly of digastric muscle.l",
+    "Stylohyoid muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "suprahyoid-muscles-right",
+   "name": "Right suprahyoid muscles",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.02936,
+    1.53287,
+    0.02457
+   ],
+   "min": [
+    -0.05872,
+    1.4986,
+    -0.02454
+   ],
+   "max": [
+    0,
+    1.56714,
+    0.07367
+   ],
+   "triangles": 1198,
+   "sourceObjects": [
+    "Anterior belly of digastric muscle.r",
+    "Geniohyoid muscle.r",
+    "Intermediate tendon of digastric muscle.r",
+    "Mylohyoid muscle.r",
+    "Posterior belly of digastric muscle.r",
+    "Stylohyoid muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "supraspinatus-left",
+   "name": "Left supraspinatus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.13242,
+    1.39523,
+    -0.05203
+   ],
+   "min": [
+    0.06989,
+    1.37897,
+    -0.09436
+   ],
+   "max": [
+    0.19495,
+    1.4115,
+    -0.0097
+   ],
+   "triangles": 624,
+   "sourceObjects": [
+    "Supraspinatus muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "supraspinatus-right",
+   "name": "Right supraspinatus",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.13242,
+    1.39523,
+    -0.05203
+   ],
+   "min": [
+    -0.19495,
+    1.37897,
+    -0.09436
+   ],
+   "max": [
+    -0.06989,
+    1.4115,
+    -0.0097
+   ],
+   "triangles": 624,
+   "sourceObjects": [
+    "Supraspinatus muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "temporalis-left",
+   "name": "Left temporalis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.05728,
+    1.60437,
+    0.00787
+   ],
+   "min": [
+    0.03778,
+    1.54651,
+    -0.04907
+   ],
+   "max": [
+    0.07678,
+    1.66223,
+    0.06482
+   ],
+   "triangles": 2036,
+   "sourceObjects": [
+    "Temporalis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "temporalis-right",
+   "name": "Right temporalis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.05728,
+    1.60437,
+    0.00787
+   ],
+   "min": [
+    -0.07678,
+    1.54651,
+    -0.04907
+   ],
+   "max": [
+    -0.03778,
+    1.66223,
+    0.06482
+   ],
+   "triangles": 2036,
+   "sourceObjects": [
+    "Temporalis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "tensor-fasciae-latae-left",
+   "name": "Left tensor fasciae latae and iliotibial tract",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.1254,
+    0.69543,
+    -0.00143
+   ],
+   "min": [
+    0.08966,
+    0.3927,
+    -0.05219
+   ],
+   "max": [
+    0.16113,
+    0.99817,
+    0.04932
+   ],
+   "triangles": 4236,
+   "sourceObjects": [
+    "Iliotibial tract.l",
+    "Tensor fasciae latae.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "tensor-fasciae-latae-right",
+   "name": "Right tensor fasciae latae and iliotibial tract",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.1254,
+    0.69543,
+    -0.00143
+   ],
+   "min": [
+    -0.16113,
+    0.3927,
+    -0.05219
+   ],
+   "max": [
+    -0.08966,
+    0.99817,
+    0.04932
+   ],
+   "triangles": 4236,
+   "sourceObjects": [
+    "Iliotibial tract.r",
+    "Tensor fasciae latae.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "teres-major-left",
+   "name": "Left teres major",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.14169,
+    1.29907,
+    -0.05725
+   ],
+   "min": [
+    0.09875,
+    1.25616,
+    -0.09857
+   ],
+   "max": [
+    0.18463,
+    1.34198,
+    -0.01593
+   ],
+   "triangles": 548,
+   "sourceObjects": [
+    "Teres major muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "teres-major-right",
+   "name": "Right teres major",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.14169,
+    1.29907,
+    -0.05725
+   ],
+   "min": [
+    -0.18463,
+    1.25616,
+    -0.09857
+   ],
+   "max": [
+    -0.09875,
+    1.34198,
+    -0.01593
+   ],
+   "triangles": 548,
+   "sourceObjects": [
+    "Teres major muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "teres-minor-left",
+   "name": "Left teres minor",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.14926,
+    1.33981,
+    -0.05807
+   ],
+   "min": [
+    0.1012,
+    1.29504,
+    -0.09607
+   ],
+   "max": [
+    0.19733,
+    1.38458,
+    -0.02008
+   ],
+   "triangles": 646,
+   "sourceObjects": [
+    "Teres minor muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "teres-minor-right",
+   "name": "Right teres minor",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.14926,
+    1.33981,
+    -0.05807
+   ],
+   "min": [
+    -0.19733,
+    1.29504,
+    -0.09607
+   ],
+   "max": [
+    -0.1012,
+    1.38458,
+    -0.02008
+   ],
+   "triangles": 646,
+   "sourceObjects": [
+    "Teres minor muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "tibialis-anterior-left",
+   "name": "Left tibialis anterior",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.08707,
+    0.22696,
+    0.00266
+   ],
+   "min": [
+    0.0567,
+    0.04297,
+    -0.03351
+   ],
+   "max": [
+    0.11743,
+    0.41095,
+    0.03882
+   ],
+   "triangles": 1072,
+   "sourceObjects": [
+    "Tibialis anterior muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "tibialis-anterior-right",
+   "name": "Right tibialis anterior",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.08707,
+    0.22696,
+    0.00266
+   ],
+   "min": [
+    -0.11743,
+    0.04297,
+    -0.03351
+   ],
+   "max": [
+    -0.0567,
+    0.41095,
+    0.03882
+   ],
+   "triangles": 1072,
+   "sourceObjects": [
+    "Tibialis anterior muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "transversus-abdominis-left",
+   "name": "Left transversus abdominis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.06821,
+    1.05215,
+    0.0217
+   ],
+   "min": [
+    0.00354,
+    0.8418,
+    -0.06183
+   ],
+   "max": [
+    0.13287,
+    1.26251,
+    0.10522
+   ],
+   "triangles": 4202,
+   "sourceObjects": [
+    "Transversus abdominis muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "transversus-abdominis-right",
+   "name": "Right transversus abdominis",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.06821,
+    1.05215,
+    0.0217
+   ],
+   "min": [
+    -0.13287,
+    0.8418,
+    -0.06183
+   ],
+   "max": [
+    -0.00354,
+    1.26251,
+    0.10522
+   ],
+   "triangles": 4202,
+   "sourceObjects": [
+    "Transversus abdominis muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "trapezius-left",
+   "name": "Left trapezius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.08115,
+    1.34763,
+    -0.06348
+   ],
+   "min": [
+    -0.00476,
+    1.1203,
+    -0.12872
+   ],
+   "max": [
+    0.16705,
+    1.57495,
+    0.00177
+   ],
+   "triangles": 3236,
+   "sourceObjects": [
+    "Ascending part of trapezius muscle.l",
+    "Descending part of trapezius muscle.l",
+    "Transverse part of trapezius muscle.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "trapezius-right",
+   "name": "Right trapezius",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.08115,
+    1.34763,
+    -0.06348
+   ],
+   "min": [
+    -0.16705,
+    1.1203,
+    -0.12872
+   ],
+   "max": [
+    0.00476,
+    1.57495,
+    0.00177
+   ],
+   "triangles": 3236,
+   "sourceObjects": [
+    "Ascending part of trapezius muscle.r",
+    "Descending part of trapezius muscle.r",
+    "Transverse part of trapezius muscle.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "triceps-brachii-left",
+   "name": "Left triceps brachii",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "L",
+   "center": [
+    0.18405,
+    1.22656,
+    -0.05679
+   ],
+   "min": [
+    0.13184,
+    1.08752,
+    -0.08435
+   ],
+   "max": [
+    0.23627,
+    1.3656,
+    -0.02924
+   ],
+   "triangles": 2646,
+   "sourceObjects": [
+    "Lateral head of triceps brachii.l",
+    "Long head of triceps brachii.l",
+    "Medial head of triceps brachii.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "triceps-brachii-right",
+   "name": "Right triceps brachii",
+   "system": "muscular",
+   "tissue": "muscle",
+   "side": "R",
+   "center": [
+    -0.18405,
+    1.22656,
+    -0.05679
+   ],
+   "min": [
+    -0.23627,
+    1.08752,
+    -0.08435
+   ],
+   "max": [
+    -0.13184,
+    1.3656,
+    -0.02924
+   ],
+   "triangles": 2646,
+   "sourceObjects": [
+    "Lateral head of triceps brachii.r",
+    "Long head of triceps brachii.r",
+    "Medial head of triceps brachii.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "aorta",
+   "name": "Aorta",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": null,
+   "center": [
+    0.01117,
+    1.21317,
+    -0.00119
+   ],
+   "min": [
+    -0.00964,
+    1.02905,
+    -0.04791
+   ],
+   "max": [
+    0.03198,
+    1.39728,
+    0.04553
+   ],
+   "triangles": 1206,
+   "sourceObjects": [
+    "Abdominal aorta",
+    "Aortic arch",
+    "Ascending aorta",
+    "Thoracic aorta"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-abdomen",
+   "name": "Arteries of abdomen",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": null,
+   "center": [
+    -0.00644,
+    1.04767,
+    0.01813
+   ],
+   "min": [
+    -0.11206,
+    0.82983,
+    -0.05347
+   ],
+   "max": [
+    0.09918,
+    1.2655,
+    0.08972
+   ],
+   "triangles": 2605,
+   "sourceObjects": [
+    "Anterior branch of renal artery.l",
+    "Anterior branch of renal artery.r",
+    "Anterior inferior pancreaticoduodenal artery",
+    "Appendicular artery",
+    "Ascending branch of left colic artery",
+    "Coeliac trunk",
+    "Colic branch of ileocolic artery",
+    "Common hepatic artery",
+    "Descending branch of left colic artery",
+    "Gastroduodenal artery",
+    "Ileal branch of ileocolic artery",
+    "Ileocolic artery",
+    "Inferior mesenteric artery",
+    "Inferior pancreaticoduodenal artery",
+    "Inferior phrenic artery",
+    "Inferior suprarenal artery.l",
+    "Inferior suprarenal artery.r",
+    "Left colic artery",
+    "Left gastric artery",
+    "Left renal artery",
+    "Lumbar arteries.l",
+    "Lumbar arteries.r",
+    "Marginal artery",
+    "Middle colic artery",
+    "Posterior branch of renal artery.l",
+    "Posterior branch of renal artery.r",
+    "Proper hepatic artery",
+    "Right colic artery",
+    "Right renal artery",
+    "Sigmoid arteries",
+    "Splenic artery",
+    "Superior anorectal artery",
+    "Superior mesenteric artery"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-brain",
+   "name": "Arteries of brain",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": null,
+   "center": [
+    0,
+    1.63828,
+    -0.00766
+   ],
+   "min": [
+    -0.07111,
+    1.57544,
+    -0.09503
+   ],
+   "max": [
+    0.07111,
+    1.70111,
+    0.07971
+   ],
+   "triangles": 4706,
+   "sourceObjects": [
+    "Anterior cerebral artery.l",
+    "Anterior cerebral artery.r",
+    "Anterior communicating artery",
+    "Anterior inferior cerebellar artery.l",
+    "Anterior inferior cerebellar artery.r",
+    "Anterior temporal branch.l",
+    "Anterior temporal branch.r",
+    "Artery of central sulcus.l",
+    "Artery of central sulcus.r",
+    "Artery of precentral sulcus.l",
+    "Artery of precentral sulcus.r",
+    "Basilar artery",
+    "Branch to angular gyrus.l",
+    "Branch to angular gyrus.r",
+    "Callosomarginal artery.l",
+    "Callosomarginal artery.r",
+    "Distal lateral striate branches.l",
+    "Distal lateral striate branches.r",
+    "Frontal branches of callosomarginal artery.l",
+    "Frontal branches of callosomarginal artery.r",
+    "Insular branches of middle cerebral artery (M2).r",
+    "Insular branches of middle cerebral artery (M2-segment).l",
+    "Lateral frontobasal artery.l",
+    "Lateral frontobasal artery.r",
+    "Lateral occipital artery.l",
+    "Lateral occipital artery.r",
+    "Lateral pontine branches of basilar artery.l",
+    "Lateral pontine branches of basilar artery.r",
+    "Medial occipital artery.l",
+    "Medial occipital artery.r",
+    "Medial pontine branches of basilar artery.l",
+    "Medial pontine branches of basilar artery.r",
+    "Middle cerebral artery (M1-segment).l",
+    "Middle cerebral artery (M1-segment).r",
+    "Middle cerebral artery (M3 segment).l",
+    "Middle cerebral artery (M3-segment).r",
+    "Orbitofrontal branches of anterior cerebral artery.l",
+    "Orbitofrontal branches of anterior cerebral artery.r",
+    "Parietal branches of middle cerebral artery.l",
+    "Parietal branches of middle cerebral artery.r",
+    "Parieto-occipital artery.l",
+    "Parieto-occipital artery.r",
+    "Pericallosal artery.l",
+    "Pericallosal artery.r",
+    "Postcentral arterial branch.l",
+    "Postcentral arterial branch.r",
+    "Posterior cerebral artery.l",
+    "Posterior cerebral artery.r",
+    "Posterior communicating artery.l",
+    "Posterior communicating artery.r",
+    "Posterior parietal artery.l",
+    "Posterior parietal artery.r",
+    "Posterior temporal branch.l",
+    "Posterior temporal branch.r",
+    "Prefrontal artery.l",
+    "Prefrontal artery.r",
+    "Proximal lateral striate branches.l",
+    "Proximal lateral striate branches.r",
+    "Superior cerebellar artery.l",
+    "Superior cerebellar artery.r",
+    "Temporal branches of middle cerebral artery.l",
+    "Temporal branches of middle cerebral artery.r",
+    "Temporo-occipital branch.l",
+    "Temporo-occipital branch.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-left-head-and-neck",
+   "name": "Arteries of head and neck, left side",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": "L",
+   "center": [
+    0.07162,
+    1.47198,
+    -0.01093
+   ],
+   "min": [
+    -0.00049,
+    1.25848,
+    -0.11133
+   ],
+   "max": [
+    0.14374,
+    1.68549,
+    0.08948
+   ],
+   "triangles": 4716,
+   "sourceObjects": [
+    "(Deep branch of transverse cervical artery).l",
+    "(Superficial branch of transverse cervical artery).l",
+    "?x.l",
+    "Accessory branch of middle meningeal artery.l",
+    "Angular artery.l",
+    "Anterior deep temporal artery.l",
+    "Anterior ethmoidal artery.l",
+    "Anterior septal branches of anterior ethmoidal artery.l",
+    "Artery of pterygoid canal.l",
+    "Ascending pharyngeal artery.l",
+    "Buccal artery.l",
+    "Central retinal artery.l",
+    "Costocervical trunk.l",
+    "Deep cervical artery.l",
+    "Descending palatine artery.l",
+    "External carotid artery.l",
+    "Facial artery.l",
+    "First posterior intercostal artery.l",
+    "Frontal branch of superficial temporal artery.l",
+    "Greater palatine artery.l",
+    "Inferior alveolar artery.l",
+    "Inferior labial artery.l",
+    "Inferior thyroid artery.l",
+    "Infra-orbital artery.l",
+    "Internal carotid artery.l",
+    "Lacrimal artery.l",
+    "Left common carotid artery",
+    "Long posterior ciliary arteries.l",
+    "Maxillary artery.l",
+    "Mental branch of inferior alveolar artery.l",
+    "Middle meningeal artery.l",
+    "Mylohyoid branch of inferior alveolar artery.l",
+    "Occipital artery.l",
+    "Ophthalmic artery.l",
+    "Posterior deep temporal artery.l",
+    "Posterior ethmoidal artery.l",
+    "Posterior inferior cerebellar artery.l",
+    "Posterior lateral nasal branches of sphenopalatine artery..l",
+    "Posterior septal branches of sphenopalatine artery.l",
+    "Posterior superior alveolar artery.l",
+    "Second posterior intercostal artery.l",
+    "Septal branches of posterior ethmoidal artery.l",
+    "Short posterior ciliary arteries.l",
+    "Submental artery.l",
+    "Superficial temporal artery.l",
+    "Superior labial artery.l",
+    "Supra-orbital artery.l",
+    "Suprascapular artery.l",
+    "Supratrochlear artery.l",
+    "Supreme intercostal artery.l",
+    "Thyrocervical trunk.l",
+    "Transverse cervical artery.l",
+    "Transverse facial artery.l",
+    "Vertebral artery.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-left-lower-limb",
+   "name": "Arteries of left lower limb",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": "L",
+   "center": [
+    0.09158,
+    0.53839,
+    0.02896
+   ],
+   "min": [
+    0.03723,
+    0.00873,
+    -0.07526
+   ],
+   "max": [
+    0.14594,
+    1.06805,
+    0.13318
+   ],
+   "triangles": 2564,
+   "sourceObjects": [
+    "Anterior tibial artery.l",
+    "Arcuate artery.l",
+    "Calcaneal branches of fibular artery.l",
+    "Calcaneal branches of posterior tibial artery.l",
+    "Common plantar digital arteries.l",
+    "Deep femoral artery.l",
+    "Deep plantar artery.l",
+    "Descending branch of lateral circumflex femoral artery.l",
+    "Dorsal digital arteries of foot.l",
+    "Dorsal metatarsal arteries.l",
+    "Dorsalis pedis artery.l",
+    "Femoral artery.l",
+    "Fibular artery.l",
+    "Inferior lateral genicular artery.l",
+    "Inferior medial genicular artery.l",
+    "Lateral circumflex femoral artery.l",
+    "Lateral plantar artery.l",
+    "Lateral tarsal artery.l",
+    "Medial circumflex femoral artery.l",
+    "Medial plantar artery.l",
+    "Middle genicular artery.l",
+    "Patellar anastomosis.l",
+    "Perforating branches of plantar metatarsal arteries.l",
+    "Perforating femoral arteries.l",
+    "Plantar arch.l",
+    "Plantar metatarsal arteries.l",
+    "Popliteal artery.l",
+    "Posterior tibial artery.l",
+    "Proper plantar digital arteries.l",
+    "Superficial branch of medial plantar artery.l",
+    "Superficial epigastric artery.l",
+    "Superior lateral genicular artery.l",
+    "Superior medial genicular artery.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-left-upper-limb",
+   "name": "Arteries of left upper limb",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": "L",
+   "center": [
+    0.17587,
+    1.06778,
+    0.02078
+   ],
+   "min": [
+    0.01971,
+    0.70776,
+    -0.05371
+   ],
+   "max": [
+    0.33203,
+    1.4278,
+    0.09528
+   ],
+   "triangles": 1964,
+   "sourceObjects": [
+    "(Ulnar recurrent artery).l",
+    "Anterior circumflex humeral artery.l",
+    "Axillary artery.l",
+    "Brachial artery.l",
+    "Circumflex scapular artery.l",
+    "Common interosseous artery.l",
+    "Common palmar digital arteries.l",
+    "Deep brachial artery.l",
+    "Deep palmar arch.l",
+    "Dorsal carpal anastomosis.l",
+    "Dorsal carpal branch of ulnar artery.l",
+    "Dorsal digital arteries of hand.l",
+    "Dorsal metacarpal arteries.l",
+    "Inferior ulnar collateral artery.l",
+    "Lateral thoracic artery.l",
+    "Left subclavian artery",
+    "Middle collateral artery.l",
+    "Palmar carpal branch of radial artery.l",
+    "Palmar metacarpal arteries.l",
+    "Pectoral branches of thoraco-acromial artery.l",
+    "Posterior circumflex humeral artery.l",
+    "Posterior interosseous artery.l",
+    "Proper palmar digital arteries.l",
+    "Radial artery.l",
+    "Radial collateral artery.l",
+    "Recurrent interosseous artery.l",
+    "Subscapular artery.l",
+    "Superficial palmar arch.l",
+    "Superior ulnar collateral artery.l",
+    "Thoraco-acromial artery.l",
+    "Thoracodorsal artery.l",
+    "Ulnar artery.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-pelvis",
+   "name": "Arteries of pelvis (iliac arteries)",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": null,
+   "center": [
+    0,
+    0.95078,
+    0.01126
+   ],
+   "min": [
+    -0.12408,
+    0.81055,
+    -0.07495
+   ],
+   "max": [
+    0.12408,
+    1.091,
+    0.09747
+   ],
+   "triangles": 2332,
+   "sourceObjects": [
+    "Anterior division of internal iliac artery.l",
+    "Anterior division of internal iliac artery.r",
+    "Common iliac artery.l",
+    "Common iliac artery.r",
+    "External iliac artery.l",
+    "External iliac artery.r",
+    "Iliacus branch of iliolumbar artery.l",
+    "Iliacus branch of iliolumbar artery.r",
+    "Iliolumbar artery.l",
+    "Iliolumbar artery.r",
+    "Inferior epigastric artery.l",
+    "Inferior epigastric artery.r",
+    "Inferior gluteal artery.l",
+    "Inferior gluteal artery.r",
+    "Internal iliac artery.l",
+    "Internal iliac artery.r",
+    "Internal pudendal artery.l",
+    "Internal pudendal artery.r",
+    "Lumbar branch of iliolumbar artery.l",
+    "Lumbar branch of iliolumbar artery.r",
+    "Median sacral artery",
+    "Obturator artery.l",
+    "Obturator artery.r",
+    "Posterior division of internal iliac artery.l",
+    "Posterior division of internal iliac artery.r",
+    "Spinal branch of iliolumbar artery.l",
+    "Spinal branch of iliolumbar artery.r",
+    "Superior gluteal artery.l",
+    "Superior gluteal artery.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-right-head-and-neck",
+   "name": "Arteries of head and neck, right side",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": "R",
+   "center": [
+    -0.07162,
+    1.47198,
+    -0.01093
+   ],
+   "min": [
+    -0.14374,
+    1.25848,
+    -0.11133
+   ],
+   "max": [
+    0.00049,
+    1.68549,
+    0.08948
+   ],
+   "triangles": 4712,
+   "sourceObjects": [
+    "(Deep branch of transverse cervical artery).r",
+    "(Superficial branch of transverse cervical artery).r",
+    "?x.r",
+    "Accessory branch of middle meningeal artery.r",
+    "Angular artery.r",
+    "Anterior deep temporal artery.r",
+    "Anterior ethmoidal artery.r",
+    "Anterior septal branches of anterior ethmoidal artery.r",
+    "Artery of pterygoid canal.r",
+    "Ascending pharyngeal artery.r",
+    "Buccal artery.r",
+    "Central retinal artery.r",
+    "Costocervical trunk.r",
+    "Deep cervical artery.r",
+    "Descending palatine artery.r",
+    "External carotid artery.r",
+    "Facial artery.r",
+    "First posterior intercostal artery.r",
+    "Frontal branch of superficial temporal artery.r",
+    "Greater palatine artery.r",
+    "Inferior alveolar artery.r",
+    "Inferior labial artery.r",
+    "Inferior thyroid artery.r",
+    "Infra-orbital artery.r",
+    "Internal carotid artery.r",
+    "Lacrimal artery.r",
+    "Long posterior ciliary arteries.r",
+    "Maxillary artery.r",
+    "Mental branch of inferior alveolar artery.r",
+    "Middle meningeal artery.r",
+    "Mylohyoid branch of inferior alveolar artery.r",
+    "Occipital artery.r",
+    "Ophthalmic artery.r",
+    "Posterior deep temporal artery.r",
+    "Posterior ethmoidal artery.r",
+    "Posterior inferior cerebellar artery.r",
+    "Posterior lateral nasal branches of sphenopalatine artery..r",
+    "Posterior septal branches of sphenopalatine artery.r",
+    "Posterior superior alveolar artery.r",
+    "Right common carotid artery",
+    "Second posterior intercostal artery.r",
+    "Septal branches of posterior ethmoidal artery.r",
+    "Short posterior ciliary arteries.r",
+    "Submental artery.r",
+    "Superficial temporal artery.r",
+    "Superior labial artery.r",
+    "Supra-orbital artery.r",
+    "Suprascapular artery.r",
+    "Supratrochlear artery.r",
+    "Supreme intercostal artery.r",
+    "Thyrocervical trunk.r",
+    "Transverse cervical artery.r",
+    "Transverse facial artery.r",
+    "Vertebral artery.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-right-lower-limb",
+   "name": "Arteries of right lower limb",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": "R",
+   "center": [
+    -0.09158,
+    0.53839,
+    0.02896
+   ],
+   "min": [
+    -0.14594,
+    0.00873,
+    -0.07526
+   ],
+   "max": [
+    -0.03723,
+    1.06805,
+    0.13318
+   ],
+   "triangles": 2564,
+   "sourceObjects": [
+    "Anterior tibial artery.r",
+    "Arcuate artery.r",
+    "Calcaneal branches of fibular artery.r",
+    "Calcaneal branches of posterior tibial artery.r",
+    "Common plantar digital arteries.r",
+    "Deep femoral artery.r",
+    "Deep plantar artery.r",
+    "Descending branch of lateral circumflex femoral artery",
+    "Dorsal digital arteries of foot.r",
+    "Dorsal metatarsal arteries.r",
+    "Dorsalis pedis artery.r",
+    "Femoral artery.r",
+    "Fibular artery.r",
+    "Inferior lateral genicular artery.r",
+    "Inferior medial genicular artery.r",
+    "Lateral circumflex femoral artery.r",
+    "Lateral plantar artery.r",
+    "Lateral tarsal artery.r",
+    "Medial circumflex femoral artery.r",
+    "Medial plantar artery.r",
+    "Middle genicular artery.r",
+    "Patellar anastomosis.r",
+    "Perforating branches of plantar metatarsal arteries.r",
+    "Perforating femoral arteries.r",
+    "Plantar arch.r",
+    "Plantar metatarsal arteries.r",
+    "Popliteal artery.r",
+    "Posterior tibial artery.r",
+    "Proper plantar digital arteries.r",
+    "Superficial branch of medial plantar artery.r",
+    "Superficial epigastric artery.r",
+    "Superior lateral genicular artery.r",
+    "Superior medial genicular artery.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-right-upper-limb",
+   "name": "Arteries of right upper limb",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": "R",
+   "center": [
+    -0.17169,
+    1.06595,
+    0.02078
+   ],
+   "min": [
+    -0.33203,
+    0.70776,
+    -0.05371
+   ],
+   "max": [
+    -0.01135,
+    1.42413,
+    0.09528
+   ],
+   "triangles": 1982,
+   "sourceObjects": [
+    "(Ulnar recurrent artery).r",
+    "Anterior circumflex humeral artery.r",
+    "Axillary artery.r",
+    "Brachial artery.r",
+    "Circumflex scapular artery.r",
+    "Common interosseous artery.r",
+    "Common palmar digital arteries.r",
+    "Deep brachial artery.r",
+    "Deep palmar arch.r",
+    "Dorsal carpal anastomosis.r",
+    "Dorsal carpal branch of ulnar artery.r",
+    "Dorsal digital arteries of hand.r",
+    "Dorsal metacarpal arteries.r",
+    "Inferior ulnar collateral artery.r",
+    "Lateral thoracic artery.r",
+    "Middle collateral artery.r",
+    "Palmar carpal branch of radial artery.r",
+    "Palmar metacarpal arteries.r",
+    "Pectoral branches of thoraco-acromial artery.r",
+    "Posterior circumflex humeral artery.r",
+    "Posterior interosseous artery.r",
+    "Proper palmar digital arteries.r",
+    "Radial artery.r",
+    "Radial collateral artery.r",
+    "Recurrent interosseous artery.r",
+    "Right subclavian artery",
+    "Subscapular artery.r",
+    "Superficial palmar arch.r",
+    "Superior ulnar collateral artery.r",
+    "Thoraco-acromial artery.r",
+    "Thoracodorsal artery.r",
+    "Ulnar artery.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "arteries-of-thorax",
+   "name": "Arteries of thorax",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": null,
+   "center": [
+    0,
+    1.31668,
+    0.00989
+   ],
+   "min": [
+    -0.13763,
+    1.06848,
+    -0.08954
+   ],
+   "max": [
+    0.13763,
+    1.56488,
+    0.10931
+   ],
+   "triangles": 2679,
+   "sourceObjects": [
+    "Anterior spinal artery.l",
+    "Anterior spinal artery.r",
+    "Brachiocephalic trunk",
+    "Internal thoracic artery.l",
+    "Internal thoracic artery.r",
+    "Musculophrenic artery.l",
+    "Musculophrenic artery.r",
+    "Posterior intercostal arteries.l",
+    "Posterior intercostal arteries.r",
+    "Subcostal artery.l",
+    "Subcostal artery.r",
+    "Superior epigastric artery.l",
+    "Superior epigastric artery.r",
+    "Superior phrenic arteries"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "cardiac-veins",
+   "name": "Cardiac veins",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    0.02988,
+    1.27823,
+    0.03314
+   ],
+   "min": [
+    -0.02057,
+    1.237,
+    -0.01654
+   ],
+   "max": [
+    0.08032,
+    1.31946,
+    0.08282
+   ],
+   "triangles": 2170,
+   "sourceObjects": [
+    "????????",
+    "Coronary sinus",
+    "Great cardiac vein",
+    "Inferior vein of left ventricle",
+    "Inferior vein of left ventricle (//Posterior '')",
+    "Middle cardiac vein"
+   ],
+   "origin": "z-anatomy",
+   "parent": "heart"
+  },
+  {
+   "id": "coronary-arteries",
+   "name": "Coronary arteries",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": null,
+   "center": [
+    0.02887,
+    1.28598,
+    0.03644
+   ],
+   "min": [
+    -0.02252,
+    1.2381,
+    -0.00995
+   ],
+   "max": [
+    0.08026,
+    1.33386,
+    0.08282
+   ],
+   "triangles": 1894,
+   "sourceObjects": [
+    "Anterior interventricular artery",
+    "Circumflex artery of heart",
+    "Left coronary artery",
+    "Right coronary artery",
+    "Right inferolateral branch of right coronary artery",
+    "Septal branches of anterior interventricular artery"
+   ],
+   "origin": "z-anatomy",
+   "parent": "heart"
+  },
+  {
+   "id": "heart",
+   "name": "Heart",
+   "system": "cardiovascular",
+   "tissue": "heart",
+   "side": null,
+   "center": [
+    0.02277,
+    1.29114,
+    0.02612
+   ],
+   "min": [
+    -0.0368,
+    1.23712,
+    -0.03033
+   ],
+   "max": [
+    0.08234,
+    1.34515,
+    0.08258
+   ],
+   "triangles": 25432,
+   "sourceObjects": [
+    "Anterior papillary muscle of right ventricle",
+    "Anterior semilunar leaflet of pulmonary valve",
+    "Inferior leaflet of right atrioventricular valve",
+    "Inferior papillary muscle of left ventricle",
+    "Inferior papillary muscle of right ventricle",
+    "Left atrium",
+    "Left coronary leaflet",
+    "Left semilunar leaflet of pulmonary valve",
+    "Left ventricle",
+    "Non-coronary leaflet",
+    "Posterior leaflet of left atrioventricular valve",
+    "Right atrium",
+    "Right coronary leaflet",
+    "Right semilunar leaflet of pulmonary valve",
+    "Right ventricle",
+    "Septal leaflet of right atrioventricular valve",
+    "Septal papillary muscle of right ventricle"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "hepatic-portal-vein",
+   "name": "Hepatic portal vein and tributaries",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    0.01328,
+    1.07516,
+    0.03674
+   ],
+   "min": [
+    -0.07385,
+    0.95117,
+    -0.00769
+   ],
+   "max": [
+    0.1004,
+    1.19916,
+    0.08118
+   ],
+   "triangles": 1350,
+   "sourceObjects": [
+    "Hepatic portal vein",
+    "Inferior mesenteric vein",
+    "Left gastro-omental vein",
+    "Middle colic vein",
+    "Right colic vein",
+    "Right gastro-omental vein",
+    "Sigmoid veins",
+    "Splenic vein",
+    "Superior mesenteric vein"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "inferior-vena-cava",
+   "name": "Inferior vena cava",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    -0.01324,
+    1.14737,
+    0.0184
+   ],
+   "min": [
+    -0.02576,
+    1.03107,
+    0.00146
+   ],
+   "max": [
+    -0.00073,
+    1.26367,
+    0.03534
+   ],
+   "triangles": 504,
+   "sourceObjects": [
+    "Inferior vena cava (abdominal part)",
+    "Inferior vena cava (thoracic part)"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pulmonary-arteries",
+   "name": "Pulmonary arteries",
+   "system": "cardiovascular",
+   "tissue": "artery",
+   "side": null,
+   "center": [
+    0.00003,
+    1.30493,
+    0.00656
+   ],
+   "min": [
+    -0.12787,
+    1.18567,
+    -0.07605
+   ],
+   "max": [
+    0.12793,
+    1.42419,
+    0.08917
+   ],
+   "triangles": 3358,
+   "sourceObjects": [
+    "Anterior basal segmental artery of left lung",
+    "Anterior basal segmental artery of right lung",
+    "Anterior segmental artery of left lung",
+    "Anterior segmental artery of right lung",
+    "Apical segmental artery of left lung",
+    "Apical segmental artery of right lung",
+    "Bifurcation of pulmonary trunk",
+    "Inferior lingular artery of left lung",
+    "Inferior lobar artery of right lung",
+    "Lateral basal segmental artery of left lung",
+    "Lateral basal segmental artery of right lung",
+    "Lateral segmental artery of right lung",
+    "Left pulmonary artery",
+    "Medial basal segmental artery of left lung",
+    "Medial basal segmental artery of right lung",
+    "Medial segmental artery of right lung",
+    "Middle lobar artery of right lung",
+    "Posterior basal segmental artery of left lung",
+    "Posterior basal segmental artery of right lung",
+    "Posterior segmental artery of left lung",
+    "Posterior segmental artery of right lung",
+    "Pulmonary trunk",
+    "Right pulmonary artery",
+    "Superior lingular artery of left lung",
+    "Superior lobar artery of right lung",
+    "Superior segmental artery of left lung",
+    "Superior segmental artery of right lung"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pulmonary-veins",
+   "name": "Pulmonary veins",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    0.00668,
+    1.30597,
+    -0.00311
+   ],
+   "min": [
+    -0.10986,
+    1.19177,
+    -0.07306
+   ],
+   "max": [
+    0.12323,
+    1.42017,
+    0.06683
+   ],
+   "triangles": 2260,
+   "sourceObjects": [
+    "Anterior vein of left lung",
+    "Anterior vein of right lung",
+    "Apical vein of right lung",
+    "Apicoposterior vein of left lung",
+    "Inferior basal vein of left lung",
+    "Inferior basal vein of right lung",
+    "Inferior lingular vein of left lung",
+    "Lateral vein of right lung",
+    "Left inferior pulmonary vein",
+    "Left superior pulmonary vein",
+    "Lingular vein of left lung",
+    "Medial vein of right lung",
+    "Posterior vein of right lung",
+    "Right inferior pulmonary vein",
+    "Right superior pulmonary vein",
+    "Superior basal vein of left lung",
+    "Superior basal vein of right lung",
+    "Superior lingular vein of left lung",
+    "Superior vein of left lung",
+    "Superior vein of right lung"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "superior-vena-cava",
+   "name": "Superior vena cava",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    -0.01633,
+    1.35922,
+    0.02042
+   ],
+   "min": [
+    -0.02881,
+    1.34039,
+    0.0069
+   ],
+   "max": [
+    -0.00385,
+    1.37805,
+    0.03394
+   ],
+   "triangles": 108,
+   "sourceObjects": [
+    "Superior vena cava"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-abdomen",
+   "name": "Veins of abdomen",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    0.00003,
+    1.13773,
+    -0.00632
+   ],
+   "min": [
+    -0.09058,
+    1.02795,
+    -0.05176
+   ],
+   "max": [
+    0.09064,
+    1.2475,
+    0.03912
+   ],
+   "triangles": 882,
+   "sourceObjects": [
+    "Hepatic veins",
+    "Left renal vein",
+    "Lumbar veins.l",
+    "Lumbar veins.r",
+    "Right renal vein"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-brain",
+   "name": "Dural venous sinuses and cranial veins",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    0,
+    1.63208,
+    -0.00595
+   ],
+   "min": [
+    -0.06097,
+    1.56262,
+    -0.09656
+   ],
+   "max": [
+    0.06097,
+    1.70154,
+    0.08466
+   ],
+   "triangles": 3003,
+   "sourceObjects": [
+    "Anterior intercavernous sinus",
+    "Basilar venous plexus",
+    "Cavernous sinus.l",
+    "Cavernous sinus.r",
+    "Inferior ophthalmic vein.l",
+    "Inferior ophthalmic vein.r",
+    "Inferior petrosal sinus.l",
+    "Inferior petrosal sinus.r",
+    "Inferior sagittal sinus",
+    "Occipital sinus",
+    "Posterior intercavernous sinus",
+    "Sigmoid sinus.l",
+    "Sigmoid sinus.r",
+    "Straight sinus",
+    "Superior ophthalmic vein.l",
+    "Superior ophthalmic vein.r",
+    "Superior petrosal sinus.l",
+    "Superior petrosal sinus.r",
+    "Superior sagittal sinus",
+    "Transverse sinus.l",
+    "Transverse sinus.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-left-head-and-neck",
+   "name": "Veins of head and neck, left side",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": "L",
+   "center": [
+    0.07394,
+    1.51752,
+    -0.00604
+   ],
+   "min": [
+    0.00317,
+    1.36292,
+    -0.10181
+   ],
+   "max": [
+    0.14471,
+    1.67212,
+    0.08972
+   ],
+   "triangles": 1382,
+   "sourceObjects": [
+    "Angular vein.l",
+    "Anterior division of retromandibular vein.l",
+    "Anterior jugular vein.l",
+    "Common facial vein.l",
+    "External jugular vein.l",
+    "Facial vein.l",
+    "Inferior labial veins.l",
+    "Internal jugular vein.l",
+    "Lingual vein.l",
+    "Maxillary veins.l",
+    "Occipital vein.l",
+    "Posterior auricular vein.l",
+    "Posterior division of retromandibular vein.l",
+    "Retromandibular vein.l",
+    "Submental vein.l",
+    "Superficial temporal veins.l",
+    "Superior labial vein.l",
+    "Superior thyroid vein.l",
+    "Suprascapular vein.l",
+    "Vertebral vein.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-left-lower-limb",
+   "name": "Veins of left lower limb",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": "L",
+   "center": [
+    0.08054,
+    0.535,
+    0.01727
+   ],
+   "min": [
+    0.01459,
+    0.00378,
+    -0.10284
+   ],
+   "max": [
+    0.14648,
+    1.06622,
+    0.13739
+   ],
+   "triangles": 2556,
+   "sourceObjects": [
+    "Anterior tibial veins.l",
+    "Deep femoral vein.l",
+    "Dorsal digital veins of foot.l",
+    "Dorsal metatarsal veins.l",
+    "Dorsal venous arch of foot.l",
+    "Femoral vein.l",
+    "Fibular veins.l",
+    "Genicular veins.l",
+    "Great saphenous vein.l",
+    "Intercapitular veins of foot.l",
+    "Lateral circumflex femoral veins.l",
+    "Lateral plantar veins.l",
+    "Medial circumflex femoral veins.l",
+    "Medial plantar veins.l",
+    "Perforating veins.l",
+    "Plantar digital veins.l",
+    "Plantar metatarsal veins.l",
+    "Plantar venous arch.l",
+    "Popliteal vein.l",
+    "Posterior tibial veins.l",
+    "Small saphenous vein.l",
+    "Superficial epigastric vein.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-left-upper-limb",
+   "name": "Veins of left upper limb",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": "L",
+   "center": [
+    0.17773,
+    1.06299,
+    0.03439
+   ],
+   "min": [
+    0.0238,
+    0.70831,
+    -0.05389
+   ],
+   "max": [
+    0.33167,
+    1.41766,
+    0.12268
+   ],
+   "triangles": 2162,
+   "sourceObjects": [
+    "Anterior circumflex humeral vein.l",
+    "Axillary vein.l",
+    "Basilic vein.l",
+    "Brachial veins.l",
+    "Cephalic vein.l",
+    "Circumflex scapular vein.l",
+    "Deep venous palmar arch.l",
+    "Dorsal digital veins of hand.l",
+    "Dorsal venous network of hand.l",
+    "Lateral thoracic vein.l",
+    "Left subclavian vein",
+    "Median antebrachial vein.l",
+    "Median cubital vein.l",
+    "Palmar digital veins.l",
+    "Posterior circumflex humeral vein.l",
+    "Radial veins.l",
+    "Subscapular vein.l",
+    "Superficial venous palmar arch.l",
+    "Thoracodorsal vein.l",
+    "Ulnar veins.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-pelvis",
+   "name": "Veins of pelvis (iliac veins)",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    0,
+    0.95795,
+    0.01215
+   ],
+   "min": [
+    -0.125,
+    0.81067,
+    -0.07294
+   ],
+   "max": [
+    0.125,
+    1.10522,
+    0.09723
+   ],
+   "triangles": 1504,
+   "sourceObjects": [
+    "Common iliac vein.l",
+    "Common iliac vein.r",
+    "External iliac vein.l",
+    "External iliac vein.r",
+    "Iliolumbar vein.l",
+    "Iliolumbar vein.r",
+    "Inferior epigastric vein.l",
+    "Inferior epigastric vein.r",
+    "Inferior gluteal veins.l",
+    "Inferior gluteal veins.r",
+    "Internal iliac vein.l",
+    "Internal iliac vein.r",
+    "Internal pudendal vein.l",
+    "Internal pudendal vein.r",
+    "Lateral sacral veins.l",
+    "Lateral sacral veins.r",
+    "Superior gluteal veins.l",
+    "Superior gluteal veins.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-right-head-and-neck",
+   "name": "Veins of head and neck, right side",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": "R",
+   "center": [
+    -0.07394,
+    1.51752,
+    -0.00604
+   ],
+   "min": [
+    -0.14471,
+    1.36292,
+    -0.10181
+   ],
+   "max": [
+    -0.00317,
+    1.67212,
+    0.08972
+   ],
+   "triangles": 1382,
+   "sourceObjects": [
+    "Angular vein.r",
+    "Anterior division of retromandibular vein.r",
+    "Anterior jugular vein.r",
+    "Common facial vein.r",
+    "External jugular vein.r",
+    "Facial vein.r",
+    "Inferior labial veins.r",
+    "Internal jugular vein.r",
+    "Lingual vein.r",
+    "Maxillary veins.r",
+    "Occipital vein.r",
+    "Posterior auricular vein.r",
+    "Posterior division of retromandibular vein.r",
+    "Retromandibular vein.r",
+    "Submental vein.r",
+    "Superficial temporal veins.r",
+    "Superior labial vein.r",
+    "Superior thyroid vein.r",
+    "Suprascapular vein.r",
+    "Vertebral vein.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-right-lower-limb",
+   "name": "Veins of right lower limb",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": "R",
+   "center": [
+    -0.08054,
+    0.535,
+    0.01727
+   ],
+   "min": [
+    -0.14648,
+    0.00378,
+    -0.10284
+   ],
+   "max": [
+    -0.01459,
+    1.06622,
+    0.13739
+   ],
+   "triangles": 2556,
+   "sourceObjects": [
+    "Anterior tibial veins.r",
+    "Deep femoral vein.r",
+    "Dorsal digital veins of foot.r",
+    "Dorsal metatarsal veins.r",
+    "Dorsal venous arch of foot.r",
+    "Femoral vein.r",
+    "Fibular veins.r",
+    "Genicular veins.r",
+    "Great saphenous vein.r",
+    "Intercapitular veins of foot.r",
+    "Lateral circumflex femoral veins.r",
+    "Lateral plantar veins.r",
+    "Medial circumflex femoral veins.r",
+    "Medial plantar veins.r",
+    "Perforating veins.r",
+    "Plantar digital veins.r",
+    "Plantar metatarsal veins.r",
+    "Plantar venous arch.r",
+    "Popliteal vein.r",
+    "Posterior tibial veins.r",
+    "Small saphenous vein.r",
+    "Superficial epigastric vein.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-right-upper-limb",
+   "name": "Veins of right upper limb",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": "R",
+   "center": [
+    -0.17578,
+    1.06268,
+    0.03439
+   ],
+   "min": [
+    -0.33167,
+    0.70831,
+    -0.05389
+   ],
+   "max": [
+    -0.0199,
+    1.41705,
+    0.12268
+   ],
+   "triangles": 2152,
+   "sourceObjects": [
+    "Anterior circumflex humeral vein.r",
+    "Axillary vein.r",
+    "Basilic vein.r",
+    "Brachial veins.r",
+    "Cephalic vein.r",
+    "Circumflex scapular vein.r",
+    "Deep venous palmar arch.r",
+    "Dorsal digital veins of hand.r",
+    "Dorsal venous network of hand.r",
+    "Lateral thoracic vein.r",
+    "Median antebrachial vein.r",
+    "Median cubital vein.r",
+    "Palmar digital veins.r",
+    "Posterior circumflex humeral vein.r",
+    "Radial veins.r",
+    "Right subclavian vein",
+    "Subscapular vein.r",
+    "Superficial venous palmar arch.r",
+    "Thoracodorsal vein.r",
+    "Ulnar veins.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "veins-of-thorax",
+   "name": "Veins of thorax (brachiocephalic and azygos veins)",
+   "system": "cardiovascular",
+   "tissue": "vein",
+   "side": null,
+   "center": [
+    0.00281,
+    1.20029,
+    0.00983
+   ],
+   "min": [
+    -0.13202,
+    0.97174,
+    -0.0896
+   ],
+   "max": [
+    0.13763,
+    1.42883,
+    0.10925
+   ],
+   "triangles": 3208,
+   "sourceObjects": [
+    "Accessory hemi-azygos vein",
+    "Azygos vein",
+    "Hemi-azygos vein",
+    "Internal thoracic veins.l",
+    "Internal thoracic veins.r",
+    "Left ascending lumbar vein",
+    "Left brachiocephalic vein",
+    "Left subcostal vein",
+    "Left superior intercostal vein",
+    "Musculophrenic veins.l",
+    "Musculophrenic veins.r",
+    "Right ascending lumbar vein",
+    "Right brachiocephalic vein",
+    "Right subcostal vein",
+    "Right superior intercostal vein",
+    "Right superior phrenic vein",
+    "Superior epigastric veins.l",
+    "Superior epigastric veins.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "bronchi",
+   "name": "Bronchi",
+   "system": "respiratory",
+   "tissue": "airway",
+   "side": null,
+   "center": [
+    0.00226,
+    1.30344,
+    0.00626
+   ],
+   "min": [
+    -0.12347,
+    1.17798,
+    -0.07446
+   ],
+   "max": [
+    0.12799,
+    1.42889,
+    0.08698
+   ],
+   "triangles": 6018,
+   "sourceObjects": [
+    "(Anteromedial basal segmental bronchus of left lung)",
+    "Anterior basal segmental bronchus of left lung (BVIII)",
+    "Anterior basal segmental bronchus of right lung (BVIII)",
+    "Anterior segmental bronchus of left lung (BIII)",
+    "Anterior segmental bronchus of right lung (BIII)",
+    "Apical segmental bronchus of right lung (BI)",
+    "Apicoposterior segmental bronchus of left lung (BI+BII)",
+    "Inferior lingular segmental bronchus of left lung (BV)",
+    "Intermediate bronchus.r",
+    "Lateral basal segmental bronchus of left lung (BIX)",
+    "Lateral basal segmental bronchus of right lung (BIX)",
+    "Lateral segmental bronchus of right lung (BIV)",
+    "Left inferior lobar bronchus",
+    "Left main bronchus",
+    "Left superior lobar bronchus",
+    "Medial basal segmental bronchus of left lung (BVII)",
+    "Medial basal segmental bronchus of right lung (BVII)",
+    "Medial segmental bronchus of right lung (BV)",
+    "Middle lobar bronchus.r",
+    "Posterior basal segmental bronchus of left lung (BX)",
+    "Posterior basal segmental bronchus of right lung (BX)",
+    "Posterior segmental bronchus of right lung (BII)",
+    "Right inferior lobar bronchus",
+    "Right main bronchus",
+    "Right superior lobar bronchus",
+    "Superior lingular segmental bronchus of left lung (BIV)",
+    "Superior segmental bronchus of left lung (BVI)",
+    "Superior segmental bronchus of right lung (BVI)"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "diaphragm",
+   "name": "Diaphragm",
+   "system": "respiratory",
+   "tissue": "muscle",
+   "side": null,
+   "center": [
+    -0.0004,
+    1.15262,
+    0.01834
+   ],
+   "min": [
+    -0.12579,
+    1.04266,
+    -0.06561
+   ],
+   "max": [
+    0.125,
+    1.26257,
+    0.10229
+   ],
+   "triangles": 9604,
+   "sourceObjects": [
+    "Diaphragm"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "larynx",
+   "name": "Larynx (laryngeal cartilages and epiglottis)",
+   "system": "respiratory",
+   "tissue": "cartilage",
+   "side": null,
+   "center": [
+    0,
+    1.48407,
+    0.01758
+   ],
+   "min": [
+    -0.02057,
+    1.45728,
+    0.00183
+   ],
+   "max": [
+    0.02057,
+    1.51086,
+    0.03333
+   ],
+   "triangles": 4970,
+   "sourceObjects": [
+    "Arytenoid cartilage.l",
+    "Arytenoid cartilage.r",
+    "Corniculate cartilage.l",
+    "Corniculate cartilage.r",
+    "Cricoid cartilage",
+    "Epiglottis",
+    "Thyroid cartilage"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "lung-left",
+   "name": "Left lung",
+   "system": "respiratory",
+   "tissue": "lung",
+   "side": "L",
+   "center": [
+    0.06937,
+    1.29938,
+    0.01071
+   ],
+   "min": [
+    0.00885,
+    1.16736,
+    -0.08142
+   ],
+   "max": [
+    0.12988,
+    1.4314,
+    0.10284
+   ],
+   "triangles": 10269,
+   "sourceObjects": [
+    "Inferior lobe of left lung",
+    "Superior lobe of left lung"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "lung-right",
+   "name": "Right lung",
+   "system": "respiratory",
+   "tissue": "lung",
+   "side": "R",
+   "center": [
+    -0.06693,
+    1.30008,
+    0.01096
+   ],
+   "min": [
+    -0.1311,
+    1.17029,
+    -0.08191
+   ],
+   "max": [
+    -0.00275,
+    1.42987,
+    0.10382
+   ],
+   "triangles": 11863,
+   "sourceObjects": [
+    "Inferior lobe of right lung",
+    "Middle lobe of right lung",
+    "Superior lobe of right lung"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "trachea",
+   "name": "Trachea",
+   "system": "respiratory",
+   "tissue": "airway",
+   "side": null,
+   "center": [
+    -0.00027,
+    1.40823,
+    -0.00052
+   ],
+   "min": [
+    -0.01385,
+    1.35553,
+    -0.02002
+   ],
+   "max": [
+    0.01331,
+    1.46094,
+    0.01898
+   ],
+   "triangles": 2267,
+   "sourceObjects": [
+    "Trachea"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "brain",
+   "name": "Brain (cerebrum)",
+   "system": "nervous",
+   "tissue": "brain",
+   "side": null,
+   "center": [
+    0,
+    1.6412,
+    -0.00745
+   ],
+   "min": [
+    -0.06891,
+    1.58228,
+    -0.09778
+   ],
+   "max": [
+    0.06891,
+    1.70013,
+    0.08289
+   ],
+   "triangles": 64412,
+   "sourceObjects": [
+    " Posterior transverse collateral sulcus.l",
+    " Posterior transverse collateral sulcus.r",
+    "Angular gyrus.l",
+    "Angular gyrus.r",
+    "Anterior occipital sulcus*.l",
+    "Anterior occipital sulcus*.r",
+    "Calcarine sulcus.l",
+    "Calcarine sulcus.r",
+    "Central sulcus.l",
+    "Central sulcus.r",
+    "Cingulate gyrus (Posteroventral part*).l",
+    "Cingulate gyrus (Posteroventral part*).r",
+    "Cingulate gyrus and sulcus (Middle anterior part).l",
+    "Cingulate gyrus and sulcus (Middle anterior part).r",
+    "Cingulate gyrus and sulcus (Middle posterior part).l",
+    "Cingulate gyrus and sulcus (Middle posterior part).r",
+    "Cingulate gyrus and sulcus (Posterior dorsal part).l",
+    "Cingulate gyrus and sulcus (Posterior dorsal part).r",
+    "Cingulate sulcus (Marginal part*).l",
+    "Cingulate sulcus (Marginal part*).r",
+    "Circular sulcus of insula.l",
+    "Circular sulcus of insula.r",
+    "Collateral sulcus.l",
+    "Collateral sulcus.r",
+    "Cuneus.l",
+    "Cuneus.r",
+    "Inferior frontal sulcus.l",
+    "Inferior frontal sulcus.r",
+    "Inferior occipital gyrus and sulcus*.l",
+    "Inferior occipital gyrus and sulcus*.r",
+    "Inferior temporal gyrus.l",
+    "Inferior temporal gyrus.r",
+    "Inferior temporal sulcus.l",
+    "Inferior temporal sulcus.r",
+    "Insula (Subcentral gyrus and ant. and post. sulci*).l",
+    "Insula (Subcentral gyrus and ant. and post. sulci*).r",
+    "Intraparietal sulcus.l",
+    "Intraparietal sulcus.r",
+    "Lat_Fis-ant-Horizont.l",
+    "Lat_Fis-ant-Horizont.r",
+    "Lat_Fis-ant-Vertical.l",
+    "Lat_Fis-ant-Vertical.r",
+    "Lat_Fis-post.l",
+    "Lat_Fis-post.r",
+    "Lateral occipital gyrus (Middle occipital gyrus*).l",
+    "Lateral occipital gyrus (Middle occipital gyrus*).r",
+    "Lateral occipitotemporal gyrus.l",
+    "Lateral occipitotemporal gyrus.r",
+    "Lingual gyrus.l",
+    "Lingual gyrus.r",
+    "Lunate sulcus.l",
+    "Lunate sulcus.r",
+    "Medial occipitotemporal gyrus (Parahippocampal*).l",
+    "Medial occipitotemporal gyrus (Parahippocampal*).r",
+    "Middle frontal gyrus.l",
+    "Middle frontal gyrus.r",
+    "Middle temporal gyrus.l",
+    "Middle temporal gyrus.r",
+    "Occipital pole.l",
+    "Occipital pole.r",
+    "Occipitotemporal sulcus (Lateral part*).l",
+    "Occipitotemporal sulcus (Lateral part*).r",
+    "Olfactory sulcus.l",
+    "Olfactory sulcus.r",
+    "Opercular part of inferior frontal gyrus.l",
+    "Opercular part of inferior frontal gyrus.r",
+    "Orbital gyri (Frontomarginal gyrus and sulcus*).l",
+    "Orbital gyri (Frontomarginal gyrus and sulcus*).r",
+    "Orbital gyri.l",
+    "Orbital gyri.r",
+    "Orbital part of  inferior frontal gyrus.l",
+    "Orbital part of  inferior frontal gyrus.r",
+    "Orbital sulci (H-shaped orbital sulci*).l",
+    "Orbital sulci (H-shaped orbital sulci*).r",
+    "Orbital sulci (Lateral Orbital sulcus*).l",
+    "Orbital sulci (Lateral Orbital sulcus*).r",
+    "Paracentral gyrus and sulcus*.l",
+    "Paracentral gyrus and sulcus*.r",
+    "Paracentral sulcus.l",
+    "Paracentral sulcus.r",
+    "Parieto-occipital sulcus.l",
+    "Parieto-occipital sulcus.r",
+    "Postcentral gyrus.l",
+    "Postcentral gyrus.r",
+    "Postcentral sulcus.l",
+    "Postcentral sulcus.r",
+    "Precentral gyrus.l",
+    "Precentral gyrus.r",
+    "Precentral sulcus (Superior part)*.l",
+    "Precentral sulcus (Superior part)*.r",
+    "Precentral sulcus (inferior part)*.l",
+    "Precentral sulcus (inferior part)*.r",
+    "Precuneus.l",
+    "Precuneus.r",
+    "Straight gyrus (Gyrus rectus).l",
+    "Straight gyrus (Gyrus rectus).r",
+    "Subparietal sulcus.l",
+    "Subparietal sulcus.r",
+    "Sulcus interm_prim-Jensen.l",
+    "Sulcus interm_prim-Jensen.r",
+    "Superior frontal gyrus.l",
+    "Superior frontal gyrus.r",
+    "Superior frontal sulcus.l",
+    "Superior frontal sulcus.r",
+    "Superior occipital gyri.l",
+    "Superior occipital gyri.r",
+    "Superior parietal lobule.l",
+    "Superior parietal lobule.r",
+    "Superior temporal gyrus (Lateral part).l",
+    "Superior temporal gyrus (Lateral part).r",
+    "Superior temporal sulcus.l",
+    "Superior temporal sulcus.r",
+    "Supramarginal gyrus.l",
+    "Supramarginal gyrus.r",
+    "Temporal plane.l",
+    "Temporal plane.r",
+    "Temporal pole.l",
+    "Temporal pole.r",
+    "Transverse frontopolar gyrus and sulcus*.l",
+    "Transverse frontopolar gyrus and sulcus*.r",
+    "Transverse occipital sulcus.l",
+    "Transverse occipital sulcus.r",
+    "Transverse temporal gyri.l",
+    "Transverse temporal gyri.r",
+    "Triangular part of inferior frontal gyrus.l",
+    "Triangular part of inferior frontal gyrus.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "brainstem",
+   "name": "Brainstem",
+   "system": "nervous",
+   "tissue": "brain",
+   "side": null,
+   "center": [
+    0,
+    1.57864,
+    -0.01151
+   ],
+   "min": [
+    -0.02063,
+    1.53925,
+    -0.03479
+   ],
+   "max": [
+    0.02063,
+    1.61804,
+    0.01178
+   ],
+   "triangles": 10434,
+   "sourceObjects": [
+    "Base of peduncle.l",
+    "Base of peduncle.r",
+    "Inferior colliculus.l",
+    "Inferior colliculus.r",
+    "Interpeduncular fossa.l",
+    "Interpeduncular fossa.r",
+    "Medulla oblongata.l",
+    "Medulla oblongata.r",
+    "Midbrain.l",
+    "Midbrain.r",
+    "Olive.l",
+    "Olive.r",
+    "Pons.l",
+    "Pons.r",
+    "Pyramid of medulla oblongata.l",
+    "Pyramid of medulla oblongata.r",
+    "Superior colliculus.l",
+    "Superior colliculus.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "cerebellum",
+   "name": "Cerebellum",
+   "system": "nervous",
+   "tissue": "brain",
+   "side": null,
+   "center": [
+    0,
+    1.58704,
+    -0.04327
+   ],
+   "min": [
+    -0.04913,
+    1.56055,
+    -0.0788
+   ],
+   "max": [
+    0.04913,
+    1.61353,
+    -0.00775
+   ],
+   "triangles": 18430,
+   "sourceObjects": [
+    "Anterior quadrangular lobule.l",
+    "Anterior quadrangular lobule.r",
+    "Biventral lobule.l",
+    "Biventral lobule.r",
+    "Central lobule",
+    "Culmen",
+    "Declive",
+    "Flocculus.l",
+    "Flocculus.r",
+    "Folium of vermis",
+    "Gracile lobule.l",
+    "Gracile lobule.r",
+    "Inferior semilunar lobule.l",
+    "Inferior semilunar lobule.r",
+    "Lingula of cerebellum",
+    "Nodule of vermis",
+    "Peduncle of flocculus.l",
+    "Peduncle of flocculus.r",
+    "Posterior quadrangular lobule.l",
+    "Posterior quadrangular lobule.r",
+    "Pyramis of vermis",
+    "Superior cerebellar peduncle.l",
+    "Superior cerebellar peduncle.r",
+    "Superior semilunar lobule.l",
+    "Superior semilunar lobule.r",
+    "Tonsil of cerebellum.l",
+    "Tonsil of cerebellum.r",
+    "Tuber of vermis",
+    "Uvula of vermis",
+    "Wing of central lobule.l",
+    "Wing of central lobule.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "cerebrum-deep-structures",
+   "name": "Deep structures of cerebrum (thalamus, basal nuclei, corpus callosum)",
+   "system": "nervous",
+   "tissue": "brain",
+   "side": null,
+   "center": [
+    0,
+    1.62817,
+    -0.00186
+   ],
+   "min": [
+    -0.03632,
+    1.60205,
+    -0.04626
+   ],
+   "max": [
+    0.03632,
+    1.6543,
+    0.04254
+   ],
+   "triangles": 7282,
+   "sourceObjects": [
+    "Amygdaloid body.l",
+    "Amygdaloid body.r",
+    "Anterior commissure",
+    "Caudate nucleus.l",
+    "Caudate nucleus.r",
+    "Corpus callosum",
+    "Fornix.l",
+    "Fornix.r",
+    "Globus pallidus.l",
+    "Globus pallidus.r",
+    "Habenula",
+    "Hippocampal commissure",
+    "Hippocampus.l",
+    "Hippocampus.r",
+    "Hypothalamus",
+    "Lateral geniculate body.l",
+    "Lateral geniculate body.r",
+    "Lentiform nucleus.l",
+    "Lentiform nucleus.r",
+    "Mamillary body.l",
+    "Mamillary body.r",
+    "Medial geniculate body.l",
+    "Medial geniculate body.r",
+    "Optic chiasm.l",
+    "Optic chiasm.r",
+    "Optic tract.l",
+    "Optic tract.r",
+    "Posterior commissure",
+    "Putamen.l",
+    "Putamen.r",
+    "Septal nuclei",
+    "Septum pellucidum",
+    "Stria medullaris thalami.l",
+    "Stria medullaris thalami.r",
+    "Stria terminalis.l",
+    "Stria terminalis.r",
+    "Thalamus.l",
+    "Thalamus.r"
+   ],
+   "origin": "z-anatomy",
+   "parent": "brain"
+  },
+  {
+   "id": "cranial-nerves-left",
+   "name": "Left cranial nerves",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "L",
+   "center": [
+    0.03738,
+    1.47766,
+    -0.01086
+   ],
+   "min": [
+    -0.00134,
+    1.29041,
+    -0.11108
+   ],
+   "max": [
+    0.07611,
+    1.66492,
+    0.08936
+   ],
+   "triangles": 3750,
+   "sourceObjects": [
+    "Abducens nerve (VI).l",
+    "Accessory nerve (XI).l",
+    "Anterior division of mandibular nerve.l",
+    "Buccal nerve.l",
+    "Chorda tympani.l",
+    "Facial nerve (VII).l",
+    "Glossopharyngeal nerve (IX).l",
+    "Hypoglossal nerve (XII).l",
+    "Inferior alveolar nerve.l",
+    "Lingual nerve.l",
+    "Maxillary nerve.l",
+    "Meningeal branch of maxillary nerve.l",
+    "Mental nerve.l",
+    "Motor root of trigeminal nerve.l",
+    "Nerve to mylohyoid muscle.l",
+    "Oculomotor nerve (III).l",
+    "Olfactory nerve (I).l",
+    "Ophthalmic nerve.l",
+    "Optic nerve (II).l",
+    "Posterior division of mandibular nerve.l",
+    "Sensory root of trigeminal nerve.l",
+    "Trigeminal nerve (V).l",
+    "Trochlear nerve (IV).l",
+    "Vagus nerve (X).l",
+    "Vestibulocochlear nerve (VIII).l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "cranial-nerves-right",
+   "name": "Right cranial nerves",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "R",
+   "center": [
+    -0.00323,
+    1.38507,
+    -0.01099
+   ],
+   "min": [
+    -0.07611,
+    1.10535,
+    -0.11108
+   ],
+   "max": [
+    0.06964,
+    1.66479,
+    0.08911
+   ],
+   "triangles": 4152,
+   "sourceObjects": [
+    "Abducens nerve (VI).r",
+    "Accessory nerve (XI).r",
+    "Anterior division of mandibular nerve.r",
+    "Buccal nerve.r",
+    "Chorda tympani.r",
+    "Facial nerve (VII).r",
+    "Glossopharyngeal nerve (IX).r",
+    "Hypoglossal nerve (XII).r",
+    "Inferior alveolar nerve.r",
+    "Lingual nerve.r",
+    "Maxillary nerve.r",
+    "Meningeal branch of maxillary nerve.r",
+    "Mental nerve.r",
+    "Motor root of trigeminal nerve.r",
+    "Nerve to mylohyoid muscle.r",
+    "Oculomotor nerve (III).r",
+    "Olfactory nerve (I).r",
+    "Ophthalmic nerve.r",
+    "Optic nerve (II).r",
+    "Posterior division of mandibular nerve.r",
+    "Sensory root of trigeminal nerve.r",
+    "Trigeminal nerve (V).r",
+    "Trochlear nerve (IV).r",
+    "Vagus nerve (X).r",
+    "Vestibulocochlear nerve (VIII).r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "intercostal-nerves-left",
+   "name": "Left intercostal nerves",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "L",
+   "center": [
+    0.07452,
+    1.20905,
+    0.0087
+   ],
+   "min": [
+    0.01196,
+    0.98254,
+    -0.08893
+   ],
+   "max": [
+    0.13708,
+    1.43555,
+    0.10632
+   ],
+   "triangles": 1430,
+   "sourceObjects": [
+    "Intercostal nerves.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "intercostal-nerves-right",
+   "name": "Right intercostal nerves",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "R",
+   "center": [
+    -0.07452,
+    1.20905,
+    0.0087
+   ],
+   "min": [
+    -0.13708,
+    0.98254,
+    -0.08893
+   ],
+   "max": [
+    -0.01196,
+    1.43555,
+    0.10632
+   ],
+   "triangles": 1430,
+   "sourceObjects": [
+    "Intercostal nerves.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "nerves-of-left-lower-limb",
+   "name": "Nerves of left lower limb (lumbosacral plexus)",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "L",
+   "center": [
+    0.08383,
+    0.57025,
+    0.01358
+   ],
+   "min": [
+    0.00909,
+    0.00781,
+    -0.10413
+   ],
+   "max": [
+    0.15857,
+    1.13269,
+    0.13129
+   ],
+   "triangles": 2534,
+   "sourceObjects": [
+    "Anterior branch of obturator nerve.l",
+    "Anterior cutaneous branches of femoral nerve.l",
+    "Anterior root of posterior femoral cutaneous nerve.l",
+    "Common fibular nerve.l",
+    "Common plantar digital branches of lateral plantar nerve.l",
+    "Common plantar digital branches of medial plantar nerve.l",
+    "Deep fibular nerve.l",
+    "Dorsal digital branches of deep fibular nerve.l",
+    "Dorsal digital branches of superficial fibular nerve.l",
+    "Femoral branch of genitofemoral nerve.l",
+    "Femoral nerve.l",
+    "Genitofemoral nerve.l",
+    "Ilio-inguinal nerve.l",
+    "Iliohypogastric nerve.l",
+    "Infrapatellar branch of saphenous nerve.l",
+    "Intermediate dorsal cutaneous nerve of foot.l",
+    "Lateral femoral cutaneous nerve.l",
+    "Lateral plantar nerve.l",
+    "Medial crural cutaneous branches of saphenous nerve.l",
+    "Medial dorsal cutaneous nerve of foot.l",
+    "Medial plantar nerve.l",
+    "Medial sural cutaneous nerve.l",
+    "Muscular branches of deep fibular nerve.l",
+    "Nerve to piriformis muscle.l",
+    "Nerve to quadratus femoris muscle.l",
+    "Obturator nerve.l",
+    "Posterior branch of obturator nerve.l",
+    "Posterior femoral cutaneous nerve.l",
+    "Posterior root of posterior femoral cutaneous nerve.l",
+    "Proper plantar digital branches of lateral plantar nerve.l",
+    "Proper plantar digital branches of medial plantar nerve.l",
+    "Pudendal nerve.l",
+    "Saphenous nerve.l",
+    "Sciatic nerve.l",
+    "Superficial fibular nerve.l",
+    "Superior gluteal nerve.l",
+    "Sural communicating branch of common fibular nerve.l",
+    "Sural nerve.l",
+    "Tibial nerve.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "nerves-of-left-upper-limb",
+   "name": "Nerves of left upper limb (brachial plexus)",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "L",
+   "center": [
+    0.17334,
+    1.10373,
+    0.00943
+   ],
+   "min": [
+    0.01312,
+    0.70239,
+    -0.10669
+   ],
+   "max": [
+    0.33356,
+    1.50507,
+    0.12555
+   ],
+   "triangles": 2518,
+   "sourceObjects": [
+    "(Communicating branch of median nerve with ulnar nerve).l",
+    "Anterior branch of medial antebrachial cutaneous nerve.l",
+    "Anterior division of inferior trunk of brachial plexus.l",
+    "Anterior division of middle trunk of brachial plexus.l",
+    "Anterior division of superior trunk of brachial plexus.l",
+    "Anterior interosseous nerve of forearm.l",
+    "Axillary nerve.l",
+    "Common palmar digital branches of median nerve.l",
+    "Common palmar digital branches of ulnar nerve.l",
+    "Deep branch of radial nerve.l",
+    "Deep branch of ulnar nerve.l",
+    "Dorsal branch of ulnar nerve.l",
+    "Dorsal digital branches of radial nerve.l",
+    "Dorsal digital branches of ulnar nerve.l",
+    "Dorsal scapular nerve.l",
+    "Inferior lateral brachial cutaneous nerve.l",
+    "Inferior subscapular nerve.l",
+    "Inferior trunk of brachial plexus.l",
+    "Lateral antebrachial cutaneous nerve.l",
+    "Lateral pectoral nerve.l",
+    "Long thoracic nerve.l",
+    "Medial antebrachial cutaneous nerve.l",
+    "Medial brachial cutaneous nerve.l",
+    "Medial pectoral nerve.l",
+    "Median nerve.l",
+    "Middle trunk of brachial plexus.l",
+    "Muscular branches of axillary nerve.l",
+    "Muscular branches of median nerve.l",
+    "Muscular branches of radial nerve.l",
+    "Muscular branches of ulnar nerve.l",
+    "Musculocutaneous nerve.l",
+    "Palmar branch of median nerve.l",
+    "Palmar branch of ulnar nerve.l",
+    "Posterior antebrachial cutaneous nerve.l",
+    "Posterior branch of medial antebrachial cutaneous nerve.l",
+    "Posterior cord of brachial plexus.l",
+    "Posterior division of inferior trunk of brachial plexus.l",
+    "Posterior division of middle trunk of brachial plexus.l",
+    "Posterior division of superior trunk of brachial plexus.l",
+    "Posterior interosseous nerve of forearm.l",
+    "Proper palmar digital branches of median nerve.l",
+    "Proper palmar digital branches of ulnar nerve.l",
+    "Radial nerve.l",
+    "Roots of brachial plexus.l",
+    "Subclavian nerve.l",
+    "Superficial branch of radial nerve.l",
+    "Superficial branch of ulnar nerve.l",
+    "Superior lateral brachial cutaneous nerve.l",
+    "Superior subscapular nerve.l",
+    "Superior trunk of brachial plexus.l",
+    "Suprascapular nerve.l",
+    "Thoracodorsal nerve.l",
+    "Ulnar nerve.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "nerves-of-right-lower-limb",
+   "name": "Nerves of right lower limb (lumbosacral plexus)",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "R",
+   "center": [
+    -0.08377,
+    0.69864,
+    0.01358
+   ],
+   "min": [
+    -0.15845,
+    0.00781,
+    -0.10413
+   ],
+   "max": [
+    -0.00909,
+    1.38947,
+    0.13129
+   ],
+   "triangles": 2548,
+   "sourceObjects": [
+    "Anterior branch of obturator nerve.r",
+    "Anterior cutaneous branches of femoral nerve.r",
+    "Anterior root of posterior femoral cutaneous nerve.r",
+    "Common fibular nerve.r",
+    "Common plantar digital branches of lateral plantar nerve.r",
+    "Common plantar digital branches of medial plantar nerve",
+    "Deep fibular nerve.r",
+    "Dorsal digital branches of deep fibular nerve.r",
+    "Dorsal digital branches of superficial fibular nerve.r",
+    "Femoral branch of genitofemoral nerve.r",
+    "Femoral nerve.r",
+    "Genitofemoral nerve.r",
+    "Ilio-inguinal nerve.r",
+    "Iliohypogastric nerve.r",
+    "Infrapatellar branch of saphenous nerve.r",
+    "Intermediate dorsal cutaneous nerve of foot.r",
+    "Lateral femoral cutaneous nerve.r",
+    "Lateral plantar nerve.r",
+    "Medial crural cutaneous branches of saphenous nerve.r",
+    "Medial dorsal cutaneous nerve of foot.r",
+    "Medial plantar nerve.r",
+    "Medial sural cutaneous nerve.r",
+    "Muscular branches of deep fibular nerve.r",
+    "Nerve to piriformis muscle.r",
+    "Nerve to quadratus femoris muscle.r",
+    "Obturator nerve.r",
+    "Posterior branch of obturator nerve.r",
+    "Posterior femoral cutaneous nerve.r",
+    "Posterior root of posterior femoral cutaneous nerve.r",
+    "Proper plantar digital branches of lateral plantar nerve.r",
+    "Proper plantar digital branches of medial plantar nerve.r",
+    "Pudendal nerve.r",
+    "Saphenous nerve.r",
+    "Sciatic nerve.r",
+    "Superficial fibular nerve.r",
+    "Superior gluteal nerve.r",
+    "Superior subscapular nerve.r",
+    "Sural communicating branch of common fibular nerve.r",
+    "Sural nerve.r",
+    "Tibial nerve.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "nerves-of-right-upper-limb",
+   "name": "Nerves of right upper limb (brachial plexus)",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "R",
+   "center": [
+    -0.17334,
+    1.10373,
+    0.00943
+   ],
+   "min": [
+    -0.33356,
+    0.70239,
+    -0.10669
+   ],
+   "max": [
+    -0.01312,
+    1.50507,
+    0.12555
+   ],
+   "triangles": 2504,
+   "sourceObjects": [
+    "(Communicating branch of median nerve with ulnar nerve).r",
+    "Anterior branch of medial antebrachial cutaneous nerve.r",
+    "Anterior division of inferior trunk of brachial plexus.r",
+    "Anterior division of middle trunk of brachial plexus.r",
+    "Anterior division of superior trunk of brachial plexus.r",
+    "Anterior interosseous nerve of forearm.r",
+    "Axillary nerve.r",
+    "Common palmar digital branches of median nerve.r",
+    "Common palmar digital branches of ulnar nerve.r",
+    "Deep branch of radial nerve.r",
+    "Deep branch of ulnar nerve.r",
+    "Dorsal branch of ulnar nerve.r",
+    "Dorsal digital branches of radial nerve.r",
+    "Dorsal digital branches of ulnar nerve.r",
+    "Dorsal scapular nerve.r",
+    "Inferior lateral brachial cutaneous nerve.r",
+    "Inferior subscapular nerve.r",
+    "Inferior trunk of brachial plexus.r",
+    "Lateral antebrachial cutaneous nerve.r",
+    "Lateral pectoral nerve.r",
+    "Long thoracic nerve.r",
+    "Medial antebrachial cutaneous nerve.r",
+    "Medial brachial cutaneous nerve.r",
+    "Medial pectoral nerve.r",
+    "Median nerve.r",
+    "Middle trunk of brachial plexus.r",
+    "Muscular branches of axillary nerve.r",
+    "Muscular branches of median nerve.r",
+    "Muscular branches of radial nerve.r",
+    "Muscular branches of ulnar nerve.r",
+    "Musculocutaneous nerve.r",
+    "Palmar branch of median nerve.r",
+    "Palmar branch of ulnar nerve.r",
+    "Posterior antebrachial cutaneous nerve.r",
+    "Posterior branch of medial antebrachial cutaneous nerve.r",
+    "Posterior cord of brachial plexus.r",
+    "Posterior division of inferior trunk of brachial plexus.r",
+    "Posterior division of middle trunk of brachial plexus.r",
+    "Posterior division of superior trunk of brachial plexus.r",
+    "Posterior interosseous nerve of forearm.r",
+    "Proper palmar digital branches of median nerve.r",
+    "Proper palmar digital branches of ulnar nerve.r",
+    "Radial nerve.r",
+    "Roots of brachial plexus.r",
+    "Subclavian nerve.r",
+    "Superficial branch of radial nerve.r",
+    "Superficial branch of ulnar nerve.r",
+    "Superior lateral brachial cutaneous nerve.r",
+    "Superior trunk of brachial plexus.r",
+    "Suprascapular nerve.r",
+    "Thoracodorsal nerve.r",
+    "Ulnar nerve.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "spinal-cord",
+   "name": "Spinal cord",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": null,
+   "center": [
+    0,
+    1.20963,
+    -0.05072
+   ],
+   "min": [
+    -0.04816,
+    0.87366,
+    -0.08551
+   ],
+   "max": [
+    0.04816,
+    1.54559,
+    -0.01593
+   ],
+   "triangles": 4808,
+   "sourceObjects": [
+    "Cauda equina",
+    "White matter of spinal cord"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "spinal-nerve-roots-left",
+   "name": "Left spinal nerve roots and ganglia",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "L",
+   "center": [
+    0.01288,
+    1.3013,
+    -0.04001
+   ],
+   "min": [
+    0.00049,
+    1.06665,
+    -0.07471
+   ],
+   "max": [
+    0.02527,
+    1.53595,
+    -0.00531
+   ],
+   "triangles": 1124,
+   "sourceObjects": [
+    "Anterior root of spinal nerve.l",
+    "Posterior root of spinal nerve.l",
+    "Spinal ganglion.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "spinal-nerve-roots-right",
+   "name": "Right spinal nerve roots and ganglia",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "R",
+   "center": [
+    -0.01288,
+    1.3013,
+    -0.04001
+   ],
+   "min": [
+    -0.02527,
+    1.06665,
+    -0.07471
+   ],
+   "max": [
+    -0.00049,
+    1.53595,
+    -0.00531
+   ],
+   "triangles": 1124,
+   "sourceObjects": [
+    "Anterior root of spinal nerve.r",
+    "Posterior root of spinal nerve.r",
+    "Spinal ganglion.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sympathetic-trunk-left",
+   "name": "Left sympathetic trunk",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "L",
+   "center": [
+    0.01462,
+    1.31927,
+    -0.04163
+   ],
+   "min": [
+    0.00433,
+    1.13342,
+    -0.09015
+   ],
+   "max": [
+    0.0249,
+    1.50513,
+    0.0069
+   ],
+   "triangles": 2438,
+   "sourceObjects": [
+    "Ganglia of sympathetic trunk.l",
+    "Sympathetic nerves.l",
+    "Sympathetic trunk.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "sympathetic-trunk-right",
+   "name": "Right sympathetic trunk",
+   "system": "nervous",
+   "tissue": "nerve",
+   "side": "R",
+   "center": [
+    -0.01462,
+    1.31927,
+    -0.04166
+   ],
+   "min": [
+    -0.0249,
+    1.13342,
+    -0.09015
+   ],
+   "max": [
+    -0.00433,
+    1.50513,
+    0.00684
+   ],
+   "triangles": 2438,
+   "sourceObjects": [
+    "Ganglia of sympathetic trunk.r",
+    "Sympathetic nerves.r",
+    "Sympathetic trunk.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "esophagus",
+   "name": "Esophagus",
+   "system": "digestive",
+   "tissue": "gut",
+   "side": null,
+   "center": [
+    0.00467,
+    1.33517,
+    -0.00632
+   ],
+   "min": [
+    -0.00897,
+    1.19446,
+    -0.03235
+   ],
+   "max": [
+    0.01831,
+    1.47589,
+    0.01971
+   ],
+   "triangles": 3488,
+   "sourceObjects": [
+    "Oesophagus"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "gallbladder",
+   "name": "Gallbladder and bile duct",
+   "system": "digestive",
+   "tissue": "organ",
+   "side": null,
+   "center": [
+    -0.03827,
+    1.12619,
+    0.05579
+   ],
+   "min": [
+    -0.06329,
+    1.08966,
+    0.02985
+   ],
+   "max": [
+    -0.01324,
+    1.16272,
+    0.08173
+   ],
+   "triangles": 946,
+   "sourceObjects": [
+    "Bile duct",
+    "Gallbladder"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "large-intestine",
+   "name": "Large intestine",
+   "system": "digestive",
+   "tissue": "gut",
+   "side": null,
+   "center": [
+    0.00018,
+    0.96985,
+    0.00616
+   ],
+   "min": [
+    -0.11389,
+    0.8042,
+    -0.07037
+   ],
+   "max": [
+    0.11426,
+    1.1355,
+    0.0827
+   ],
+   "triangles": 8324,
+   "sourceObjects": [
+    "Ascending colon",
+    "Descending colon",
+    "Sigmoid colon",
+    "Transverse colon",
+    "Vermiform appendix"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "liver",
+   "name": "Liver",
+   "system": "digestive",
+   "tissue": "liver",
+   "side": null,
+   "center": [
+    -0.01157,
+    1.17493,
+    0.0242
+   ],
+   "min": [
+    -0.11475,
+    1.0918,
+    -0.05237
+   ],
+   "max": [
+    0.09161,
+    1.25806,
+    0.10077
+   ],
+   "triangles": 8618,
+   "sourceObjects": [
+    "Liver"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pancreas",
+   "name": "Pancreas",
+   "system": "digestive",
+   "tissue": "gland",
+   "side": null,
+   "center": [
+    0.01364,
+    1.11642,
+    0.02286
+   ],
+   "min": [
+    -0.04547,
+    1.07953,
+    -0.00385
+   ],
+   "max": [
+    0.07275,
+    1.15332,
+    0.04956
+   ],
+   "triangles": 2580,
+   "sourceObjects": [
+    "Pancreas"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pharynx",
+   "name": "Pharynx",
+   "system": "digestive",
+   "tissue": "gut",
+   "side": null,
+   "center": [
+    0,
+    1.5242,
+    0.03888
+   ],
+   "min": [
+    -0.03284,
+    1.45679,
+    0.00092
+   ],
+   "max": [
+    0.03284,
+    1.59161,
+    0.07684
+   ],
+   "triangles": 3062,
+   "sourceObjects": [
+    "Laryngopharynx",
+    "Nasopharynx",
+    "Oropharynx"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "salivary-glands",
+   "name": "Salivary glands",
+   "system": "digestive",
+   "tissue": "gland",
+   "side": null,
+   "center": [
+    0,
+    1.54068,
+    0.03809
+   ],
+   "min": [
+    -0.065,
+    1.50446,
+    0.00458
+   ],
+   "max": [
+    0.065,
+    1.5769,
+    0.07159
+   ],
+   "triangles": 2710,
+   "sourceObjects": [
+    "(Accessory parotid gland).l",
+    "(Accessory parotid gland).r",
+    "Parotid duct.l",
+    "Parotid duct.r",
+    "Parotid gland.l",
+    "Parotid gland.r",
+    "Sublingual gland.l",
+    "Sublingual gland.r",
+    "Submandibular duct.l",
+    "Submandibular duct.r",
+    "Submandibular gland.l",
+    "Submandibular gland.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "small-intestine",
+   "name": "Small intestine",
+   "system": "digestive",
+   "tissue": "gut",
+   "side": null,
+   "center": [
+    0.00885,
+    1.01248,
+    0.04456
+   ],
+   "min": [
+    -0.08246,
+    0.88141,
+    0.00714
+   ],
+   "max": [
+    0.10016,
+    1.14355,
+    0.08197
+   ],
+   "triangles": 6047,
+   "sourceObjects": [
+    "Duodenum",
+    "Jejunum"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "stomach",
+   "name": "Stomach",
+   "system": "digestive",
+   "tissue": "gut",
+   "side": null,
+   "center": [
+    0.03836,
+    1.16681,
+    0.03751
+   ],
+   "min": [
+    -0.02869,
+    1.10406,
+    -0.01514
+   ],
+   "max": [
+    0.10541,
+    1.22955,
+    0.09015
+   ],
+   "triangles": 5533,
+   "sourceObjects": [
+    "Stomach"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "tongue",
+   "name": "Tongue",
+   "system": "digestive",
+   "tissue": "organ",
+   "side": null,
+   "center": [
+    0,
+    1.51865,
+    0.05142
+   ],
+   "min": [
+    -0.01685,
+    1.49731,
+    0.02325
+   ],
+   "max": [
+    0.01685,
+    1.53998,
+    0.07959
+   ],
+   "triangles": 682,
+   "sourceObjects": [
+    "Tongue"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "kidney-left",
+   "name": "Left kidney",
+   "system": "urinary",
+   "tissue": "kidney",
+   "side": "L",
+   "center": [
+    0.06161,
+    1.11261,
+    -0.01691
+   ],
+   "min": [
+    0.03284,
+    1.05963,
+    -0.03723
+   ],
+   "max": [
+    0.09039,
+    1.16559,
+    0.00342
+   ],
+   "triangles": 2888,
+   "sourceObjects": [
+    "AHI procedural kidney (signed distance field, src/features/anatomy/procedural/geometry), fitted to the bounding box of Z-Anatomy \"Kidney.l\""
+   ],
+   "origin": "ahi-procedural"
+  },
+  {
+   "id": "kidney-right",
+   "name": "Right kidney",
+   "system": "urinary",
+   "tissue": "kidney",
+   "side": "R",
+   "center": [
+    -0.05902,
+    1.09421,
+    -0.00851
+   ],
+   "min": [
+    -0.08759,
+    1.04199,
+    -0.0321
+   ],
+   "max": [
+    -0.03046,
+    1.14642,
+    0.01508
+   ],
+   "triangles": 2862,
+   "sourceObjects": [
+    "AHI procedural kidney (signed distance field, src/features/anatomy/procedural/geometry), fitted to the bounding box of Z-Anatomy \"Kidney.r\""
+   ],
+   "origin": "ahi-procedural"
+  },
+  {
+   "id": "ureters",
+   "name": "Ureters",
+   "system": "urinary",
+   "tissue": "organ",
+   "side": null,
+   "center": [
+    0.00241,
+    0.99066,
+    -0.00574
+   ],
+   "min": [
+    -0.04083,
+    0.87042,
+    -0.03424
+   ],
+   "max": [
+    0.04565,
+    1.1109,
+    0.02277
+   ],
+   "triangles": 2040,
+   "sourceObjects": [
+    "Ureter.l",
+    "Ureter.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "urinary-bladder",
+   "name": "Urinary bladder",
+   "system": "urinary",
+   "tissue": "organ",
+   "side": null,
+   "center": [
+    0.00037,
+    0.85532,
+    0.00146
+   ],
+   "min": [
+    -0.03687,
+    0.82965,
+    -0.04016
+   ],
+   "max": [
+    0.0376,
+    0.88098,
+    0.04309
+   ],
+   "triangles": 3036,
+   "sourceObjects": [
+    "Urinary bladder"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "adrenal-gland-left",
+   "name": "Left adrenal (suprarenal) gland",
+   "system": "other",
+   "tissue": "gland",
+   "side": "L",
+   "center": [
+    0.05142,
+    1.16095,
+    -0.02359
+   ],
+   "min": [
+    0.02734,
+    1.13849,
+    -0.03369
+   ],
+   "max": [
+    0.0755,
+    1.18341,
+    -0.01349
+   ],
+   "triangles": 3178,
+   "sourceObjects": [
+    "Suprarenal gland.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "adrenal-gland-right",
+   "name": "Right adrenal (suprarenal) gland",
+   "system": "other",
+   "tissue": "gland",
+   "side": "R",
+   "center": [
+    -0.0466,
+    1.14182,
+    -0.00806
+   ],
+   "min": [
+    -0.06256,
+    1.12067,
+    -0.02167
+   ],
+   "max": [
+    -0.03064,
+    1.16296,
+    0.00555
+   ],
+   "triangles": 2294,
+   "sourceObjects": [
+    "Suprarenal gland.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "eye-left",
+   "name": "Left eye",
+   "system": "other",
+   "tissue": "eye",
+   "side": "L",
+   "center": [
+    0.03058,
+    1.59109,
+    0.06586
+   ],
+   "min": [
+    0.01746,
+    1.578,
+    0.05219
+   ],
+   "max": [
+    0.0437,
+    1.60419,
+    0.07953
+   ],
+   "triangles": 3677,
+   "sourceObjects": [
+    "Cornea.l",
+    "Iris.l",
+    "Lens.l",
+    "Sclera.l"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "eye-right",
+   "name": "Right eye",
+   "system": "other",
+   "tissue": "eye",
+   "side": "R",
+   "center": [
+    -0.03055,
+    1.59106,
+    0.06586
+   ],
+   "min": [
+    -0.04364,
+    1.57794,
+    0.05219
+   ],
+   "max": [
+    -0.01746,
+    1.60419,
+    0.07953
+   ],
+   "triangles": 3677,
+   "sourceObjects": [
+    "Cornea.r",
+    "Iris.r",
+    "Lens.r",
+    "Sclera.r"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pineal-gland",
+   "name": "Pineal gland",
+   "system": "other",
+   "tissue": "gland",
+   "side": null,
+   "center": [
+    0,
+    1.61639,
+    -0.02155
+   ],
+   "min": [
+    -0.00317,
+    1.61267,
+    -0.0271
+   ],
+   "max": [
+    0.00317,
+    1.62012,
+    -0.01599
+   ],
+   "triangles": 634,
+   "sourceObjects": [
+    "Pineal gland"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "pituitary-gland",
+   "name": "Pituitary gland",
+   "system": "other",
+   "tissue": "gland",
+   "side": null,
+   "center": [
+    0,
+    1.60184,
+    0.01825
+   ],
+   "min": [
+    -0.00592,
+    1.59558,
+    0.01367
+   ],
+   "max": [
+    0.00592,
+    1.60809,
+    0.02283
+   ],
+   "triangles": 1272,
+   "sourceObjects": [
+    "Adenohypophysis",
+    "Neurohypophysis"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "spleen",
+   "name": "Spleen",
+   "system": "other",
+   "tissue": "organ",
+   "side": null,
+   "center": [
+    0.08478,
+    1.1619,
+    -0.00308
+   ],
+   "min": [
+    0.05566,
+    1.12677,
+    -0.0506
+   ],
+   "max": [
+    0.11389,
+    1.19702,
+    0.04443
+   ],
+   "triangles": 1330,
+   "sourceObjects": [
+    "Spleen"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "thymus",
+   "name": "Thymus",
+   "system": "other",
+   "tissue": "gland",
+   "side": null,
+   "center": [
+    0.01791,
+    1.34174,
+    0.05228
+   ],
+   "min": [
+    -0.00702,
+    1.31091,
+    0.03546
+   ],
+   "max": [
+    0.04285,
+    1.37256,
+    0.06909
+   ],
+   "triangles": 7210,
+   "sourceObjects": [
+    "Left lobe of thymus",
+    "Right lobe of thymus"
+   ],
+   "origin": "z-anatomy"
+  },
+  {
+   "id": "thyroid",
+   "name": "Thyroid and parathyroid glands",
+   "system": "other",
+   "tissue": "gland",
+   "side": null,
+   "center": [
+    0,
+    1.47208,
+    0.01758
+   ],
+   "min": [
+    -0.02429,
+    1.45502,
+    -0.00323
+   ],
+   "max": [
+    0.02429,
+    1.48914,
+    0.03839
+   ],
+   "triangles": 2736,
+   "sourceObjects": [
+    "Inferior parathyroid gland.l",
+    "Inferior parathyroid gland.r",
+    "Superior parathyroid gland.l",
+    "Superior parathyroid gland.r",
+    "Thyroid gland"
+   ],
+   "origin": "z-anatomy"
+  }
+ ]
+}
