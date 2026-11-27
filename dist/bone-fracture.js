@@ -261,3 +261,71 @@ export function makeSkin(geometry, type, level, width, depth) {
     .map(([, point]) => point);
   return { surface, edge };
 }
+
+export function bindFractureCover(mesh, level, sectionWidth = 0.25, shaderRestPosition = false) {
+  const geometry = mesh.geometry;
+  const sourcePosition = geometry.getAttribute('position');
+  const sourceNormal = geometry.getAttribute('normal');
+  const restPosition = new Float32Array(sourcePosition.count * 3);
+  const restNormal = new Float32Array(sourcePosition.count * 3);
+  const weights = new Float32Array(sourcePosition.count);
+  for (let index = 0; index < sourcePosition.count; index++) {
+    const vertex = index * 3;
+    restPosition[vertex] = sourcePosition.getX(index);
+    restPosition[vertex + 1] = sourcePosition.getY(index);
+    restPosition[vertex + 2] = sourcePosition.getZ(index);
+    restNormal[vertex] = sourceNormal.getX(index);
+    restNormal[vertex + 1] = sourceNormal.getY(index);
+    restNormal[vertex + 2] = sourceNormal.getZ(index);
+    weights[index] = THREE.MathUtils.smoothstep(restPosition[vertex + 1], level - sectionWidth, level + sectionWidth);
+  }
+  if (shaderRestPosition) {
+    geometry.setAttribute('fractureRestPosition', new THREE.BufferAttribute(restPosition, 3));
+  }
+  const position = new THREE.BufferAttribute(restPosition.slice(), 3).setUsage(THREE.DynamicDrawUsage);
+  const normal = new THREE.BufferAttribute(restNormal.slice(), 3).setUsage(THREE.DynamicDrawUsage);
+  geometry.setAttribute('position', position);
+  geometry.setAttribute('normal', normal);
+  mesh.frustumCulled = false;
+  return { position, normal, weights, restPosition, restNormal };
+}
+
+export function deformFractureCovers(covers, proximal, distal) {
+  const upper = proximal.elements;
+  const lower = distal.elements;
+  for (const piece of covers) {
+    const { restPosition, restNormal, weights, position, normal } = piece;
+    const shift = position.array;
+    const shade = normal.array;
+    for (let index = 0; index < weights.length; index++) {
+      const i = index * 3;
+      const ax = restPosition[i];
+      const ay = restPosition[i + 1];
+      const az = restPosition[i + 2];
+      const nx = restNormal[i];
+      const ny = restNormal[i + 1];
+      const nz = restNormal[i + 2];
+      const weight = weights[index];
+      const a = weight > 0 ? upper : lower;
+      shift[i] = a[0] * ax + a[4] * ay + a[8] * az + a[12];
+      shift[i + 1] = a[1] * ax + a[5] * ay + a[9] * az + a[13];
+      shift[i + 2] = a[2] * ax + a[6] * ay + a[10] * az + a[14];
+      shade[i] = a[0] * nx + a[4] * ny + a[8] * nz;
+      shade[i + 1] = a[1] * nx + a[5] * ny + a[9] * nz;
+      shade[i + 2] = a[2] * nx + a[6] * ny + a[10] * nz;
+
+      // Near the break, adjacent fragments share a short continuous tissue band.
+      if (weight > 0 && weight < 1) {
+        const remainder = 1 - weight;
+        shift[i] = weight * shift[i] + remainder * (lower[0] * ax + lower[4] * ay + lower[8] * az + lower[12]);
+        shift[i + 1] = weight * shift[i + 1] + remainder * (lower[1] * ax + lower[5] * ay + lower[9] * az + lower[13]);
+        shift[i + 2] = weight * shift[i + 2] + remainder * (lower[2] * ax + lower[6] * ay + lower[10] * az + lower[14]);
+        shade[i] = weight * shade[i] + remainder * (lower[0] * nx + lower[4] * ny + lower[8] * nz);
+        shade[i + 1] = weight * shade[i + 1] + remainder * (lower[1] * nx + lower[5] * ny + lower[9] * nz);
+        shade[i + 2] = weight * shade[i + 2] + remainder * (lower[2] * nx + lower[6] * ny + lower[10] * nz);
+      }
+    }
+    position.needsUpdate = true;
+    normal.needsUpdate = true;
+  }
+}

@@ -6,12 +6,6 @@ const WELD = 0.000015;
 const EPSILON = 0.0000001;
 const MAX_DISTANCE = 0.16;
 
-const DISEASES = {
-  osteoporosis: 1,
-  osteomyelitis: 2,
-  osteomalacia: 3,
-  paget: 4,
-};
 const SEVERITY = { healthy: 0, early: 0.43, advanced: 1 };
 
 // Instructions for triangulation are kept in axis-local 2D coordinates. A weld
@@ -152,15 +146,125 @@ function segmentData(contours) {
   return segments;
 }
 
-// The first channel measures distance to the cut rim. The second stores local
-// width and the third stores transverse position, so tissue widths follow the
-// bone shaft and both articular ends instead of a generic bounding box.
-function sliceField(contours, bounds) {
-  const height = 384;
-  const width = Math.max(64, Math.min(192, Math.ceil(height * bounds.width / bounds.height)));
+const SECTION_COLORS = {
+  edge: [243, 219, 178],
+  cortex: [221, 192, 150],
+  lowMineral: [229, 209, 173],
+  denseCortex: [214, 174, 121],
+  inflamedCortex: [181, 124, 108],
+  marrowDeep: [154, 106, 75],
+  marrowWarm: [192, 143, 95],
+  marrowCore: [217, 173, 107],
+  inflamedMarrow: [173, 107, 95],
+  cancellous: [231, 193, 140],
+  lowMineralTrabecula: [236, 212, 165],
+  stressMark: [143, 108, 79],
+};
+const { clamp, lerp, smoothstep } = THREE.MathUtils;
+
+function tissueRandom(x, y, salt = 0) {
+  let n = Math.imul(x, 374761393) + Math.imul(y, 668265263) + salt;
+  n = Math.imul(n ^ (n >>> 13), 1274126177);
+  return ((n ^ (n >>> 16)) >>> 0) / 4294967296;
+}
+
+function tissueNoise(x, y) {
+  const column = Math.floor(x);
+  const row = Math.floor(y);
+  const u = smoothstep(x - column, 0, 1);
+  const v = smoothstep(y - row, 0, 1);
+  return lerp(
+    lerp(tissueRandom(column, row), tissueRandom(column + 1, row), u),
+    lerp(tissueRandom(column, row + 1), tissueRandom(column + 1, row + 1), u),
+    v,
+  );
+}
+
+function trabecularWall(x, y) {
+  const column = Math.floor(x);
+  const row = Math.floor(y);
+  const u = x - column;
+  const v = y - row;
+  let first = Infinity;
+  let second = Infinity;
+  for (let j = -1; j <= 1; j++) {
+    for (let i = -1; i <= 1; i++) {
+      const rx = i + 0.12 + tissueRandom(column + i, row + j, 17) * 0.76 - u;
+      const ry = j + 0.12 + tissueRandom(column + i, row + j, 881) * 0.76 - v;
+      const distance = rx * rx + ry * ry;
+      second = Math.min(second, Math.max(first, distance));
+      first = Math.min(first, distance);
+    }
+  }
+  return Math.sqrt(second) - Math.sqrt(first);
+}
+
+function writeTissueColor(pixels, offset, x, y, rimDistance, rowWidth, fraction, features) {
+  const colors = SECTION_COLORS;
+  const { osteoporosis, infection, lowMineral, paget } = features;
+  const shaft = 1 - smoothstep(Math.abs(y), 0.49, 0.88);
+  const grain = tissueNoise(x * 271, y * 235);
+  const clouds = tissueNoise(x * 21, y * 27);
+  const remodel = paget * (1 - smoothstep(Math.abs(y - 0.23), 0.25, 1.15));
+  const density = (1 - osteoporosis * 0.42 + remodel * (0.75 + 0.55 * clouds));
+  const cortexDepth = Math.max(0.005, Math.min(0.048, rowWidth * lerp(0.095, 0.215, shaft)) * density);
+  const band = 0.5 + 0.5 * Math.sin(rimDistance / cortexDepth * 39 + clouds * 2.9);
+  const cortical = 1 - smoothstep(rimDistance, cortexDepth * 0.85, cortexDepth * 1.08);
+  const outerEdge = 1 - smoothstep(rimDistance, 0.003, 0.007);
+
+  const lesion = Math.hypot((fraction - 0.43) / (0.31 + infection * 0.28),
+    (y - 0.42) / (0.14 + infection * 0.32));
+  const infectionSite = infection * (1 - smoothstep(lesion + (clouds - 0.5) * 0.37, 0.45, 1.16));
+  const infectionCortex = infectionSite * smoothstep(infection, 0.62, 1);
+  const marrowCore = 0.83 * smoothstep(Math.sin(Math.PI * fraction), 0.56, 1) * shaft;
+
+  const densityScale = lerp(1, 0.54, Math.max(osteoporosis, remodel));
+  const wall = trabecularWall(x * 79 * densityScale + 2.2 * clouds,
+    y * 52 * densityScale + tissueNoise(x * 31, y * 31) * 1.3);
+  const thickness = 0.097 - 0.058 * osteoporosis + 0.074 * remodel;
+  const porous = 1 - osteoporosis * smoothstep(tissueNoise(x * 82, y * 82), 0.54, 0.67) * 0.98;
+  const trabecula = (1 - smoothstep(wall, thickness * 0.42, thickness + 0.06)) * (1 - marrowCore * 0.89) * porous;
+  const stressY = -0.34 + fraction * 0.09 + tissueNoise(x * 20, y * 20) * 0.012;
+  const stress = (1 - smoothstep(Math.abs(y - stressY), 0.004, 0.012)) *
+    (1 - smoothstep(fraction, 0.28, 0.61)) * smoothstep(lowMineral, 0.55, 1);
+
+  for (let channel = 0; channel < 3; channel++) {
+    let cortex = colors.cortex[channel] * (0.94 + band * 0.055 + grain * 0.055);
+    cortex = lerp(cortex, colors.lowMineral[channel], lowMineral * 0.74);
+    cortex = lerp(cortex, colors.denseCortex[channel] * (0.89 + band * 0.12), remodel * 0.76);
+    cortex = lerp(cortex, colors.inflamedCortex[channel], infectionCortex);
+
+    let marrow = lerp(colors.marrowDeep[channel], colors.marrowWarm[channel], clouds);
+    marrow = lerp(marrow, colors.marrowCore[channel], marrowCore * (0.86 + clouds * 0.12));
+    marrow = lerp(marrow, colors.lowMineral[channel], lowMineral * 0.28);
+    let lattice = lerp(colors.cancellous[channel], colors.lowMineralTrabecula[channel], lowMineral * 0.72);
+    lattice *= 0.91 + grain * 0.13;
+    let interior = lerp(marrow, lattice, trabecula);
+    interior = lerp(interior, colors.inflamedMarrow[channel] * (0.87 + clouds * 0.19), infectionSite * 0.94);
+
+    let color = lerp(interior, cortex, cortical);
+    color = lerp(color, colors.edge[channel], outerEdge * 0.7);
+    color = lerp(color, colors.stressMark[channel], stress * 0.56);
+    pixels[offset + channel] = clamp(Math.round(color * (0.957 + grain * 0.085)), 0, 255);
+  }
+  pixels[offset + 3] = 255;
+}
+
+// Bake the solid, sRGB section into a conventional texture. This keeps the
+// porous structure and pathology consistent across WebGL drivers and lights.
+function createSectionTexture(contours, bounds, disease, stage) {
+  const height = 480;
+  const width = Math.max(80, Math.min(240, Math.ceil(height * bounds.width / bounds.height)));
   const pixels = new Uint8Array(width * height * 4);
   const segments = segmentData(contours);
-  const near = MAX_DISTANCE;
+  const severity = SEVERITY[stage] ?? 0;
+  const features = {
+    osteoporosis: disease === 'osteoporosis' ? severity : 0,
+    infection: disease === 'osteomyelitis' ? severity : 0,
+    lowMineral: disease === 'osteomalacia' ? severity : 0,
+    paget: disease === 'paget' ? severity : 0,
+  };
+
   for (let row = 0; row < height; row++) {
     const y = bounds.min.y + (row + 0.5) / height * bounds.height;
     const intersections = [];
@@ -168,165 +272,55 @@ function sliceField(contours, bounds) {
     for (const segment of segments) {
       const { a, b, dx, dy } = segment;
       if ((a.y > y) !== (b.y > y)) intersections.push(a.x + (y - a.y) * dx / dy);
-      if (y + near >= Math.min(a.y, b.y) && y - near <= Math.max(a.y, b.y)) nearRow.push(segment);
+      if (y + MAX_DISTANCE >= Math.min(a.y, b.y) && y - MAX_DISTANCE <= Math.max(a.y, b.y)) nearRow.push(segment);
     }
     intersections.sort((a, b) => a - b);
     let interval = 0;
+
     for (let column = 0; column < width; column++) {
       const x = bounds.min.x + (column + 0.5) / width * bounds.width;
+      const offset = 4 * (row * width + column);
       while (interval + 2 < intersections.length && x > intersections[interval + 1]) interval += 2;
       const left = intersections[interval];
       const right = intersections[interval + 1];
-      const widthAtY = Math.max(0.008, (right - left) || 0);
-      const fraction = Number.isFinite(left) ? THREE.MathUtils.clamp((x - left) / widthAtY, 0, 1) : 0.5;
-
-      let closest2 = near * near;
+      if (!Number.isFinite(right) || x < left || x > right) {
+        // Keep the sampling border bone-colored to prevent mipmap fringes.
+        pixels[offset] = SECTION_COLORS.edge[0];
+        pixels[offset + 1] = SECTION_COLORS.edge[1];
+        pixels[offset + 2] = SECTION_COLORS.edge[2];
+        pixels[offset + 3] = 255;
+        continue;
+      }
+      const rowWidth = Math.max(0.008, right - left);
+      const fraction = clamp((x - left) / rowWidth, 0, 1);
+      let closest2 = MAX_DISTANCE * MAX_DISTANCE;
       for (const { a, dx, dy, length2 } of nearRow) {
         const ax = x - a.x;
         const ay = y - a.y;
-        const t = THREE.MathUtils.clamp((ax * dx + ay * dy) / length2, 0, 1);
+        const t = clamp((ax * dx + ay * dy) / length2, 0, 1);
         const ex = ax - dx * t;
         const ey = ay - dy * t;
         closest2 = Math.min(closest2, ex * ex + ey * ey);
       }
-
-      const offset = 4 * (row * width + column);
-      pixels[offset] = Math.round(Math.sqrt(closest2) / near * 255);
-      pixels[offset + 1] = Math.round(255 * Math.min(widthAtY / bounds.width, 1));
-      pixels[offset + 2] = Math.round(255 * fraction);
-      pixels[offset + 3] = 255;
+      writeTissueColor(pixels, offset, x, y, Math.sqrt(closest2), rowWidth, fraction, features);
     }
   }
 
-  const texture = new THREE.DataTexture(pixels, width, height);
-  texture.minFilter = THREE.LinearFilter;
+  const texture = new THREE.DataTexture(pixels, width, height, THREE.RGBAFormat, THREE.UnsignedByteType);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.minFilter = THREE.LinearMipmapLinearFilter;
   texture.magFilter = THREE.LinearFilter;
+  texture.generateMipmaps = true;
   texture.needsUpdate = true;
   return texture;
 }
 
-const SECTION_FRAGMENT = /* glsl */ `
-uniform sampler2D boneField;
-uniform vec2 boneMin;
-uniform vec2 boneSize;
-uniform float boneSeverity;
-uniform float boneDisease;
-varying vec2 bonePosition;
-
-vec2 sectionHash(vec2 p) {
-  p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
-  return fract(sin(p) * 43758.5453);
-}
-
-float sectionNoise(vec2 p) {
-  vec2 cell = floor(p);
-  vec2 f = fract(p);
-  vec2 ease = f * f * (3.0 - 2.0 * f);
-  return mix(
-    mix(sectionHash(cell).x, sectionHash(cell + vec2(1.0, 0.0)).x, ease.x),
-    mix(sectionHash(cell + vec2(0.0, 1.0)).x, sectionHash(cell + 1.0).x, ease.x),
-    ease.y
-  );
-}
-
-float trabecularWall(vec2 p) {
-  vec2 cell = floor(p);
-  vec2 where = fract(p);
-  float first = 9.0;
-  float second = 9.0;
-  for (int j = -1; j <= 1; j++) {
-    for (int i = -1; i <= 1; i++) {
-      vec2 offset = vec2(float(i), float(j));
-      vec2 seed = offset + 0.12 + sectionHash(cell + offset) * 0.76 - where;
-      float d = dot(seed, seed);
-      second = min(second, max(first, d));
-      first = min(first, d);
-    }
+function assignSectionUVs(geometry, bounds) {
+  const positions = geometry.getAttribute('position');
+  const uv = geometry.getAttribute('uv');
+  for (let i = 0; i < positions.count; i++) {
+    uv.setXY(i, (positions.getX(i) - bounds.min.x) / bounds.width, (positions.getY(i) - bounds.min.y) / bounds.height);
   }
-  return sqrt(second) - sqrt(first);
-}
-
-vec3 sectionColor() {
-  vec2 p = bonePosition;
-  vec3 field = texture2D(boneField, (p - boneMin) / boneSize).rgb;
-  float distanceToRim = field.r * ${MAX_DISTANCE};
-  float rowWidth = field.g * boneSize.x;
-  float shaft = 1.0 - smoothstep(0.49, 0.88, abs(p.y));
-  float grain = sectionNoise(p * vec2(270.0, 235.0));
-  float clouds = sectionNoise(p * vec2(21.0, 27.0));
-  float disease = boneSeverity;
-  float osteoporosis = (1.0 - step(0.25, abs(boneDisease - 1.0))) * disease;
-  float infection = (1.0 - step(0.25, abs(boneDisease - 2.0))) * disease;
-  float softBone = (1.0 - step(0.25, abs(boneDisease - 3.0))) * disease;
-  float paget = (1.0 - step(0.25, abs(boneDisease - 4.0))) * disease;
-  float remodel = paget * (1.0 - smoothstep(0.25, 1.15, abs(p.y - 0.23)));
-  float cortexDepth = min(0.048, rowWidth * mix(0.095, 0.215, shaft));
-  cortexDepth *= 1.0 - osteoporosis * 0.42 + remodel * (0.75 + 0.55 * clouds);
-  cortexDepth = max(cortexDepth, 0.0050);
-
-  vec3 cortex = mix(vec3(0.47, 0.30, 0.18), vec3(0.81, 0.66, 0.43), 0.73 + grain * 0.18);
-  float bandWidth = max(cortexDepth, 0.003);
-  float lines = 0.5 + 0.5 * sin(distanceToRim / bandWidth * 39.0 + clouds * 2.9);
-  cortex *= 0.9 + lines * 0.10 + 0.07 * grain;
-  cortex = mix(cortex, vec3(0.73, 0.55, 0.31) * (0.88 + clouds * 0.18), softBone * 0.72);
-  cortex = mix(cortex, vec3(0.64, 0.46, 0.28) * (0.75 + lines * 0.25), remodel * 0.75);
-
-  vec2 elliptical = (vec2(field.b - 0.47, p.y) - vec2(-0.04, 0.42)) /
-    vec2(0.31 + infection * 0.28, 0.14 + infection * 0.32);
-  float infectionSite = infection * (1.0 - smoothstep(0.45, 1.16, length(elliptical) + (clouds - 0.5) * 0.37));
-  cortex = mix(cortex, vec3(0.39, 0.26, 0.20), infectionSite * smoothstep(0.62, 1.0, infection));
-
-  float shaftDepth = smoothstep(0.56, 1.0, sin(3.14159265 * field.b)) * shaft;
-  float marrowCore = 0.83 * shaftDepth;
-  vec3 marrow = mix(vec3(0.27, 0.123, 0.066), vec3(0.45, 0.235, 0.091), clouds);
-  marrow = mix(marrow, vec3(0.61, 0.39, 0.17) * (0.82 + clouds * 0.3), marrowCore);
-  marrow = mix(marrow, vec3(0.42, 0.24, 0.14), softBone * 0.45);
-
-  vec2 stretch = vec2(79.0, 52.0) * mix(1.0, 0.54, max(osteoporosis, remodel));
-  vec2 lattice = p * stretch + vec2(2.2 * clouds, sectionNoise(p * 31.0) * 1.3);
-  float edge = trabecularWall(lattice);
-  float trabecularThickness = 0.097 - 0.058 * osteoporosis + 0.074 * remodel;
-  float wallSmoothing = clamp(fwidth(edge) * 0.7, 0.026, 0.12);
-  float trabecula = (1.0 - smoothstep(trabecularThickness * 0.42, trabecularThickness + wallSmoothing, edge));
-  trabecula *= 1.0 - marrowCore * 0.89;
-  trabecula *= 1.0 - osteoporosis * smoothstep(0.54, 0.67, sectionNoise(p * 82.0)) * 0.98;
-  vec3 latticeColor = mix(vec3(0.52, 0.332, 0.154), vec3(0.79, 0.593, 0.33), grain);
-  latticeColor = mix(latticeColor, vec3(0.81, 0.64, 0.37), softBone * 0.69);
-  vec3 interior = mix(marrow, latticeColor, trabecula);
-  interior = mix(interior, vec3(0.44, 0.16, 0.075) * (0.75 + 0.46 * clouds) + latticeColor * trabecula * 0.19,
-    infectionSite * 0.94);
-
-  float cortical = 1.0 - smoothstep(cortexDepth * 0.85, cortexDepth * 1.08, distanceToRim);
-  float edgeLine = 1.0 - smoothstep(0.004, 0.006, distanceToRim);
-  vec3 result = mix(interior, cortex, cortical);
-  result = mix(result, cortex * 1.14, edgeLine * 0.45);
-
-  float stressY = -0.34 + field.b * 0.09 + sectionNoise(p * 20.0) * 0.012;
-  float stress = (1.0 - smoothstep(0.004, 0.012, abs(p.y - stressY))) *
-    (1.0 - smoothstep(0.28, 0.61, field.b)) * smoothstep(0.55, 1.0, softBone);
-  result = mix(result, vec3(0.42, 0.29, 0.18), stress * 0.48);
-  return result * (0.92 + grain * 0.13);
-}
-`;
-
-function sectionMaterial(texture, bounds, disease, stage) {
-  const material = new THREE.MeshStandardMaterial({ color: '#fff9ef', roughness: 0.88 });
-  material.customProgramCacheKey = () => 'anatomical-bone-section-v1';
-  material.onBeforeCompile = (shader) => {
-    shader.uniforms.boneField = { value: texture };
-    shader.uniforms.boneMin = { value: bounds.min };
-    shader.uniforms.boneSize = { value: new THREE.Vector2(bounds.width, bounds.height) };
-    shader.uniforms.boneDisease = { value: DISEASES[disease] ?? 0 };
-    shader.uniforms.boneSeverity = { value: SEVERITY[stage] ?? 0 };
-    shader.vertexShader = shader.vertexShader
-      .replace('#include <common>', '#include <common>\nvarying vec2 bonePosition;')
-      .replace('#include <begin_vertex>', '#include <begin_vertex>\nbonePosition = position.xy;');
-    shader.fragmentShader = shader.fragmentShader
-      .replace('#include <common>', '#include <common>\n' + SECTION_FRAGMENT)
-      .replace('#include <color_fragment>', '#include <color_fragment>\ndiffuseColor.rgb *= sectionColor();');
-  };
-  material.addEventListener('dispose', () => texture.dispose());
-  return material;
 }
 
 export function createDiseaseEffects({ geometry, planeZ = 0, disease, stage }) {
@@ -337,9 +331,12 @@ export function createDiseaseEffects({ geometry, planeZ = 0, disease, stage }) {
   const bounds = new THREE.Box2().setFromPoints(contours.flat()).expandByScalar(0.001);
   bounds.width = bounds.max.x - bounds.min.x;
   bounds.height = bounds.max.y - bounds.min.y;
-  const field = sliceField(contours, bounds);
+  const texture = createSectionTexture(contours, bounds, disease, stage);
   const face = new THREE.ShapeGeometry(contourShapes(contours));
-  const mesh = new THREE.Mesh(face, sectionMaterial(field, bounds, disease, stage));
+  assignSectionUVs(face, bounds);
+  const material = new THREE.MeshBasicMaterial({ map: texture, toneMapped: false });
+  material.addEventListener('dispose', () => texture.dispose());
+  const mesh = new THREE.Mesh(face, material);
   mesh.name = 'bone-section';
   mesh.position.z = planeZ + 0.001;
   group.add(mesh);
@@ -358,7 +355,7 @@ export function diseaseMaterialStyle(disease, stage) {
   return { color: normal.lerp(new THREE.Color(condition), strength), roughness: 0.66 + strength * 0.13 };
 }
 
-export function deformDiseaseGeometry(geometry, disease, stage, boneId) {
+export function deformDiseaseGeometry(geometry, disease, stage, boneId, planeZ = 0) {
   const strength = SEVERITY[stage] ?? 0;
   const remodeled = disease === 'paget' && strength > 0;
   const stressCurve = disease === 'osteomalacia' && stage === 'advanced' && /^(femur|tibia)-/.test(boneId);
@@ -372,7 +369,7 @@ export function deformDiseaseGeometry(geometry, disease, stage, boneId) {
     const widen = remodeled ? 1 + 0.13 * strength * envelope : 1;
     const bend = stressCurve ? 0.032 * envelope : 0.022 * strength * envelope;
     positions.setX(i, positions.getX(i) * widen + bend);
-    positions.setZ(i, positions.getZ(i) * widen);
+    positions.setZ(i, planeZ + (positions.getZ(i) - planeZ) * widen);
   }
   positions.needsUpdate = true;
   altered.computeVertexNormals();

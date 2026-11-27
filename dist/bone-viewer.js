@@ -2,7 +2,7 @@ import * as THREE from './vendor/three.module.js';
 import { OrbitControls } from './vendor/controls/OrbitControls.js';
 import { GLTFLoader } from './vendor/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from './vendor/libs/meshopt_decoder.module.js';
-import { fractureBone, makeSkin, normalizeBone, shaftProfile } from './bone-fracture.js';
+import { bindFractureCover, deformFractureCovers, fractureBone, makeSkin, normalizeBone, shaftProfile } from './bone-fracture.js';
 import { createDiseaseEffects, deformDiseaseGeometry, diseaseMaterialStyle, orientBoneSection } from './bone-effects.js';
 
 const ASSETS = new URL('./assets/anatomy/', import.meta.url);
@@ -121,20 +121,25 @@ function tagMesh(geometry, display, layer, renderOrder = 0) {
   return mesh;
 }
 
-function fractureMuscles(normMatrix, region, side, type, profile, source) {
+function fractureMuscles(normMatrix, region, side, type, profile, source, covers) {
   const tissue = group('muscles');
-  const up = new THREE.Plane(new THREE.Vector3(0, -1, 0), 1.02);
-  const down = new THREE.Plane(new THREE.Vector3(0, 1, 0), 1.02);
   const display = material('muscles', {
-    side: THREE.DoubleSide, clippingPlanes: [up, down], transparent: true, opacity: 0.20,
-    depthWrite: false,
+    side: THREE.DoubleSide, transparent: true, opacity: 0.20, depthWrite: false,
   });
   display.forceSinglePass = true;
-  if (type === 'open') {
-    const prior = display.onBeforeCompile;
-    display.customProgramCacheKey = () => 'anatomical-surface-muscles-open';
-    display.onBeforeCompile = (shader) => {
-      prior(shader);
+  const prior = display.onBeforeCompile;
+  const isOpen = type === 'open';
+  display.customProgramCacheKey = () => 'anatomical-fracture-muscles-' + type;
+  display.onBeforeCompile = (shader) => {
+    prior(shader);
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nattribute vec3 fractureRestPosition;')
+      .replace('anatomySurfacePosition = position;', 'anatomySurfacePosition = fractureRestPosition;');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <clipping_planes_fragment>', `#include <clipping_planes_fragment>
+        if (abs(anatomySurfacePosition.y) > 0.90) discard;
+      `);
+    if (isOpen) {
       shader.uniforms.fractureOpening = {
         value: new THREE.Vector3(profile.x, region.cut, profile.z + profile.rz * 0.04),
       };
@@ -145,15 +150,17 @@ function fractureMuscles(normMatrix, region, side, type, profile, source) {
           vec2 aperture = rel.xy / vec2(0.24, 0.18);
           if (rel.z > 0.0 && dot(aperture, aperture) < 1.0) discard;
         `);
-    };
-  }
+    }
+  };
   let index = 0;
   for (const pattern of region.muscles) {
     const muscle = source.get(pattern.replace('{s}', side));
     if (!muscle) continue;
     const geometry = muscle.geometry.clone().applyMatrix4(muscle.matrixWorld).applyMatrix4(normMatrix);
     if (!geometry.getAttribute('normal')) geometry.computeVertexNormals();
-    tissue.add(tagMesh(geometry, display, 'muscles', 10 + index++));
+    const mesh = tagMesh(geometry, display, 'muscles', 10 + index++);
+    covers.push(bindFractureCover(mesh, region.cut, 0.25, true));
+    tissue.add(mesh);
   }
   if (!index) display.dispose();
   return tissue;
@@ -162,15 +169,21 @@ function fractureMuscles(normMatrix, region, side, type, profile, source) {
 function addFractureSurface(root, normalized, region, side, type, muscleAssets) {
   const { geometry, matrix } = normalized;
   const profile = shaftProfile(geometry, region.cut);
+  const covers = [];
   const { surface, edge } = makeSkin(geometry, type, region.cut, region.width, region.depth);
   const skin = tagMesh(surface, material('skin', { transparent: true, opacity: type === 'open' ? 0.24 : 0.19, depthWrite: false }), 'skin', 19);
+  covers.push(bindFractureCover(skin, region.cut));
   root.add(skin);
   if (edge.length > 5) {
     const edgeCurve = new THREE.CatmullRomCurve3(edge, true);
     const border = new THREE.TubeGeometry(edgeCurve, 48, 0.0075, 6, true);
-    root.add(tagMesh(border, material('skin', { color: 0xc58980, transparent: true, opacity: 0.75 }), 'skin', 22));
+    const skinEdge = tagMesh(border, material('skin', {
+      color: 0xc58980, transparent: true, opacity: 0.75,
+    }), 'skin', 22);
+    covers.push(bindFractureCover(skinEdge, region.cut));
+    root.add(skinEdge);
   }
-  root.add(fractureMuscles(matrix, region, side, type, profile, muscleAssets));
+  root.add(fractureMuscles(matrix, region, side, type, profile, muscleAssets, covers));
 
   const shell = material('bone', { side: THREE.DoubleSide });
   const cortex = material('cortex', { side: THREE.DoubleSide });
@@ -186,23 +199,36 @@ function addFractureSurface(root, normalized, region, side, type, muscleAssets) 
     parent.position.copy(translate);
     parent.add(hinge);
     root.add(parent);
-    return { parent, hinge };
+    return {
+      parent, hinge,
+      restPivot: new THREE.Matrix4().makeTranslation(-translate.x, -translate.y, -translate.z),
+      transform: new THREE.Matrix4(),
+    };
   });
-  return fragments;
+  return { fragments, covers };
 }
 
 function addDiseaseSurface(root, anatomy, boneId, disease, stage) {
-  const altered = deformDiseaseGeometry(anatomy, disease, stage, boneId);
-  const { geometry, planeZ } = orientBoneSection(altered);
-  const spacing = Math.max(0.425, geometry.boundingBox.getSize(new THREE.Vector3()).x * 0.58);
-  const style = diseaseMaterialStyle(disease, stage);
-  const whole = tagMesh(geometry, material('bone', style), 'bone');
+  // Compare against the same healthy reference at every stage and retain a fixed
+  // cut orientation so changing the stage never flips or re-centers the specimen.
+  const { geometry: healthy, planeZ } = orientBoneSection(anatomy);
+  const geometry = deformDiseaseGeometry(healthy, disease, stage, boneId, planeZ);
+  const spacing = Math.max(0.425, healthy.boundingBox.getSize(new THREE.Vector3()).x * 0.58);
+  const warmFill = { emissive: 0x917658, emissiveIntensity: 0.14 };
+  const referenceMaterial = new THREE.MeshStandardMaterial({
+    ...diseaseMaterialStyle(disease, 'healthy'),
+    ...warmFill,
+  });
+  const whole = tagMesh(healthy, referenceMaterial, 'bone');
   whole.name = 'whole';
   whole.position.x = -spacing;
 
-  const split = tagMesh(geometry, material('bone', {
-    ...style, clippingPlanes: [new THREE.Plane(new THREE.Vector3(0, 0, -1), planeZ)],
-  }), 'bone');
+  const sectionMaterial = new THREE.MeshStandardMaterial({
+    ...diseaseMaterialStyle(disease, stage),
+    ...warmFill,
+    clippingPlanes: [new THREE.Plane(new THREE.Vector3(0, 0, -1), planeZ)],
+  });
+  const split = tagMesh(geometry, sectionMaterial, 'bone');
   split.name = 'section';
   split.position.x = spacing;
 
@@ -211,9 +237,7 @@ function addDiseaseSurface(root, anatomy, boneId, disease, stage) {
   details.position.x = spacing;
   details.traverse((object) => { if (object.isMesh) object.userData.layer = 'marrow'; });
   root.add(whole, split, details);
-  for (const unused of new Set([anatomy, altered])) {
-    if (unused !== geometry) unused.dispose();
-  }
+  if (anatomy !== healthy && anatomy !== geometry) anatomy.dispose();
 }
 
 export class BoneConditionViewer {
@@ -383,8 +407,11 @@ export class BoneConditionViewer {
     const normalized = normalizeBone(source);
     disposeDrawables(this.model);
     this.fragments = null;
+    this.fractureCovers = null;
     if (this.mode === 'fracture') {
-      this.fragments = addFractureSurface(this.model, normalized, REGIONS[type], side, this.fracture, this.muscles);
+      const { fragments, covers } = addFractureSurface(this.model, normalized, REGIONS[type], side, this.fracture, this.muscles);
+      this.fragments = fragments;
+      this.fractureCovers = covers;
       normalized.geometry.dispose();
       this.angleProgress = 1;
       this.putFracture(1);
@@ -410,6 +437,12 @@ export class BoneConditionViewer {
       gap * (open ? Math.abs(level) * 0.10 + 0.16 : 0.022),
     );
     lower.hinge.rotation.set(gap * (open ? -0.28 : -0.065), 0, gap * side * (open ? 0.245 : 0.13));
+    for (const part of this.fragments) {
+      part.parent.updateMatrix();
+      part.hinge.updateMatrix();
+      part.transform.multiplyMatrices(part.parent.matrix, part.hinge.matrix).multiply(part.restPivot);
+    }
+    deformFractureCovers(this.fractureCovers, upper.transform, lower.transform);
     this.dirty = true;
   }
 

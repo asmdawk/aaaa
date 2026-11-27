@@ -1,4 +1,4 @@
-import { Box3, BufferAttribute, DynamicDrawUsage, MathUtils, Matrix3, Matrix4, Sphere, Vector3 } from './vendor/three.module.js';
+import { Box3, BufferAttribute, DynamicDrawUsage, MathUtils, Matrix3, Matrix4, Quaternion, Sphere, Vector3 } from './vendor/three.module.js';
 
 const ATLAS_HEIGHT = 1.70953;
 const SIDES = ['left', 'right'];
@@ -10,6 +10,7 @@ const JOINT_INDEX = new Map(JOINTS.map((name, index) => [name, index]));
 const FRONT = new Vector3(0, 0, 1);
 const BACK = new Vector3(0, 0, -1);
 const NECK_AXIS = new Vector3(1, 0, 0);
+const SKIN_STRIDE = 8;
 const PROFILE = {
   girdle: [.019, 1.403, .030],
   shoulder: [.168, 1.383, -.025],
@@ -106,20 +107,24 @@ function skeletalBinding(id, side) {
 
 function skinArmInfluence(x, y) {
   const separation = .161 + .043 * descend(y, .90, 1.04) - .010 * between(y, 1.19, 1.42);
-  const transition = MathUtils.lerp(.009, .054, between(y, 1.105, 1.370));
+  const transition = MathUtils.lerp(.009, .059, between(y, 1.068, 1.323));
   return between(x, separation - transition, separation + transition) * descend(y, 1.411, 1.464);
 }
 
-function upperArmWeights(out, y, joints, armWeight, neckWeight = 0) {
+function collarInfluence(x, y) {
+  return between(x, .054, .125) * between(y, 1.332, 1.393) * descend(y, 1.431, 1.477);
+}
+
+function upperArmWeights(out, y, joints, armWeight, neckWeight = 0, collarWeight = 0) {
   const elbow = descend(y, 1.067, 1.139);
   const wrist = descend(y, .841, .890);
-  if (armWeight === 1) {
-    blendLimb(out, joints.shoulder, joints.elbow, joints.wrist, elbow, wrist);
-  } else if (y > 1.25) {
-    const girdle = between(y, 1.25, 1.405);
-    const shoulder = armWeight * (1 - .56 * girdle);
-    blendAttachment(out, neckWeight > .5 ? index('neck') : 0,
-      joints.girdle, joints.shoulder, armWeight, shoulder / (armWeight || 1));
+  if (y > 1.25) {
+    const shoulder = armWeight * (1 - .63 * between(y, 1.25, 1.411) * descend(armWeight, .67, 1));
+    const root = (1 - armWeight) * (1 - collarWeight);
+    out[0] = 0; out[1] = root * (1 - neckWeight);
+    out[2] = joints.girdle; out[3] = 1 - root - shoulder;
+    out[4] = joints.shoulder; out[5] = shoulder;
+    out[6] = index('neck'); out[7] = root * neckWeight;
   } else if (wrist > 0) {
     blendAttachment(out, 0, joints.elbow, joints.wrist, armWeight, wrist);
   } else {
@@ -127,12 +132,38 @@ function upperArmWeights(out, y, joints, armWeight, neckWeight = 0) {
   }
 }
 
-function lowerLegWeights(out, y, joints, centralPelvis = 0) {
+function footInfluence(y, z) {
+  const aroundAnkle = descend(y, .052, .119);
+  const forefoot = between(z, -.025, .011) * descend(y, .078, .129);
+  return Math.max(aroundAnkle, forefoot);
+}
+
+function centralPelvisInfluence({ x, y, z }) {
+  const posterior = descend(z, -.120, -.062);
+  const inner = MathUtils.lerp(.014, .024, posterior);
+  const outer = MathUtils.lerp(.061, .085, posterior);
+  return between(y, .710, .826) * descend(Math.abs(x), inner, outer);
+}
+
+function lowerLegWeights(out, point, joints, centralPelvis = 0, surface = false) {
+  const { y, z } = point;
   const hip = descend(y, .796, .917) * (1 - centralPelvis);
-  const knee = descend(y, .390, .480);
-  const ankle = descend(y, .051, .113);
-  if (hip < 1) blend(out, 0, joints.hip, hip);
+  if (hip < 1) {
+    blend(out, 0, joints.hip, hip);
+    return;
+  }
+  const knee = descend(y, .381, .479);
+  const ankle = footInfluence(y, z);
+  const patella = surface * between(z, -.009, .030) * between(y, .399, .434) * descend(y, .461, .514);
+  if (patella > 0) blendAttachment(out, joints.patella, joints.hip, joints.knee, 1 - patella, knee);
   else blendLimb(out, joints.hip, joints.knee, joints.ankle, knee, ankle);
+}
+
+function headInfluence({ x, y, z }) {
+  const neck = between(y, 1.429, 1.551);
+  const chin = between(y, 1.457, 1.489) * between(z, .003, .037);
+  const cheek = between(y, 1.496, 1.539) * between(Math.abs(x), .041, .065);
+  return Math.max(neck, chin, cheek);
 }
 
 function universalWeights(point, out) {
@@ -140,15 +171,15 @@ function universalWeights(point, out) {
   const radius = Math.abs(x);
   const side = x >= 0 ? 'left' : 'right';
   const joints = SIDE_INDEX[side];
-  const neck = between(y, 1.432, 1.545);
-  const arm = y > .708 && y < 1.464 ? skinArmInfluence(radius, y) : 0;
-  if (arm > .001) {
-    upperArmWeights(out, y, joints, arm, neck);
+  const neck = headInfluence(point);
+  const arm = y > .660 && y < 1.464 ? skinArmInfluence(radius, y) : 0;
+  const collar = collarInfluence(radius, y);
+  if (arm > 0 || collar > 0) {
+    upperArmWeights(out, y, joints, arm, neck, collar);
   } else if (neck > 0) {
     blend(out, 0, index('neck'), neck);
   } else if (y < .918) {
-    const centralPelvis = between(y, .720, .809) * descend(radius, .014, .061);
-    lowerLegWeights(out, y, joints, centralPelvis);
+    lowerLegWeights(out, point, joints, centralPelvisInfluence(point), true);
   } else {
     identity(out);
   }
@@ -168,13 +199,17 @@ function bindingFor(part, side) {
   const bridge = (parent, child, amount, volume) => soft((p, out) => blend(out, parent, child, amount(p)), volume);
   const innerShoulder = p => between(Math.abs(p.x), .105, .176);
   const allArm = (p, out) => {
-    const attachment = between(Math.abs(p.x), .098, .183);
-    upperArmWeights(out, p.y, joints, Math.max(attachment, descend(p.y, 1.142, 1.248)));
+    const radius = Math.abs(p.x);
+    const arm = skinArmInfluence(radius + .008, p.y);
+    upperArmWeights(out, p.y, joints, arm, headInfluence(p), collarInfluence(radius, p.y));
   };
-  const allLeg = (p, out) => lowerLegWeights(out, p.y, joints);
+  const allLeg = (p, out) => lowerLegWeights(out, p, joints, centralPelvisInfluence(p));
 
   if (layer === 'bones' || layer === 'skeletal') {
-    if (id.includes('cervical-vertebra')) return bridge(0, neck, p => between(p.y, 1.444, 1.545));
+    if (/cervical-vertebra|intervertebral-discs/.test(id)) {
+      return { ...bridge(0, neck, p => between(p.y, 1.443, 1.544)), componentWeights: true };
+    }
+    if (id === 'hyoid-bone') return bridge(0, neck, () => .59);
     return rigid(skeletalBinding(id, side));
   }
 
@@ -184,15 +219,15 @@ function bindingFor(part, side) {
   if (/brain|cerebr|eye-|pineal|pituitary|salivary|tongue/.test(id)) return rigid(neck);
 
   if (layer !== 'muscles' && layer !== 'muscular') {
-    if (/head-and-neck|cranial-nerv|spinal-cord|trachea|pharynx|larynx|thyroid|esophagus/.test(id)) {
-      return bridge(0, neck, p => between(p.y, 1.449, 1.541) * descend(Math.abs(p.x), .080, .132));
+    if (/head-and-neck|cranial-nerv|spinal-cord|spinal-nerve-root|sympathetic-trunk|thorax|trachea|pharynx|larynx|thyroid|esophagus/.test(id)) {
+      return bridge(0, neck, headInfluence);
     }
     return rigid(0);
   }
 
   if (/extraocular|facial-muscle|masseter|pterygoid|temporalis/.test(id)) return rigid(neck);
-  if (/hyoid|platysma|prevertebral|scalene|suboccipital|splenius|sternocleidomastoid|pharynx|larynx/.test(id)) {
-    return bridge(0, neck, p => between(p.y, 1.421, 1.55));
+  if (/hyoid|platysma|prevertebral|scalene|suboccipital|splenius|sternocleidomastoid|pharynx|larynx|deep-back-muscles|erector-spinae/.test(id)) {
+    return bridge(0, neck, headInfluence);
   }
 
   if (/biceps-brachii/.test(id)) {
@@ -215,7 +250,10 @@ function bindingFor(part, side) {
   });
   if (/muscles-of-.*hand/.test(id)) return rigid(joints.wrist);
 
-  if (/deltoid|subscapularis|teres-|infraspinatus|supraspinatus|coracobrachialis/.test(id)) {
+  if (/coracobrachialis/.test(id)) {
+    return bridge(joints.girdle, joints.shoulder, p => descend(p.y, 1.281, 1.336));
+  }
+  if (/deltoid|subscapularis|teres-|infraspinatus|supraspinatus/.test(id)) {
     return bridge(joints.girdle, joints.shoulder, p => {
       const closeToHumerus = between(Math.abs(p.x), .126, .189);
       const alongHumerus = descend(p.y, 1.282, 1.365) * between(Math.abs(p.x), .108, .171);
@@ -228,26 +266,65 @@ function bindingFor(part, side) {
       blendAttachment(out, 0, joints.girdle, joints.shoulder, influence, between(influence, .26, .96));
     });
   }
-  if (/trapezius|rhomboid|serratus-anterior|levator-scapulae|subclavius|pectoralis-minor/.test(id)) {
-    return bridge(0, joints.girdle, p => between(Math.abs(p.x), .032, .137) * between(p.y, 1.268, 1.375));
+  if (/trapezius|levator-scapulae/.test(id)) {
+    return soft((p, out) => {
+      const head = headInfluence(p);
+      const girdle = id.includes('levator') ? descend(p.y, 1.405, 1.499)
+        : between(Math.abs(p.x), .049, .153) * between(p.y, 1.196, 1.348);
+      blendAttachment(out, 0, joints.girdle, neck, head + girdle * (1 - head),
+        head / (head + girdle * (1 - head) || 1));
+    });
+  }
+  if (/rhomboid|subclavius|pectoralis-minor/.test(id)) {
+    const [start, finish] = id.includes('rhomboid') ? [.037, .083] : [.043, .119];
+    return bridge(0, joints.girdle, p => between(Math.abs(p.x), start, finish));
+  }
+  if (/serratus-anterior/.test(id)) {
+    return bridge(0, joints.girdle, p => descend(p.z, -.076, -.037) * between(p.y, 1.215, 1.355));
   }
 
-  if (/quadriceps|sartorius|biceps-femoris|semitendinosus|semimembranosus|gracilis/.test(id)) {
-    const quad = id.includes('quadriceps');
+  if (/quadriceps/.test(id)) {
     return soft((p, out) => {
-      const hip = descend(p.y, .777, .910);
-      const knee = descend(p.y, .400, .536);
-      blendAttachment(out, 0, joints.hip, quad ? joints.patella : joints.knee, hip, knee);
+      const hip = descend(p.y, .781, .906);
+      if (hip < 1) blend(out, 0, joints.hip, hip);
+      else blendLimb(out, joints.hip, joints.patella, joints.knee,
+        descend(p.y, .427, .514), descend(p.y, .388, .428));
+    });
+  }
+  if (/tensor-fasciae|sartorius|biceps-femoris|semitendinosus|semimembranosus|gracilis/.test(id)) {
+    const hamstring = /biceps-femoris|semitendinosus|semimembranosus|gracilis/.test(id);
+    return soft((p, out) => {
+      const upper = hamstring ? descend(p.y, .746, .833) : descend(p.y, .791, .936);
+      const hip = upper * (1 - centralPelvisInfluence(p));
+      const knee = descend(p.y, .402, .488);
+      blendAttachment(out, 0, joints.hip, joints.knee, hip, knee);
     }, id.includes('biceps-femoris') ? { joint: 'knee', side, magnitude: .19, bottom: .396, top: .819 } : undefined);
   }
-  if (/adductor|iliopsoas|gluteus|deep-rotators|tensor-fasciae/.test(id)) {
+  if (/adductor/.test(id)) {
+    return bridge(0, joints.hip, p => {
+      const origin = between(p.y, .768, .852) * descend(Math.abs(p.x), .028, .069);
+      return 1 - Math.max(origin, centralPelvisInfluence(p));
+    });
+  }
+  if (/gluteus|deep-rotators/.test(id)) {
+    return bridge(0, joints.hip, p => Math.max(descend(p.y, .793, .947),
+      between(Math.abs(p.x), .092, .139) * descend(p.y, .847, .920)) * (1 - centralPelvisInfluence(p)));
+  }
+  if (/iliopsoas/.test(id)) {
     return bridge(0, joints.hip, p => descend(p.y, .793, .947));
   }
   if (/gastrocnemius/.test(id)) return soft((p, out) => {
-    blendLimb(out, joints.hip, joints.knee, joints.ankle, descend(p.y, .393, .453), descend(p.y, .062, .161));
+    blend(out, joints.hip, joints.knee, descend(p.y, .381, .479));
   }, { joint: 'ankle', side, magnitude: .13, bottom: .151, top: .431 });
-  if (/calcaneal|posterior-muscles-of-.*leg|extensor-muscles-of-.*leg|soleus|tibialis|fibularis/.test(id)) {
-    return bridge(joints.knee, joints.ankle, p => descend(p.y, .062, .158));
+  if (/posterior-muscles-of-.*leg/.test(id)) {
+    return soft((p, out) => blendLimb(out, joints.hip, joints.knee, joints.ankle,
+      descend(p.y, .383, .436), footInfluence(p.y, p.z)));
+  }
+  if (/calcaneal/.test(id)) {
+    return bridge(joints.knee, joints.ankle, p => descend(p.y, .055, .149));
+  }
+  if (/extensor-muscles-of-.*leg|soleus|tibialis|fibularis/.test(id)) {
+    return bridge(joints.knee, joints.ankle, p => footInfluence(p.y, p.z));
   }
   if (/muscles-of-.*foot/.test(id)) return rigid(joints.ankle);
   return rigid(0);
@@ -303,26 +380,65 @@ function volumeOffsets(volume, points, inverse, scale) {
   return result;
 }
 
-function makeSoftBinding(mesh, rest, weightsForVertex, volume, scale) {
+function componentHeights(geometry, positions, rest) {
+  const indices = geometry.index;
+  if (!indices) return null;
+  const count = positions.length / 3;
+  const parents = Int32Array.from({ length: count }, (_, vertex) => vertex);
+  function root(vertex) {
+    while (parents[vertex] !== vertex) {
+      parents[vertex] = parents[parents[vertex]];
+      vertex = parents[vertex];
+    }
+    return vertex;
+  }
+  for (let face = 0; face < indices.count; face += 3) {
+    const a = root(indices.getX(face));
+    parents[root(indices.getX(face + 1))] = a;
+    parents[root(indices.getX(face + 2))] = a;
+  }
+
+  const bounds = new Map();
+  const point = new Vector3();
+  for (let vertex = 0; vertex < count; vertex++) {
+    const group = root(vertex);
+    const y = point.fromArray(positions, vertex * 3).applyMatrix4(rest).y;
+    const range = bounds.get(group);
+    if (range) {
+      range.min = Math.min(range.min, y);
+      range.max = Math.max(range.max, y);
+    } else bounds.set(group, { min: y, max: y });
+  }
+  return Float32Array.from(parents, (_, vertex) => {
+    const { min, max } = bounds.get(root(vertex));
+    return (min + max) / 2;
+  });
+}
+
+function makeSoftBinding(mesh, rest, options, scale) {
+  const { weights, volume, componentWeights } = options;
   const position = mesh.geometry.getAttribute('position');
   const normals = mesh.geometry.getAttribute('normal');
   const restPositions = packCoordinates(position);
   const restNormals = normals ? packCoordinates(normals) : null;
   const count = position.count;
-  const skin = new Float32Array(count * 6);
+  const skin = new Float32Array(count * SKIN_STRIDE);
   const modelPoints = volume ? new Float32Array(count * 3) : null;
+  const heights = componentWeights ? componentHeights(mesh.geometry, restPositions, rest) : null;
   const point = new Vector3();
   const used = new Set();
-  const mix = new Float32Array(6);
+  const mix = new Float32Array(SKIN_STRIDE);
   for (let vertex = 0; vertex < count; vertex++) {
     point.fromArray(restPositions, vertex * 3).applyMatrix4(rest);
     if (modelPoints) point.toArray(modelPoints, vertex * 3);
+    if (heights) point.y = heights[vertex];
     point.multiplyScalar(1 / scale);
-    weightsForVertex(point, mix);
-    for (let weight = 1; weight < 6; weight += 2) {
+    mix.fill(0);
+    weights(point, mix);
+    for (let weight = 1; weight < SKIN_STRIDE; weight += 2) {
       if (mix[weight] > 0) used.add(mix[weight - 1]);
     }
-    skin.set(mix, vertex * 6);
+    skin.set(mix, vertex * SKIN_STRIDE);
   }
   if (used.size === 1 && !volume) return { rigid: used.values().next().value };
 
@@ -338,18 +454,35 @@ function makeSoftBinding(mesh, rest, weightsForVertex, volume, scale) {
   return {
     mesh, rest, inverse, restPositions, restNormals, positions, normals: deformedNormals,
     skin, used: [...used],
-    transforms: JOINTS.map(() => new Matrix4()),
-    normalTransforms: JOINTS.map(() => new Matrix3()),
+    transforms: JOINTS.map(() => new Float64Array(8)),
+    localMatrix: new Matrix4(),
+    localRotation: new Quaternion(),
     volume,
     offsets: modelPoints ? volumeOffsets(volume, modelPoints, inverse, scale) : null,
   };
 }
 
+function jointDualQuaternion(out, matrix, rotation) {
+  const { x, y, z, w } = rotation.setFromRotationMatrix(matrix).normalize();
+  const tx = matrix.elements[12] * .5;
+  const ty = matrix.elements[13] * .5;
+  const tz = matrix.elements[14] * .5;
+  out[0] = x;
+  out[1] = y;
+  out[2] = z;
+  out[3] = w;
+  out[4] = tx * w + ty * z - tz * y;
+  out[5] = ty * w + tz * x - tx * z;
+  out[6] = tz * w + tx * y - ty * x;
+  out[7] = -(tx * x + ty * y + tz * z);
+}
+
 function updateSoft(binding, deltas, amounts) {
-  const { mesh, rest, inverse, restPositions, restNormals, positions, normals, skin, used, transforms, normalTransforms, offsets, volume } = binding;
+  const { mesh, rest, inverse, restPositions, restNormals, positions, normals, skin, used, transforms,
+    localMatrix, localRotation, offsets, volume } = binding;
   for (const joint of used) {
-    transforms[joint].copy(inverse).multiply(deltas[joint]).multiply(rest);
-    normalTransforms[joint].getNormalMatrix(transforms[joint]);
+    localMatrix.copy(inverse).multiply(deltas[joint]).multiply(rest);
+    jointDualQuaternion(transforms[joint], localMatrix, localRotation);
   }
   const angle = volume ? amounts[index(volume.joint, volume.side)] : 0;
   const contraction = Math.sin(MathUtils.degToRad(MathUtils.clamp(angle, 0, 90)));
@@ -359,7 +492,7 @@ function updateSoft(binding, deltas, amounts) {
   const sphere = mesh.geometry.boundingSphere;
   bounds.min.set(Infinity, Infinity, Infinity);
   bounds.max.set(-Infinity, -Infinity, -Infinity);
-  for (let offset = 0, base = 0; offset < output.length; offset += 3, base += 6) {
+  for (let offset = 0, base = 0; offset < output.length; offset += 3, base += SKIN_STRIDE) {
     let x = restPositions[offset];
     let y = restPositions[offset + 1];
     let z = restPositions[offset + 2];
@@ -368,33 +501,40 @@ function updateSoft(binding, deltas, amounts) {
       y += offsets[offset + 1] * contraction;
       z += offsets[offset + 2] * contraction;
     }
-    let dx = 0, dy = 0, dz = 0;
-    let dnx = 0, dny = 0, dnz = 0;
-    for (let influence = base; influence < base + 6; influence += 2) {
-      const weight = skin[influence + 1];
+    let rx = 0, ry = 0, rz = 0, rw = 0;
+    let tx = 0, ty = 0, tz = 0, tw = 0;
+    // Blend rotations as well as translations to preserve thickness at a flexed joint.
+    for (let influence = base; influence < base + SKIN_STRIDE; influence += 2) {
+      let weight = skin[influence + 1];
       if (weight === 0) continue;
-      const joint = skin[influence];
-      const t = transforms[joint].elements;
-      dx += weight * (t[0] * x + t[4] * y + t[8] * z + t[12]);
-      dy += weight * (t[1] * x + t[5] * y + t[9] * z + t[13]);
-      dz += weight * (t[2] * x + t[6] * y + t[10] * z + t[14]);
-      if (normalOutput) {
-        const n = normalTransforms[joint].elements;
-        const nx = restNormals[offset], ny = restNormals[offset + 1], nz = restNormals[offset + 2];
-        dnx += weight * (n[0] * nx + n[3] * ny + n[6] * nz);
-        dny += weight * (n[1] * nx + n[4] * ny + n[7] * nz);
-        dnz += weight * (n[2] * nx + n[5] * ny + n[8] * nz);
-      }
+      const transform = transforms[skin[influence]];
+      if (rx * transform[0] + ry * transform[1] + rz * transform[2] + rw * transform[3] < 0) weight = -weight;
+      rx += weight * transform[0]; ry += weight * transform[1];
+      rz += weight * transform[2]; rw += weight * transform[3];
+      tx += weight * transform[4]; ty += weight * transform[5];
+      tz += weight * transform[6]; tw += weight * transform[7];
     }
+    const unit = 1 / Math.sqrt(rx * rx + ry * ry + rz * rz + rw * rw);
+    rx *= unit; ry *= unit; rz *= unit; rw *= unit;
+    tx *= unit; ty *= unit; tz *= unit; tw *= unit;
+    const ux = ry * z - rz * y;
+    const uy = rz * x - rx * z;
+    const uz = rx * y - ry * x;
+    const dx = x + 2 * (rw * ux + ry * uz - rz * uy + tx * rw - tw * rx - ty * rz + tz * ry);
+    const dy = y + 2 * (rw * uy + rz * ux - rx * uz + ty * rw - tw * ry - tz * rx + tx * rz);
+    const dz = z + 2 * (rw * uz + rx * uy - ry * ux + tz * rw - tw * rz - tx * ry + ty * rx);
     output[offset] = dx; output[offset + 1] = dy; output[offset + 2] = dz;
     bounds.min.x = Math.min(bounds.min.x, dx); bounds.max.x = Math.max(bounds.max.x, dx);
     bounds.min.y = Math.min(bounds.min.y, dy); bounds.max.y = Math.max(bounds.max.y, dy);
     bounds.min.z = Math.min(bounds.min.z, dz); bounds.max.z = Math.max(bounds.max.z, dz);
     if (normalOutput) {
-      const factor = 1 / (Math.sqrt(dnx * dnx + dny * dny + dnz * dnz) || 1);
-      normalOutput[offset] = dnx * factor;
-      normalOutput[offset + 1] = dny * factor;
-      normalOutput[offset + 2] = dnz * factor;
+      const nx = restNormals[offset], ny = restNormals[offset + 1], nz = restNormals[offset + 2];
+      const vx = ry * nz - rz * ny;
+      const vy = rz * nx - rx * nz;
+      const vz = rx * ny - ry * nx;
+      normalOutput[offset] = nx + 2 * (rw * vx + ry * vz - rz * vy);
+      normalOutput[offset + 1] = ny + 2 * (rw * vy + rz * vx - rx * vz);
+      normalOutput[offset + 2] = nz + 2 * (rw * vz + rx * vy - ry * vx);
     }
   }
   bounds.getCenter(sphere.center);
@@ -437,7 +577,7 @@ export function createAnatomyRig(model, parts = [], height = ATLAS_HEIGHT) {
       const rest = new Matrix4().multiplyMatrices(inverse, mesh.matrixWorld);
       const side = SIDES.includes(part.side) ? part.side : inferSide(part, rest);
       const options = bindingFor(part, side);
-      const binding = options.weights ? makeSoftBinding(mesh, rest, options.weights, options.volume, scale) : options;
+      const binding = options.weights ? makeSoftBinding(mesh, rest, options, scale) : options;
       if (binding.rigid === 0) continue;
       if (binding.rigid !== undefined) {
         binding.mesh = mesh;

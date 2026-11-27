@@ -339,7 +339,7 @@ $('#bone-sources').addEventListener('click', () => openDialog('boneSources'));
 $('#close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
 $('#download').addEventListener('click', () => {
-  window.location.href = 'https://raw.githubusercontent.com/asmdawk/aaaa/anatomical-download/Anatomical.zip?v=bone-atlas';
+  window.location.href = 'https://raw.githubusercontent.com/asmdawk/aaaa/anatomical-download/Anatomical.zip?v=render-motion-fix';
 });
 $('#reset-layers').addEventListener('click', () => {
   visible.clear();
