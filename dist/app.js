@@ -1,4 +1,6 @@
 import { describeStructure } from './anatomy-info.js';
+import { createBoneWorkbench } from './bone-app.js';
+import { fractures } from './bone-content.js';
 
 const $ = (query) => document.querySelector(query);
 const $$ = (query) => [...document.querySelectorAll(query)];
@@ -9,6 +11,9 @@ const shapes = {
   download: '<path d="M12 3v11m-4-4 4 4 4-4M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
   cube: '<path d="m12 2.8 8 4.6v9.2l-8 4.6-8-4.6V7.4l8-4.6Z"/><path d="m4 7.4 8 4.6 8-4.6M12 12v9"/>',
   layers: '<path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/>',
+  fracture: '<path d="M9 4a3 3 0 0 0-5 2.6A2.8 2.8 0 0 0 7 11l2-1 2 2-2 1 2 2-1 2 2 1m7-14a3 3 0 0 1 0 5l-1 1 1 2-2 1 1 2-2 2 1 1-2 2"/><path d="M9 4a3 3 0 0 1 4 1l2 1 2-1 2-1m-7 14 1 1a2.8 2.8 0 0 0 4 1"/>',
+  'cross-section': '<path d="M12 3c5 0 8 3.7 8 9s-3 9-8 9-8-3.7-8-9 3-9 8-9Z"/><path d="M12 6c3 0 5 2.5 5 6s-2 6-5 6-5-2.5-5-6 2-6 5-6Z"/><path d="m10 10 4 4m0-4-4 4"/>',
+  label: '<path d="M4 4h7l9 9-7 7-9-9V4Zm4 4h.01"/>',
   muscle: '<path d="M4 17c6-1 4-8 11-11 1-.5 3-1 5-1-1 2-2 3-2 5-2 6-6 8-12 9m2-2c5-2 5-6 9-8"/>',
   bone: '<path d="M15 7a3 3 0 1 1 4-4 3 3 0 1 1 1 6l-8 7a3 3 0 1 1-4 4 3 3 0 1 1-3-4l10-9Z"/>',
   organ: '<path d="M20.8 8.5c0 4.5-5.3 8.6-8.8 11-3.5-2.4-8.8-6.5-8.8-11A4.5 4.5 0 0 1 12 7.2a4.5 4.5 0 0 1 8.8 1.3Z"/><path d="M7 12h3l1-2 2 4 1-2h3"/>',
@@ -86,6 +91,9 @@ let isolated = false;
 let animation = null;
 let toastTimer;
 let mode = 'orbit';
+let labelsEnabled = false;
+let activeSection;
+let anatomyInitialization;
 
 function markRange(input) {
   const progress = (Number(input.value) - Number(input.min)) / (Number(input.max) - Number(input.min));
@@ -250,9 +258,11 @@ function setMode(nextMode) {
     button.classList.toggle('active', active);
     button.setAttribute('aria-pressed', String(active));
   }
-  $('#stage-hint span:last-child').textContent = mode === 'pose'
-    ? 'Przeciągnij znacznik stawu, aby zmienić kąt.'
-    : 'Przeciągnij, by obrócić · przewiń, by przybliżyć · kliknij strukturę';
+  if (activeSection === 'anatomia') {
+    $('#stage-hint span:last-child').textContent = mode === 'pose'
+      ? 'Przeciągnij znacznik stawu, aby zmienić kąt.'
+      : 'Przeciągnij, by obrócić · przewiń, by przybliżyć · kliknij strukturę';
+  }
 }
 
 const play = $('#play');
@@ -303,12 +313,16 @@ const dialogs = {
   help: ['Jak korzystać', `<ul>
     <li>Przeciągnij model, aby go obrócić. Użyj kółka myszy lub gestu dwoma palcami, aby zmienić powiększenie.</li>
     <li>Kliknij nazwę warstwy, aby wyświetlić ją osobno. Przyciski z ikoną oka pozwalają oglądać kilka warstw naraz.</li>
-    <li>Kliknij strukturę, aby przeczytać jej opis. W panelu szczegółów możesz ją przybliżyć lub wyświetlić osobno.</li>
+    <li>Włącz „Etykiety struktur”, aby zobaczyć nazwy ze strzałkami. Kliknij etykietę lub samą strukturę, aby przeczytać opis.</li>
     <li>Wybierz staw i stronę ciała, a następnie zmień kąt. Narzędzie z ikoną dłoni pokazuje znaczniki stawów, które można przeciągać.</li>
+    <li>W dziale „Złamania kości” wybierz kość, rodzaj złamania i warstwy. W dziale „Choroby kości” porównaj zdrową kość z przekrojem dla wybranego etapu.</li>
   </ul>`],
   sources: ['O modelu', `<p>Atlas zawiera 250 struktur opartych na Z-Anatomy i BodyParts3D. Geometrię do wyświetlania w przeglądarce przygotował zespół Astronaut Health Intelligence Platform. Anatomical dodaje polskie opisy, materiały i animacje stawów.</p>
     <p>Osie ruchu stawów wyznaczono na podstawie geometrii kości. Odkształcenia tkanek miękkich są przybliżone i służą do nauki anatomii.</p>
     <p><a href="./assets/anatomy/LICENSE.md" target="_blank" rel="noopener">Autorzy i licencje modelu</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pl" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>`],
+  boneSources: ['O modelach kości', `<p>Modele wykorzystują geometrię kości z atlasu Z-Anatomy. Przekroje, odłamy i warstwy otaczających tkanek przygotowano jako ilustracje edukacyjne.</p>
+    <p>Ruch odłamów pokazuje, jak może wyglądać przemieszczenie. Przekroje chorób pokazują przykładowe nasilenie zmian, które w rzeczywistości mogą przebiegać różnie.</p>
+    <p><a href="./assets/anatomy/LICENSE.md" target="_blank" rel="noopener">Autorzy i licencje geometrii</a></p>`],
 };
 
 const dialog = $('#dialog');
@@ -321,10 +335,11 @@ function openDialog(name) {
 
 $('#help').addEventListener('click', () => openDialog('help'));
 $('#sources').addEventListener('click', () => openDialog('sources'));
+$('#bone-sources').addEventListener('click', () => openDialog('boneSources'));
 $('#close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
 $('#download').addEventListener('click', () => {
-  window.location.href = 'https://raw.githubusercontent.com/asmdawk/aaaa/anatomical-download/Anatomical.zip?v=pl';
+  window.location.href = 'https://raw.githubusercontent.com/asmdawk/aaaa/anatomical-download/Anatomical.zip?v=bone-atlas';
 });
 $('#reset-layers').addEventListener('click', () => {
   visible.clear();
@@ -367,26 +382,31 @@ $('#reset-pose').addEventListener('click', () => {
 $$('[data-view]').forEach((button) => button.addEventListener('click', () => viewer?.setView(button.dataset.view)));
 $('#orbit-mode').addEventListener('click', () => setMode('orbit'));
 $('#pose-mode').addEventListener('click', () => setMode('pose'));
+$('#label-mode').addEventListener('click', (event) => {
+  labelsEnabled = !labelsEnabled;
+  event.currentTarget.setAttribute('aria-pressed', String(labelsEnabled));
+  viewer?.setLabels(labelsEnabled);
+});
 $('#zoom-in').addEventListener('click', () => viewer?.zoom(1.2));
 $('#zoom-out').addEventListener('click', () => viewer?.zoom(1 / 1.2));
 $('#center').addEventListener('click', () => viewer?.resetView());
-$('#fullscreen').addEventListener('click', async () => {
+async function fullscreen(element) {
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
-    else if ($('#stage').requestFullscreen) await $('#stage').requestFullscreen();
+    else if (element.requestFullscreen) await element.requestFullscreen();
     else showToast('Tryb pełnoekranowy jest niedostępny w tej przeglądarce');
   } catch {
     showToast('Tryb pełnoekranowy jest niedostępny w tej przeglądarce');
   }
-});
+}
+$('#fullscreen').addEventListener('click', () => fullscreen($('#stage')));
 $('#capture').addEventListener('click', () => {
-  if (!ready) return;
   try {
-    const url = viewer.capture();
+    const url = activeSection === 'anatomia' ? (ready && viewer.capture()) : boneWorkbench.capture();
     if (!url) return;
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'Anatomical.png';
+    link.download = 'Anatomical-' + activeSection + '.png';
     link.click();
     showToast('Zapisano obraz modelu');
   } catch {
@@ -409,25 +429,68 @@ function showError(error) {
   $('#progress-label').textContent = 'Odśwież stronę w przeglądarce obsługującej WebGL 2.';
 }
 
-try {
-  const { AnatomyViewer } = await import('./viewer.js');
-  viewer = new AnatomyViewer($('#viewer'), {
-    onProgress: (fraction) => {
-      $('#progress-label').textContent = 'Przygotowywanie warstw anatomicznych · ' + Math.round(fraction * 100) + '%';
-    },
-    onReady: () => {
-      ready = true;
-      status.hidden = true;
-      updateLayerVisibility();
-      for (const [layer, value] of opacities) viewer.setLayerOpacity(layer, value / 100);
-      viewer.selectJoint(jointSelect.value, side);
-      setMode(mode);
-    },
-    onError: showError,
-    onSelect: onSelection,
-    onPose,
-    onView: showView,
-  });
-} catch (error) {
-  showError(error);
+function loadAnatomy() {
+  anatomyInitialization ??= import('./viewer.js').then(({ AnatomyViewer }) => {
+    viewer = new AnatomyViewer($('#viewer'), {
+      onProgress: (fraction) => {
+        $('#progress-label').textContent = 'Przygotowywanie warstw anatomicznych · ' + Math.round(fraction * 100) + '%';
+      },
+      onReady: () => {
+        ready = true;
+        status.hidden = true;
+        updateLayerVisibility();
+        for (const [layer, value] of opacities) viewer.setLayerOpacity(layer, value / 100);
+        viewer.selectJoint(jointSelect.value, side);
+        viewer.setLabels(labelsEnabled);
+        setMode(mode);
+      },
+      onError: showError,
+      onSelect: onSelection,
+      onPose,
+      onView: showView,
+    });
+  }).catch(showError);
 }
+
+const boneWorkbench = createBoneWorkbench({ icon: svg, fullscreen });
+const sections = {
+  anatomia: {
+    title: 'Atlas ciała',
+    description: 'Odkrywaj kolejne warstwy anatomii i zobacz, jak porusza się ciało.',
+    boneMode: null,
+  },
+  zlamania: { title: fractures.title, description: fractures.summary, boneMode: 'fracture' },
+  choroby: {
+    title: 'Choroby kości',
+    description: 'Porównaj zdrową kość z przekrojem, aby zobaczyć zmiany na zewnątrz i we wnętrzu.',
+    boneMode: 'disease',
+  },
+};
+
+function showSection() {
+  const requested = location.hash.slice(1);
+  const section = Object.hasOwn(sections, requested) ? requested : 'anatomia';
+  if (section === activeSection) return;
+  if (animation) stopAnimation();
+  activeSection = section;
+  const { title, description, boneMode } = sections[section];
+  for (const link of $$('[data-section]')) {
+    if (link.dataset.section === section) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  }
+  $('#page-title').textContent = title;
+  $('#page-description').textContent = description;
+  document.title = 'Anatomical — ' + (boneMode ? title : 'Atlas 3D ciała człowieka');
+  $('#anatomy-workspace').hidden = Boolean(boneMode);
+  $('#condition-workspace').hidden = !boneMode;
+  boneWorkbench.show(boneMode);
+  if (boneMode) {
+    $('#stage-hint span:last-child').textContent = 'Przeciągnij, by obrócić · przewiń, by zmienić powiększenie';
+  } else {
+    setMode(mode);
+    loadAnatomy();
+  }
+}
+
+window.addEventListener('hashchange', showSection);
+showSection();

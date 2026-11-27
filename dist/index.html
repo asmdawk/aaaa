@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#131015">
-  <meta name="description" content="Interaktywny atlas 3D anatomii człowieka z warstwami anatomicznymi i ruchomymi stawami.">
+  <meta name="description" content="Interaktywny atlas 3D ciała człowieka z ruchomymi stawami, modelami złamań i przekrojami chorób kości.">
   <title>Anatomical — Atlas 3D ciała człowieka</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./labels.css">
+  <link rel="stylesheet" href="./bone-workspace.css">
 </head>
 <body>
   <header class="topbar">
@@ -24,12 +26,17 @@
     <div class="page-intro">
       <div>
         <div class="eyebrow"><span></span> ANATOMIA CZŁOWIEKA</div>
-        <h1>Atlas ciała</h1>
-        <p>Odkrywaj kolejne warstwy anatomii i zobacz, jak porusza się ciało.</p>
+        <h1 id="page-title">Atlas ciała</h1>
+        <p id="page-description">Odkrywaj kolejne warstwy anatomii i zobacz, jak porusza się ciało.</p>
       </div>
       <div class="edition-tag"><span data-icon="cube"></span> MODEL 3D</div>
     </div>
-    <div class="workspace">
+    <nav class="atlas-nav" aria-label="Działy atlasu">
+      <a href="#anatomia" data-section="anatomia" aria-current="page"><span data-icon="layers"></span>Anatomia</a>
+      <a href="#zlamania" data-section="zlamania"><span data-icon="fracture"></span>Złamania kości</a>
+      <a href="#choroby" data-section="choroby"><span data-icon="cross-section"></span>Choroby kości</a>
+    </nav>
+    <div id="anatomy-workspace" class="workspace">
       <aside class="panel layers-panel" aria-labelledby="layers-title">
         <div class="panel-head">
           <span class="panel-icon" data-icon="layers"></span>
@@ -42,6 +49,7 @@
           <div id="opacity-layer" class="opacity-layer">Mięśnie</div>
         </div>
         <div class="layers-bottom">
+          <button class="subtle-button label-toggle" id="label-mode" type="button" aria-pressed="false"><span data-icon="label"></span> Etykiety struktur</button>
           <button class="subtle-button" id="reset-layers" type="button"><span data-icon="reset"></span> Zresetuj warstwy</button>
           <button class="subtle-button" id="sources" type="button"><span data-icon="info"></span> O modelu</button>
         </div>
@@ -104,6 +112,80 @@
             <button type="button" class="play-button" id="play"><span data-icon="play"></span><span>Pokaż ruch</span></button>
             <button class="icon-button reset-pose" type="button" id="reset-pose" aria-label="Zresetuj pozę" title="Zresetuj pozę"><span data-icon="reset"></span></button>
           </div>
+        </div>
+      </aside>
+    </div>
+    <div id="condition-workspace" class="workspace bone-workspace" hidden>
+      <aside class="panel bone-controls" aria-labelledby="bone-controls-title">
+        <div class="panel-head">
+          <span class="panel-icon" data-icon="bone"></span>
+          <h2 id="bone-controls-title">Wybór modelu</h2>
+        </div>
+        <div class="bone-setting">
+          <label for="bone-choice">Kość</label>
+          <div class="select-wrap"><select id="bone-choice"></select><span data-icon="chevron"></span></div>
+        </div>
+        <div class="bone-setting" id="fracture-setting">
+          <span class="bone-field-label" id="fracture-type-label">Rodzaj złamania</span>
+          <div class="bone-segments" role="group" aria-labelledby="fracture-type-label">
+            <button type="button" data-fracture="closed" aria-pressed="true">Zamknięte</button>
+            <button type="button" data-fracture="open" aria-pressed="false">Otwarte</button>
+          </div>
+        </div>
+        <div class="bone-setting condition-disease" id="disease-setting" hidden>
+          <label for="disease-choice">Choroba</label>
+          <div class="select-wrap"><select id="disease-choice"></select><span data-icon="chevron"></span></div>
+        </div>
+        <div class="bone-setting bone-layer-settings" id="fracture-layers">
+          <h3>Warstwy modelu</h3>
+          <div id="bone-layer-list" class="bone-layer-list"></div>
+        </div>
+        <div class="bone-setting bone-stage-setting" id="disease-stages" hidden>
+          <h3 id="disease-stage-label">Etap w modelu</h3>
+          <div class="bone-stage-options" id="disease-stage-options" role="group" aria-labelledby="disease-stage-label"></div>
+        </div>
+        <div class="layers-bottom">
+          <button class="subtle-button" id="reset-bone" type="button"><span data-icon="reset"></span> Przywróć ustawienia</button>
+          <button class="subtle-button" id="bone-sources" type="button"><span data-icon="info"></span> O modelach</button>
+        </div>
+      </aside>
+      <section class="stage condition-stage" id="condition-stage" aria-label="Interaktywny model kości">
+        <div class="stage-backdrop"></div>
+        <div class="stage-floor"></div>
+        <div id="bone-viewer" role="group" aria-label="Obszar widoku kości 3D"></div>
+        <div class="stage-top">
+          <div class="live-label"><span></span><span id="bone-view-label">WIDOK 3D</span></div>
+          <button class="glass icon-button fullscreen-button" id="bone-fullscreen" aria-label="Przełącz tryb pełnoekranowy" title="Przełącz tryb pełnoekranowy" type="button"><span data-icon="expand"></span></button>
+        </div>
+        <div class="toolbox glass" role="group" aria-label="Narzędzia modelu kości">
+          <button class="icon-button" id="bone-zoom-in" type="button" aria-label="Przybliż" title="Przybliż"><span data-icon="plus"></span></button>
+          <button class="icon-button" id="bone-zoom-out" type="button" aria-label="Oddal" title="Oddal"><span data-icon="minus"></span></button>
+          <button class="icon-button" id="bone-center" type="button" aria-label="Zresetuj widok" title="Zresetuj widok"><span data-icon="target"></span></button>
+        </div>
+        <div id="bone-comparison" class="bone-comparison" aria-label="Modele w porównaniu" hidden>
+          <span><i></i> Zdrowa kość</span><span><i></i> Przekrój wybranego etapu</span>
+        </div>
+        <div class="stage-bottom">
+          <div class="view-picker glass" role="group" aria-label="Widok kości">
+            <button type="button" aria-pressed="true" data-bone-view="three-quarter">Pod kątem</button>
+            <button type="button" aria-pressed="false" data-bone-view="front">Z przodu</button>
+            <button type="button" aria-pressed="false" data-bone-view="right">Z boku</button>
+          </div>
+        </div>
+        <div class="viewer-status" id="bone-status" role="status">
+          <span class="loading-ring"></span>
+          <strong>Wczytywanie kości</strong>
+          <span>Przygotowywanie przekroju 3D</span>
+        </div>
+      </section>
+      <aside class="panel bone-details" aria-labelledby="bone-details-title">
+        <div class="panel-head">
+          <span class="panel-icon" data-icon="focus"></span>
+          <h2 id="bone-details-title">Co widać na modelu</h2>
+        </div>
+        <div id="bone-description" class="structure bone-description" aria-live="polite"></div>
+        <div class="bone-actions" id="bone-actions">
+          <button type="button" class="play-button" id="bone-motion" aria-pressed="false"><span data-icon="play"></span><span>Pokaż ruch</span></button>
         </div>
       </aside>
     </div>

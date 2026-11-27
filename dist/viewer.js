@@ -3,6 +3,7 @@ import { OrbitControls } from './vendor/controls/OrbitControls.js';
 import { GLTFLoader } from './vendor/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from './vendor/libs/meshopt_decoder.module.js';
 import { createAnatomyRig } from './rig.js';
+import { AnatomyLabels } from './anatomy-labels.js';
 
 const ASSET_ROOT = new URL('./assets/anatomy/', import.meta.url);
 const TAU = Math.PI * 2;
@@ -168,6 +169,7 @@ export class AnatomyViewer {
       display: 'block', width: '100%', height: '100%', outline: 'none', cursor: 'grab',
     });
     this.host.append(canvas);
+    this.labels = new AnatomyLabels(this.host, (part) => this.setSelection(part));
 
     this.scene = new THREE.Scene();
     this.model = new THREE.Group();
@@ -347,10 +349,15 @@ export class AnatomyViewer {
     }
 
     const moving = this.controls.update();
-    if (!this.dirty && !moving) return;
-    this.updateMarkers();
-    this.renderer.render(this.scene, this.camera);
-    this.dirty = false;
+    const changed = this.dirty || moving;
+    if (changed) {
+      this.updateMarkers();
+      this.renderer.render(this.scene, this.camera);
+      this.dirty = false;
+    }
+    if (this.labels?.enabled && (changed || this.labels.due(time))) {
+      this.labels.update(this.camera, this.parts, this.selection, time, changed);
+    }
   }
 
   frameTarget() {
@@ -435,6 +442,11 @@ export class AnatomyViewer {
     this.applyAppearance();
   }
 
+  setLabels(active) {
+    this.labels?.setEnabled(active);
+    this.dirty = true;
+  }
+
   applyAppearance() {
     for (const part of this.parts) {
       const { layer, mesh } = part;
@@ -452,6 +464,7 @@ export class AnatomyViewer {
       material.emissiveIntensity = selected ? 0.64 : 0;
       mesh.renderOrder = layer === 'skin' ? 20 : 0;
     }
+    this.labels?.invalidate();
     this.dirty = true;
   }
 
@@ -638,6 +651,7 @@ export class AnatomyViewer {
     cancelAnimationFrame(this.frame);
     this.observer?.disconnect();
     this.controls?.dispose();
+    this.labels?.dispose();
     this.scene?.traverse((object) => {
       if (!object.isMesh) return;
       object.geometry.dispose();

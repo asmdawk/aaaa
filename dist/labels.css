@@ -1,0 +1,89 @@
+.anatomy-labels,
+.anatomy-label-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.anatomy-labels[hidden],
+.anatomy-label[hidden] {
+  display: none;
+}
+
+.anatomy-label {
+  position: absolute;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 34px;
+  padding: 5px 8px;
+  border: 1px solid color-mix(in srgb, var(--anatomy-label-color) 36%, #30232e);
+  border-radius: 7px;
+  background: #221921ef;
+  color: #fff4f2;
+  box-shadow: 0 3px 12px #160c1370;
+  font-family: inherit;
+  font-size: .78rem;
+  font-weight: 710;
+  line-height: 1.17;
+  text-align: left;
+  pointer-events: auto;
+}
+
+.anatomy-label:hover,
+.anatomy-label[aria-pressed="true"] {
+  border-color: var(--anatomy-label-color);
+  color: #fffaf8;
+  background: #3a2935;
+}
+
+.anatomy-label-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.anatomy-label-side {
+  flex: 0 0 auto;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: var(--anatomy-label-color);
+  background: color-mix(in srgb, var(--anatomy-label-color) 14%, transparent);
+  font: 650 .65rem/1.05 var(--mono, monospace);
+}
+
+.anatomy-leader {
+  fill: none;
+  stroke: var(--anatomy-label-color);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .86;
+  filter: drop-shadow(0 1px 1px #1b121ae0);
+}
+
+.anatomy-leader.is-selected {
+  opacity: 1;
+  stroke-width: 1.65;
+}
+
+.anatomy-leader-arrow {
+  stroke-width: 1.45;
+}
+
+@media (max-width: 700px) {
+  .anatomy-label {
+    min-height: 34px;
+    padding-inline: 5px;
+    font-size: .72rem;
+  }
+  .anatomy-label-side {
+    padding-inline: 3px;
+  }
+}
